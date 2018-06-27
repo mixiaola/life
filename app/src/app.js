@@ -1,10 +1,12 @@
 import Koa from 'koa';
 import router from './routes/index.js';
 const app = new Koa();
+const views = require('koa-views');
 
-app.use(async ctx => {
-    ctx.body = 'Wise Wrong';
-});
+// 配置模板文件目录和后缀名
+app.use(views(__dirname + '/view', {
+  extension: 'ejs'
+}))
 app.use(router.routes())
     .use(router.allowedMethods());
 app.listen(3000);
