@@ -28,6 +28,7 @@
   "devDependencies": {
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-component": "^1.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "babel-preset-env": "^1.7.0",
@@ -36,6 +37,7 @@
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.11",
     "ejs": "^2.6.1",
+    "element-ui": "^2.4.2",
     "eventsource-polyfill": "^0.9.6",
     "extract-text-webpack-plugin": "^3.0.2",
     "koa-static": "^5.0.0",
@@ -44,8 +46,10 @@
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
     "vue": "^2.5.16",
     "vue-loader": "^15.2.4",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "3.10.0",
     "webpack-dev-middleware": "^2.0.4",
     "webpack-hot-middleware": "^2.21.0"

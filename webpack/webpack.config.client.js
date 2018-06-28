@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     entry: {
@@ -17,7 +18,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {
-            'vue': path.resolve(__dirname, '../node_modules/vue/dist/vue.js'),
+            'vue$': path.resolve(__dirname, '../node_modules/vue/dist/vue.js'),
         }
     },
     module: {
@@ -33,7 +34,7 @@ module.exports = {
     	{
             test: /\.vue?$/,
             exclude: /node_modules/,
-            use: ['vue-loader','babel-loader']
+            use: ['vue-loader']
         },
         {
             test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i,
@@ -47,7 +48,6 @@ module.exports = {
         },
         {
          test: /\.css$/,
-         exclude: /node_modules/,
          use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: ['css-loader']
@@ -66,12 +66,16 @@ module.exports = {
                     }
                 }, 'less-loader']
             })
+        },{
+            test: /\.(woff|svg|eot|ttf)\??.*$/,
+            loader: 'url-loader'
         }]
     },
     plugins: [
     	new webpack.optimize.CommonsChunkPlugin({
             names: ['base']
         }),
+        new VueLoaderPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
