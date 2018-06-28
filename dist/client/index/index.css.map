@@ -1,1 +1,0 @@
-{"version":3,"file":"./index/index.css","sources":["webpack:///./src/page/index/index.less"],"sourcesContent":["body {\n  background: #eee;\n}\nbody p {\n  color: red;\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/page/index/index.less"],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;","sourceRoot":""}
