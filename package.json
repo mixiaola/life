@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node --inspect app/src/app.js",
-    "build": "NODE_ENV=production webpack --config webpack/webpack.config.client.js",
+    "build": "rm -rf dist && NODE_ENV=production webpack --config webpack/webpack.config.client.js  --sort-assets-by 'size' --progress -p --hide-modules",
     "dev-app": "nodemon --exec babel-node --inspect app/src/app.js"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "element-ui": "^2.4.2",
     "eventsource-polyfill": "^0.9.6",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",
     "koa-webpack-dev-middleware": "^2.0.2",

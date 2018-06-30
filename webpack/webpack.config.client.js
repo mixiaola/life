@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-
 module.exports = {
     entry: {
     	'base':['vue'],
@@ -13,8 +12,7 @@ module.exports = {
         filename: '[name]/index.js',
         publicPath: '/'
     },
-    devtool: 'cheap-module-source-map',
-    // devtool: 'hidden-source-map',
+    devtool: process.env.NODE_ENV=='production'?'hidden-source-map':'cheap-module-source-map',
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {
@@ -42,7 +40,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
-                    name: 'imgs/[name].[hash:8].[ext]'
+                    name: './imgs/[name].[hash:8].[ext]'
                 }
             }]
         },
@@ -66,7 +64,8 @@ module.exports = {
                     }
                 }, 'less-loader']
             })
-        },{
+        },
+        {
             test: /\.(woff|svg|eot|ttf)\??.*$/,
             loader: 'url-loader'
         }]
