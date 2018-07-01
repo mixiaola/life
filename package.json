@@ -24,7 +24,8 @@
     "koa": "^2.5.1",
     "koa-router": "^7.4.0",
     "mysql": "^2.15.0",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "vue-resource": "^1.5.1"
   },
   "devDependencies": {
     "babel-helper-vue-jsx-merge-props": "^2.0.3",

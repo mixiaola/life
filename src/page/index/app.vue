@@ -14,7 +14,12 @@
 	    }
 	  },
 	  created () {
-	  	console.log(123131231)
+			console.log(123131231)
+			this.$http.get('/login', { params: {username: 'admin', password:123456}}).then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+      });
 	  },
 	  methods: {
 	  }
