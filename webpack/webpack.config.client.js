@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
     entry: {
     	'base':['vue'],
@@ -12,12 +12,11 @@ module.exports = {
         filename: '[name]/index.js',
         publicPath: '/'
     },
-    devtool: 'cheap-module-source-map',
-    // devtool: 'hidden-source-map',
+    devtool: process.env.NODE_ENV=='production'?'hidden-source-map':'cheap-module-source-map',
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {
-            'vue': path.resolve(__dirname, '../node_modules/vue/dist/vue.js'),
+            'vue$': path.resolve(__dirname, '../node_modules/vue/dist/vue.js'),
         }
     },
     module: {
@@ -33,7 +32,7 @@ module.exports = {
     	{
             test: /\.vue?$/,
             exclude: /node_modules/,
-            use: ['vue-loader','babel-loader']
+            use: ['vue-loader']
         },
         {
             test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i,
@@ -41,13 +40,12 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
-                    name: 'imgs/[name].[hash:8].[ext]'
+                    name: './imgs/[name].[hash:8].[ext]'
                 }
             }]
         },
         {
          test: /\.css$/,
-         exclude: /node_modules/,
          use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: ['css-loader']
@@ -66,12 +64,17 @@ module.exports = {
                     }
                 }, 'less-loader']
             })
+        },
+        {
+            test: /\.(woff|svg|eot|ttf)\??.*$/,
+            loader: 'url-loader'
         }]
     },
     plugins: [
     	new webpack.optimize.CommonsChunkPlugin({
             names: ['base']
         }),
+        new VueLoaderPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),

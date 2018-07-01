@@ -1,6 +1,11 @@
 require('./index.less')
+import ElementUI from 'element-ui';
+import App from './app.vue';
+import 'element-ui/lib/theme-chalk/index.css';
+// require('../../imgs/1.png');
+Vue.use(ElementUI);
 new Vue({
   el: '#main',
   data: {},
-  template:'<p>1231水多少了开发商2312sdfsd3sdfs</p>'
+  render: h => h(App)
 })

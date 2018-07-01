@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import router from './routes/index.js';
+import page from './routes/page.js';
 import path from 'path';
 import views from 'koa-views';
 const app = new Koa();
@@ -40,15 +41,17 @@ const hotMiddleware = (compiler, opts) => {
 }
 
 function bindWebpack(){
-	webpackConfig.entry = Object.keys(webpackConfig.entry)
-		.reduce(function (entries, name) {
-			console.log(name)
-			webpackConfig.entry[name].unshift('webpack-hot-middleware/client');
-			return webpackConfig.entry
-		})
-	let compiler = webpack(webpackConfig)
-	app.use(devMiddleware(compiler));
-	app.use(hotMiddleware(compiler));
+    if (process.env.NODE_ENV!='production'){
+        webpackConfig.entry = Object.keys(webpackConfig.entry)
+            .reduce(function (entries, name) {
+                console.log(name)
+                webpackConfig.entry[name].unshift('webpack-hot-middleware/client');
+                return webpackConfig.entry
+            })
+        let compiler = webpack(webpackConfig)
+        app.use(devMiddleware(compiler));
+        app.use(hotMiddleware(compiler));
+    }
 }
 function bindStatic (){
 	// 配置模板文件目录和后缀名
@@ -57,11 +60,13 @@ function bindStatic (){
 	}))
 
 	//设置静态资源路径
-	app.use(require('koa-static')(__dirname + '../../../dist'))
+    app.use(require('koa-static')(__dirname + '../../../dist/client'))
 
 	//配置koa router
 	app.use(router.routes())
 	    .use(router.allowedMethods());
+    app.use(page.routes())
+        .use(page.allowedMethods());
 }
 function startServer(){
 	//监听端口
