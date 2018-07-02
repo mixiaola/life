@@ -5,14 +5,15 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
     entry: {
     	'base':['vue'],
-    	'index':['./src/page/index/index.js']
+    	'index':['./src/page/index/index.js'],
+        'login': ['./src/page/login/index.js']
     }, 
     output:{
         path: path.resolve(__dirname, '../dist/client'),
         filename: '[name]/index.js',
         publicPath: '/'
     },
-    devtool: process.env.NODE_ENV=='production'?'hidden-source-map':'cheap-module-source-map',
+    // devtool: process.env.NODE_ENV=='production'?'hidden-source-map':'cheap-module-source-map',
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {
@@ -58,10 +59,10 @@ module.exports = {
                 fallback: 'style-loader',
                 use: [{
                     loader: 'css-loader',
-                    options: {
-                        url: false,
-                        sourceMap: true
-                    }
+                    // options: {
+                    //     url: false,
+                    //     sourceMap: true
+                    // }
                 }, 'less-loader']
             })
         },

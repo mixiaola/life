@@ -8,7 +8,7 @@ const login = async function (ctx) {
     result.map((item)=>{
         if (item.username == ctx.query.username && item.password == ctx.query.password) {
             resultData = '登陆成功'
-            ctx.cookies.set('isLogin', true)
+            ctx.cookies.set('isLogin', ctx.query.username, {httpOnly:false})
         }
     })
     ctx.body = resultModule.ok({
