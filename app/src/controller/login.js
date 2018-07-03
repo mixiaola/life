@@ -1,4 +1,3 @@
-const resultModule = require('../lib/result.js');
 const sqlHelper = require('../module/sql.js');
 
 const login = async function (ctx) {
@@ -11,9 +10,12 @@ const login = async function (ctx) {
             ctx.cookies.set('isLogin', ctx.query.username, {httpOnly:false})
         }
     })
-    ctx.body = resultModule.ok({
+    var data = {
+        ec: resultData ==='登陆成功'?200:403,
+        em: resultData,
         data: resultData
-    });
+    };
+    ctx.body = data;
     return ctx.body;
 };
 
