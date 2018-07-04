@@ -1,11 +1,14 @@
 <template>
-	<div>
+	<div class='login_page'>
 		<Header></Header>
-		<div>index页面</div>
+		<div class="manage">
+			<Manage></Manage>
+		</div>
 	</div>
 </template>
 <script>
 	import Header from '../../component/header/index.vue';
+	import Manage from './manage.vue';
 	export default {
 	  data () {
 	    return {
@@ -13,18 +16,29 @@
 	    }
 	  },
 	  created () {
-			console.log(123131231)
-			this.$http.get('/login', { params: {username: 'admin', password:123456}}).then(response => {
-        console.log(1);
-      }, response => {
-        console.log(response);
-      });
+		
 	  },
 	  methods: {
-
+	  	
 	  },
 	  components: {
-	  	Header
+	  	Header,
+	  	Manage
 	  }
 	}
 </script>
+<style scoped lang='less'>
+    .login_page{
+		height:100%;
+		.manage{
+			height:100%;
+			padding-top:100px;
+		}
+	}
+</style>
+
+<style type="text/css">
+	html,body{
+		height:100%;
+	}
+</style>

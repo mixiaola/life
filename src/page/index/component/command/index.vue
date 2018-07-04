@@ -1,0 +1,1 @@
+<template><div>command</div></template>
