@@ -67,11 +67,19 @@
 		font-size: 14px;
 		line-height: 22px;
 	}
+</style>
+<style lang='less' scoped>
 	.header{
 		height: 100px;
 		line-height: 100px;
 		vertical-align: top;
 		border-bottom: 1px solid #EBEBEB;
+		position:fixed;
+		width:100%;
+		top:0;
+		left:0;
+		z-index:100;
+		background:#fff;
 		.logo{
 			height: 52px;
 			margin-top: 24px;
