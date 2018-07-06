@@ -67,7 +67,7 @@
   	export default {
 	  	data () {
 		    return {
-		      managePage: 'index'
+		      managePage: 'shop'
 		    }
 		},
 	    methods: {
