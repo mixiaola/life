@@ -27,8 +27,8 @@ const getLabelList = async function (ctx) {
     const sql = `select * from label`;
     const result = await sqlHelper.query(sql);
     var data = {
-        ec: result.length ? 200 : 500,
-        em: result.length ? 'success' : 'error',
+        ec: result.length && result.length !== 0 ? 200 : 500,
+        em: result.length && result.length !== 0 ? 'success' : 'error',
         data: {
             list: result,
             total: result.length
