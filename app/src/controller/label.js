@@ -29,7 +29,10 @@ const getLabelList = async function (ctx) {
     var data = {
         ec: result.length ? 200 : 500,
         em: result.length ? 'success' : 'error',
-        data: result
+        data: {
+            list: result,
+            total: result.length
+        }
     };
     ctx.body = data;
     return ctx.body;

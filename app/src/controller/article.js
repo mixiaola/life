@@ -41,7 +41,10 @@ const getArticleList = async function (ctx) {
     var data = {
         ec: result.length ? 200 : 500,
         em: result.length ? 'success' : 'error',
-        data: result.splice((cur - 1) * pageSize, pageSize)
+        data: {
+            result: result.splice((cur - 1) * pageSize, pageSize),
+            total: result.length
+        }
     };
     ctx.body = data;
     return ctx.body;
