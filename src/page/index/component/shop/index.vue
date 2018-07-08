@@ -1,6 +1,6 @@
 <template>
 	<div class='shop'>
-		<el-button type="primary" class='addBtn'>添加新店</el-button>
+		<el-button type="primary" class='addBtn' @click='handleClick'>添加新店</el-button>
 		<div class="changeCity">
 			<el-dropdown @command="handleCommand">
 			  	<el-button type="primary">
@@ -16,12 +16,12 @@
 			</el-dropdown>
 		</div>
 		<el-table class='shop_table' :data="tableData"  style="width: 100%">
-	      	<el-table-column prop="date" label="最后修改时间"></el-table-column>
-	      	<el-table-column prop="name" label="店名"></el-table-column>
+	      	<el-table-column prop="validtiyEnd" label="最后修改时间"></el-table-column>
+	      	<el-table-column prop="shopTitle" label="店名"></el-table-column>
 	      	<el-table-column prop="city" label="城市"></el-table-column>
-	      	<el-table-column prop="pictures" label="描述图片">
+	      	<el-table-column prop="imgUrl" label="描述图片">
                  <template slot-scope="scope">
-                    <img :src="scope.row.pictures" width="112" height="80" class="head_pic"/>
+                    <img :src="scope.row.imgUrl" width="112" height="80" class="head_pic"/>
                 </template>
             </el-table-column>
 	      	<el-table-column fixed="right" label="操作" width="100">
@@ -31,77 +31,75 @@
 		    </el-table-column>
 	    </el-table>
 	    <div class="block">
-		  <el-pagination
-		    layout="total, prev, pager, next"
-		    :total="80">
-		  </el-pagination>
+		  <el-pagination layout="total, prev, pager, next" v-if='total || total==0' :total="total"> </el-pagination>
 		</div>
+		<!-- 弹层新增或修改店铺信息 -->
 		<el-dialog title="店铺管理" :visible.sync="dialogTableVisible" width='90%' top='5%'>
 		  	<div>
-  				<el-button type="primary">保存</el-button>
-		  		<el-button>取消</el-button>
+  				<el-button type="primary" @click="submitForm">保存</el-button>
 		  		<div class="uploadImg">
 		  			<el-button class='btn'>上传/更换图片</el-button>
 		  			<p>建议上传能突出店铺特色的、清晰美观高质量的横版照片。</p>
 		  		</div>
 		  		
 
-		  		<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-		  			<el-form-item label="店铺标题" prop="name">
-					    <el-input v-model="shopTitle"></el-input>
+		  		<el-form :model="ruleForm" ref="form" :rules="rules" label-width="150px" class="demo-ruleForm">
+		  			<el-form-item label="店铺标题" prop="shopTitle">
+					    <el-input v-model="ruleForm.shopTitle" placeholder="请输入店铺标题"></el-input>
 					</el-form-item>
-					<el-form-item label="优惠券标题" prop="name">
-					    <el-input v-model="ticketTitle"></el-input>
+					<el-form-item label="优惠券标题" prop="ticketTitle">
+					    <el-input v-model="ruleForm.ticketTitle" placeholder="请输入优惠券标题"></el-input>
 					</el-form-item>
-					<el-form-item label="使用简介" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+					<el-form-item label="使用简介" prop="intro">
+					    <el-input type="textarea" v-model="ruleForm.intro"  placeholder="请输入使用简介"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="活动时间" required>
 					    <el-col :span="6">
-					      <el-form-item prop="date1">
-					        <el-date-picker type="date" placeholder="选择开始日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+					      <el-form-item prop="validtiyStart">
+					        <el-date-picker type="date" placeholder="选择开始日期" v-model="ruleForm.validtiyStart" style="width: 100%;"></el-date-picker>
 					      </el-form-item>
 					    </el-col>
 					    <el-col class="line" :span="1">-</el-col>
 					     <el-col :span="6">
-					      <el-form-item prop="date2">
-					        <el-date-picker type="date" placeholder="选择结束日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+					      <el-form-item prop="validtiyEnd">
+					        <el-date-picker type="date" placeholder="选择结束日期" v-model="ruleForm.validtiyEnd" style="width: 100%;"></el-date-picker>
 					      </el-form-item>
 					    </el-col>
 				  	</el-form-item>
-				  	<el-form-item label="活动城市" prop="region">
-					    <el-select v-model="ruleForm.region" placeholder="请选择活动城市">
+				  	<el-form-item label="活动城市" prop="city">
+					    <el-select v-model="ruleForm.city" placeholder="请选择活动城市">
 					      <el-option label="全部" value="shanghai"></el-option>
 					      <el-option label="北京" value="beijing"></el-option>
 					    </el-select>
 				  	</el-form-item>
-				  	<el-form-item label="活动地址" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+				  	<el-form-item label="活动地址" prop="address">
+					    <el-input type="text" v-model="ruleForm.address"  placeholder="请输入活动地址"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="经纬坐标" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+				  	<el-form-item label="经纬坐标" prop="lag">
+					    <el-input type="text" v-model="ruleForm.lag" placeholder="请输入经纬坐标"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="营业时间" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+				  	<el-form-item label="营业时间" prop="shopStartTime">
+					    <el-input type="text" v-model="ruleForm.shopStartTime"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="电话" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+				  	<el-form-item label="电话" prop="phone">
+					    <el-input type="text" v-model="ruleForm.phone"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="简介链接" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+				  	<!-- todo -->
+				  	<el-form-item label="简介链接" prop="introInfo">
+					    <el-input type="text" v-model="ruleForm.introInfo"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="个人页记录文案" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+				  	<el-form-item label="个人页记录文案" prop="personText">
+					    <el-input type="textarea" v-model="ruleForm.personText"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="标签" prop="desc">
-					    <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+				  	<el-form-item label="标签" prop="label">
+					    <el-input type="text" v-model="ruleForm.label"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="店内播放街声歌单" prop="delivery">
-					    <el-switch v-model="ruleForm.delivery"></el-switch>
+				  	<el-form-item label="店内播放街声歌单" prop="music">
+					    <el-switch v-model="ruleForm.music"></el-switch>
 				  	</el-form-item>
 				  	<el-form-item>
-					    <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-					    <el-button @click="resetForm('ruleForm')">取消</el-button>
+					    <el-button type="primary" @click="submitForm">保存</el-button>
+					    <el-button type="danger" @click="delForm" v-if='id'>删除本条目</el-button>
 				  	</el-form-item>
 				</el-form>
 
@@ -115,91 +113,160 @@
 	export default {
 	  data () {
 	    return {
-	    	ruleForm: {
-	          name: '',
-	          region: '',
-	          date1: '',
-	          date2: '',
-	          delivery: false,
-	          type: [],
-	          resource: '',
-	          desc: ''
-	        },
-	        rules: {
-	          name: [
-	            { required: true, message: '请输入活动名称', trigger: 'blur' },
-	            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-	          ],
-	          region: [
-	            { required: true, message: '请选择活动区域', trigger: 'change' }
-	          ],
-	          date1: [
-	            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-	          ],
-	          date2: [
-	            { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-	          ],
-	          type: [
-	            { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-	          ],
-	          resource: [
-	            { required: true, message: '请选择活动资源', trigger: 'change' }
-	          ],
-	          desc: [
-	            { required: true, message: '请填写活动形式', trigger: 'blur' }
-	          ]
-	        },
+	    	id: null,
+	    	curPage: 1,
 	    	city: '全部',
+	    	total: null,
+	    	imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
+	    	ruleForm: {
+	          shopTitle: '',
+	          ticketTitle: '',
+	          intro: '',
+	          validtiyStart: '',
+	          validtiyEnd: '',
+	          city: '',
+	          address: '',
+	          lag: '',
+	          shopStartTime: '',
+	          phone: '',
+	          introInfo:'',
+	          personText: '',
+	          label: '',
+	          music: '',
+	        },
+	        //表单验证规则
+	        rules: {
+	          	shopTitle: [{
+	          		required: true, message: '请输入店铺标题', trigger: 'change' 
+	          	}],
+		        ticketTitle: [{
+		        	required: true, message: '请输入优惠券标题', trigger: 'change' 
+		        }],
+		        intro: [{
+		        	required: true, message: '请输入使用简介', trigger: 'change'
+		        }],
+		        validtiyStart: [{
+		        	type: 'date', required: true, message: '请选择活动开始时间', trigger: 'change' 
+		        }],
+		        validtiyEnd: [{
+		        	type: 'date', required: true, message: '请选择活动结束时间', trigger: 'change' 
+		        }],
+		        city: [{
+		        	required: true, message: '请选择城市', trigger: 'change' 
+		        }],
+		        address:[{
+		        	required: true, message: '请填写地址', trigger: 'change'
+		        }],
+		        lag: [{
+		        	required: true, message: '请填写经纬度', trigger: 'change' 
+		        }],
+		        shopStartTime: [{
+		        	required: true, message: '请填写活动开始时间', trigger: 'change' 
+		        }],
+		        phone: [{
+		        	required: true, message: '请填写电话号码', trigger: 'change' 
+		        }],
+		        introInfo: [{
+		        	required: true, message: '请填写简介链接', trigger: 'change'
+		        }],
+		        personText: [{
+		        	required: true, message: '请填写简介链接', trigger: 'change' 
+		        }],
+		        label: [{
+		        	required: true, message: '请填写标签', trigger: 'change' 
+		        }]
+	        },
 	    	dialogTableVisible:false,
-	      	tableData: [{
-	          date: '2016-05-03',
-	          name: '王小虎',
-	          province: '上海',
-	          city: '普陀区',
-	          address: '上海市普陀区金沙江路 1518 弄',
-	          zip: 200333,
-	          pictures:'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg'
-	        }, {
-	          date: '2016-05-02',
-	          name: '王小虎',
-	          province: '上海',
-	          city: '普陀区',
-	          address: '上海市普陀区金沙江路 1518 弄',
-	          pictures:'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
-	          zip: 200333
-	        }, {
-	          date: '2016-05-04',
-	          name: '王小虎',
-	          province: '上海',
-	          city: '普陀区',
-	          address: '上海市普陀区金沙江路 1518 弄',
-	          pictures:'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
-	          zip: 200333
-	        }, {
-	          date: '2016-05-01',
-	          name: '王小虎',
-	          province: '上海',
-	          city: '普陀区',
-	          address: '上海市普陀区金沙江路 1518 弄',
-	          pictures:'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
-	          zip: 200333
-	        }],
+	      	tableData: []
 	    }
 	  },
 	  created () {
-		
+		this.getShopList()
 	  },
 	  methods: {
-	  	changeCityFn(city){
-	  		console.log(city)
-	  		this.city = city
-	  	},
 	  	handleCommand(command){
-	  		this.$message('click on item ' + command);
+	  		this.city = command
+	  		this.getShopList()
+	  	},
+	  	getShopList(){
+	  		var that = this
+	  		this.$http.get('/getShopList', { params: {city: this.city, curPage:this.curPage,pageSize:10}})
+	  			.then(res => {
+	  				that.tableData = res.body.data && res.body.data.result
+	  				that.total = res.body.data.total
+			        console.log('res->', res)
+		      	});
 	  	},
 	  	handleClick(item){
-	  		console.log(item)
+	  		console.log('item-->', item)
+	  		if (item && item.id){
+	  			this.id = item.id
+	  			//todo 获取页面数据接口
+	  			// this.$http.get('/getShopList', { params: {city: this.city, curPage:this.curPage,pageSize:10}})
+		  		// 	.then(res => {
+		  		// 		that.tableData = res.body.data && res.body.data.result
+		  		// 		that.total = res.body.data.total
+				  //       console.log('res->', res)
+			   //    	});
+	  		} else {
+	  			this.id = null
+	  			// this.imgUrl = ''
+	  			this.ruleForm =  {
+			          shopTitle: '',
+			          ticketTitle: '',
+			          intro: '',
+			          validtiyStart: '',
+			          validtiyEnd: '',
+			          city: '',
+			          lag: '',
+			          shopStartTime: '',
+			          phone: '',
+			          personText: '',
+			          label: '',
+			          music: '',
+			        }
+	  		}
 	  		this.dialogTableVisible = true
+	  	},
+	  	submitForm(){
+	  		console.log(this.ruleForm)
+	  		this.$nextTick(() => {
+		        this.$refs.form.validate((valid) => {
+		          if (valid) {
+		          	this.ruleForm.imgUrl = this.imgUrl
+		            this.$http.get('/addNewShop', { params: this.ruleForm})
+			  			.then(res => {
+					        console.log('res->', res)
+				      	});
+		          } else {
+		            console.log('error submit!!');
+		            return false;
+		          }
+		        });
+	        })
+	  	},
+	  	delForm(){
+	  		var that = this
+	  		this.$http.get('/delShop', { params: {id: this.id}})
+	  			.then(res => {
+			        // console.log('res->', res)
+			        if (res.body.ec == 200){
+			        	this.$message({
+				          message: res.body.data,
+				          type: 'success'
+				        });
+				        this.tableData.map(function (item, index){
+				        	if (item.id == that.id){
+				        		console.log('index--->', index)
+				        		that.tableData.splice(index,1)
+				        		console.log(that.tableData)
+				        	}
+				        })
+			        } else {
+			        	this.$message.error(res.body.data)
+			        }
+			        this.dialogTableVisible = false
+		      	});
 	  	}
 	  },
 	  components: {
