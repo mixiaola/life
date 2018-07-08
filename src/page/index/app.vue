@@ -50,11 +50,11 @@
       // }, response => {
       //   console.log(response);
 			// });
-			// this.$http.get('/getShopList', { params: {pageSize:2,curPage:2,city:'全部'}} ).then(response => {
-      //   console.log(1);
-      // }, response => {
-      //   console.log(response);
-			// });
+			this.$http.get('/getShopList', { params: {pageSize:10,curPage:1,city:'全部'}} ).then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+			});
 			const artcile = {
 				imgUrl:'https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg',
 				webUrl:'https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg',
