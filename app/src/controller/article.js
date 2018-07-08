@@ -42,7 +42,7 @@ const getArticleList = async function (ctx) {
         ec: result.length && result.length !== 0 ? 200 : 500,
         em: result.length && result.length !== 0 ? 'success' : 'error',
         data: {
-            result: result.splice((cur - 1) * pageSize, pageSize),
+            list: result.slice((cur - 1) * pageSize, pageSize),
             total: result.length
         }
     };

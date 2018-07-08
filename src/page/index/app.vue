@@ -16,7 +16,7 @@
 	    }
 		},
 	  created () {
-				// this.$http.get('/addBanner', { params: banner} ).then(response => {
+
       //   console.log(1);
       // }, response => {
       //   console.log(response);

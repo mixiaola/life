@@ -192,7 +192,7 @@
 	  		var that = this
 	  		this.$http.get('/getShopList', { params: {city: this.city, curPage:this.curPage,pageSize:10}})
 	  			.then(res => {
-	  				that.tableData = res.body.data && res.body.data.result
+	  				that.tableData = res.body.data && res.body.data.list
 	  				that.total = res.body.data.total
 			        console.log('res->', res)
 		      	});

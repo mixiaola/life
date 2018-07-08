@@ -55,11 +55,12 @@ const getShopList = async function (ctx) {
     }
     console.log(sql)
     const result = await sqlHelper.query(sql);
+    console.log(result, result.length)
     var data = {
         ec: result.length && result.length !== 0 ? 200 : 500,
         em: result.length && result.length !== 0 ? 'success' : 'error',
         data: {
-            result: result.splice((cur - 1) * pageSize, pageSize),
+            list: result.slice((cur - 1) * pageSize, pageSize),
             total: result.length
         }
     };
