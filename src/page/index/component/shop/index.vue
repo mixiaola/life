@@ -31,15 +31,20 @@
 		    </el-table-column>
 	    </el-table>
 	    <div class="block">
-		  <el-pagination layout="total, prev, pager, next" v-if='total || total==0' :total="total"> </el-pagination>
+		  <el-pagination @current-change="handleCurrentChange" layout="total, prev, pager, next" v-if='total || total==0' :total="total"> </el-pagination>
 		</div>
 		<!-- 弹层新增或修改店铺信息 -->
 		<el-dialog title="店铺管理" :visible.sync="dialogTableVisible" width='90%' top='5%'>
 		  	<div>
   				<el-button type="primary" @click="submitForm">保存</el-button>
-		  		<div class="uploadImg">
-		  			<el-button class='btn'>上传/更换图片</el-button>
+		  		<div class="uploadImg" v-if='!imgUrl'>
+		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
 		  			<p>建议上传能突出店铺特色的、清晰美观高质量的横版照片。</p>
+		  		</div>
+		  		<div class="uploadImg" v-if='imgUrl'>
+		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
+		  			<div class="drop"></div>
+		  			<img :src="imgUrl">
 		  		</div>
 		  		
 
@@ -54,13 +59,13 @@
 					    <el-input type="textarea" v-model="ruleForm.intro"  placeholder="请输入使用简介"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="活动时间" required>
-					    <el-col :span="6">
+					    <el-col :span="8">
 					      <el-form-item prop="validtiyStart">
 					        <el-date-picker type="date" placeholder="选择开始日期" v-model="ruleForm.validtiyStart" style="width: 100%;"></el-date-picker>
 					      </el-form-item>
 					    </el-col>
-					    <el-col class="line" :span="1">-</el-col>
-					     <el-col :span="6">
+					    <el-col class="line" :span="1"></el-col>
+					     <el-col :span="8">
 					      <el-form-item prop="validtiyEnd">
 					        <el-date-picker type="date" placeholder="选择结束日期" v-model="ruleForm.validtiyEnd" style="width: 100%;"></el-date-picker>
 					      </el-form-item>
@@ -79,20 +84,20 @@
 					    <el-input type="text" v-model="ruleForm.lag" placeholder="请输入经纬坐标"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="营业时间" prop="shopStartTime">
-					    <el-input type="text" v-model="ruleForm.shopStartTime"></el-input>
+					    <el-input type="text" v-model="ruleForm.shopStartTime" placeholder="请输入营业时间"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="电话" prop="phone">
-					    <el-input type="text" v-model="ruleForm.phone"></el-input>
+					    <el-input type="text" v-model="ruleForm.phone"  placeholder="请输入电话"></el-input>
 				  	</el-form-item>
 				  	<!-- todo -->
 				  	<el-form-item label="简介链接" prop="introInfo">
-					    <el-input type="text" v-model="ruleForm.introInfo"></el-input>
+					    <el-input type="text" v-model="ruleForm.introInfo" placeholder="请输入简介链接"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="个人页记录文案" prop="personText">
-					    <el-input type="textarea" v-model="ruleForm.personText"></el-input>
+					    <el-input type="textarea" v-model="ruleForm.personText" placeholder="请输入个人页记录文案"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="标签" prop="label">
-					    <el-input type="text" v-model="ruleForm.label"></el-input>
+					    <el-input type="text" v-model="ruleForm.label" placeholder="请输入标签"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="店内播放街声歌单" prop="music">
 					    <el-switch v-model="ruleForm.music"></el-switch>
@@ -177,28 +182,50 @@
 		        }]
 	        },
 	    	dialogTableVisible:false,
-	      	tableData: []
+	      	tableData: [],
 	    }
 	  },
 	  created () {
 		this.getShopList()
 	  },
 	  methods: {
+	  	handleCurrentChange(curPage){
+	  		this.curPage = curPage
+	  		this.getShopList()
+	  	},
 	  	handleCommand(command){
 	  		this.city = command
 	  		this.getShopList()
 	  	},
-	  	getShopList(){
+	  	getShopList(callback){
 	  		var that = this
 	  		this.$http.get('/getShopList', { params: {city: this.city, curPage:this.curPage,pageSize:10}})
 	  			.then(res => {
 	  				that.tableData = res.body.data && res.body.data.list
 	  				that.total = res.body.data.total
-			        console.log('res->', res)
+			        callback && callback()
 		      	});
 	  	},
+	  	ruleFormRestart(){
+	  		// this.imgUrl = ''
+	  		this.ruleForm =  {
+	          shopTitle: '',
+	          ticketTitle: '',
+	          intro: '',
+	          validtiyStart: '',
+	          validtiyEnd: '',
+	          city: '',
+	          address: '',
+	          lag: '',
+	          shopStartTime: '',
+	          phone: '',
+	          introInfo:'',
+	          personText: '',
+	          label: '',
+	          music: ''
+	        }
+	  	},
 	  	handleClick(item){
-	  		console.log('item-->', item)
 	  		if (item && item.id){
 	  			this.id = item.id
 	  			//todo 获取页面数据接口
@@ -210,36 +237,36 @@
 			   //    	});
 	  		} else {
 	  			this.id = null
-	  			// this.imgUrl = ''
-	  			this.ruleForm =  {
-			          shopTitle: '',
-			          ticketTitle: '',
-			          intro: '',
-			          validtiyStart: '',
-			          validtiyEnd: '',
-			          city: '',
-			          lag: '',
-			          shopStartTime: '',
-			          phone: '',
-			          personText: '',
-			          label: '',
-			          music: '',
-			        }
+	  			this.ruleFormRestart()
 	  		}
 	  		this.dialogTableVisible = true
 	  	},
 	  	submitForm(){
-	  		console.log(this.ruleForm)
+	  		var that = this
 	  		this.$nextTick(() => {
 		        this.$refs.form.validate((valid) => {
 		          if (valid) {
 		          	this.ruleForm.imgUrl = this.imgUrl
+		          	if (this.id){
+		          		this.ruleForm.id = this.id
+		          	}
+		          	this.ruleForm.validtiyStart = this.ruleForm.validtiyStart.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyStart.getMonth()) + 1) + '-' +  this.ruleForm.validtiyStart.getDate()
+		          	this.ruleForm.validtiyEnd = this.ruleForm.validtiyEnd.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyEnd.getMonth()) + 1) + '-' +  this.ruleForm.validtiyEnd.getDate()
 		            this.$http.get('/addNewShop', { params: this.ruleForm})
 			  			.then(res => {
-					        console.log('res->', res)
+			  				if (res.body.ec == '200'){
+			  					//刷新table
+			  					this.curPage = 1
+			  					this.getShopList(function(){
+			  						that.dialogTableVisible = false
+			  					})
+			  					this.ruleFormRestart()
+			  				}else {
+								this.$message.error(res.body.data)
+			  				}
 				      	});
 		          } else {
-		            console.log('error submit!!');
+		            console.warn('error submit!!');
 		            return false;
 		          }
 		        });
@@ -249,7 +276,6 @@
 	  		var that = this
 	  		this.$http.get('/delShop', { params: {id: this.id}})
 	  			.then(res => {
-			        // console.log('res->', res)
 			        if (res.body.ec == 200){
 			        	this.$message({
 				          message: res.body.data,
@@ -257,9 +283,7 @@
 				        });
 				        this.tableData.map(function (item, index){
 				        	if (item.id == that.id){
-				        		console.log('index--->', index)
 				        		that.tableData.splice(index,1)
-				        		console.log(that.tableData)
 				        	}
 				        })
 			        } else {
@@ -295,12 +319,32 @@
 		text-align: center;
 		border:1px solid #EBEBEB;
 		margin-top:20px;
+		position: relative;
 		.btn{
+			position: absolute;
+			top: 20px;
+			left: 50%;
+			width:140px;
+			margin-left: -70px;
 			display:inline-block;
 			margin-top:80px;
+			z-index:9;
+		}
+		.drop{
+			width:100%;
+			position: absolute;
+			height:100%;
+			opacity: 0.4;
+			background:#000;
+			z-index:1;
 		}
 		p{
-			margin-top:16px;
+			margin-top:160px;
+			color:#999
+		}
+		img{
+			width:100%;
+			height:100%;
 		}
 	}
 	.demo-ruleForm{
