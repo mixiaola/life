@@ -54,14 +54,12 @@ const getShopList = async function (ctx) {
     } else {
         sql = `select * from shop where city='${city}'`;
     }
-    console.log(sql)
     const result = await sqlHelper.query(sql);
-    console.log(result, result.length)
     var data = {
         ec: result.length && result.length !== 0 ? 200 : 500,
         em: result.length && result.length !== 0 ? 'success' : 'error',
         data: {
-            list: result.slice((cur - 1) * pageSize, pageSize),
+            list: result.slice((cur - 1) * pageSize, cur*pageSize),
             total: result.length
         }
     };
