@@ -6,11 +6,12 @@ const addBanner = async function (ctx) {
         sql = `update banner set city='${ctx.query.city}',
                                img='${ctx.query.img}',
                                link='${ctx.query.link}',
-                               sort='${ctx.query.sort}'
+                               sort='${ctx.query.sort}',
+                               date='${Date.parse(new Date())}'
                     where id=${JSON.parse(ctx.query.id)}`;
     } else {
-        sql = `insert into banner (city, img, link, sort)
-        values ('${ctx.query.city}','${ctx.query.img}','${ctx.query.link}','${ctx.query.sort}')`;
+        sql = `insert into banner (city, img, link, sort,date)
+        values ('${ctx.query.city}','${ctx.query.img}','${ctx.query.link}','${ctx.query.sort}','${Date.parse(new Date())}')`;
     }
     const result = await sqlHelper.change(sql);
     var data = {

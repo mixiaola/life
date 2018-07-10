@@ -6,11 +6,12 @@ const addArticle = async function (ctx) {
         sql = `update shop set imgUrl='${ctx.query.imgUrl}',
                                webUrl='${ctx.query.webUrl}',
                                title='${ctx.query.title}',
-                               text='${ctx.query.text}'
+                               text='${ctx.query.text}',
+                               date='${Date.parse(new Date())}'
                     where id=${JSON.parse(ctx.query.id)}`;
     } else {
-        sql = `insert into article (imgUrl, webUrl, title, text)
-        values ('${ctx.query.imgUrl}','${ctx.query.webUrl}','${ctx.query.title}','${ctx.query.text}')`;
+        sql = `insert into article (imgUrl, webUrl, title, text,date)
+        values ('${ctx.query.imgUrl}','${ctx.query.webUrl}','${ctx.query.title}','${ctx.query.text}','${Date.parse(new Date())}')`;
     }
     const result = await sqlHelper.change(sql);
     var data = {

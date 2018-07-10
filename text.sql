@@ -53,6 +53,7 @@ CREATE TABLE `article` (
   `webUrl` varchar(145) DEFAULT NULL,
   `title` varchar(145) DEFAULT NULL,
   `text` varchar(200) DEFAULT NULL,
+  `date` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,7 +64,7 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` VALUES (1,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？'),(3,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？'),(4,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？'),(5,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？');
+INSERT INTO `article` VALUES (1,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？',NULL),(3,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？',NULL),(4,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？',NULL),(5,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','好的家具','如何挑选一个适合生活的家具呢？',NULL);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +81,7 @@ CREATE TABLE `banner` (
   `img` varchar(145) DEFAULT NULL,
   `link` varchar(145) DEFAULT NULL,
   `sort` varchar(45) DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
+  `date` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -167,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-10 23:34:16
+-- Dump completed on 2018-07-10 23:38:25
