@@ -10,6 +10,7 @@ router.get('/login', login.login);
 router.get('/addNewShop', shop.addNewShop);
 router.get('/delShop', shop.delShop);
 router.get('/getShopList', shop.getShopList);
+router.get('/getShopById', shop.getShopById);
 
 router.get('/addArticle', article.addArticle);
 router.get('/delArticle', article.delArticle);

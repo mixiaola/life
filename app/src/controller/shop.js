@@ -44,6 +44,19 @@ const delShop = async function (ctx) {
     ctx.body = data;
     return ctx.body;
 };
+
+const getShopById = async function (ctx) {
+    const sql = `select * from shop where id=${JSON.parse(ctx.query.id)}`;
+    console.log(sql);
+    const result = await sqlHelper.query(sql);
+    var data = {
+        ec: result? 200 : 500,
+        em: result? 'success' : 'error',
+        data: result
+    };
+    ctx.body = data;
+    return ctx.body;
+};
 const getShopList = async function (ctx) {
     const pageSize = ctx.query.pageSize;
     const cur = ctx.query.curPage;
@@ -70,5 +83,6 @@ const getShopList = async function (ctx) {
 module.exports = {
     addNewShop,
     delShop,
-    getShopList
+    getShopList,
+    getShopById
 }
