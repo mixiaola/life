@@ -48,7 +48,8 @@ const getBannerById = async function (ctx) {
 };
 
 const getBannerList = async function (ctx) {
-    const sql = `select * from banner`;
+    const city = ctx.query.city;
+    const sql = `select * from banner where city='${city}'`;
     const result = await sqlHelper.query(sql);
     var data = {
         ec: result.length && result.length !== 0 ? 200 : 500,
