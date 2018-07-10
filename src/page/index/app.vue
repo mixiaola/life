@@ -16,11 +16,11 @@
 	    }
 		},
 	  created () {
-	this.$http.get('/getShopById', { params: {id:1}} ).then(response => {
-        console.log(1);
-      }, response => {
-        console.log(response);
-			});
+	// this.$http.get('/getShopById', { params: {id:1}} ).then(response => {
+ //        console.log(1);
+ //      }, response => {
+ //        console.log(response);
+	// 		});
       //   console.log(1);
       // }, response => {
       //   console.log(response);

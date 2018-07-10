@@ -16,7 +16,7 @@
 			</el-dropdown>
 		</div>
 		<el-table class='shop_table' :data="tableData"  style="width: 100%">
-	      	<el-table-column prop="validtiyEnd" label="最后修改时间"></el-table-column>
+	      	<el-table-column prop="date" label="最后修改时间"></el-table-column>
 	      	<el-table-column prop="shopTitle" label="店名"></el-table-column>
 	      	<el-table-column prop="city" label="城市"></el-table-column>
 	      	<el-table-column prop="imgUrl" label="描述图片">
@@ -34,7 +34,7 @@
 		  <el-pagination @current-change="handleCurrentChange" layout="total, prev, pager, next" v-if='total || total==0' :total="total"> </el-pagination>
 		</div>
 		<!-- 弹层新增或修改店铺信息 -->
-		<el-dialog title="店铺管理" :visible.sync="dialogTableVisible" width='90%' top='5%'>
+		<el-dialog @close='closeFn' title="店铺管理" v-if='dialogTableVisible' :visible.sync="dialogTableVisible" width='90%' top='5%'>
 		  	<div>
   				<el-button type="primary" @click="submitForm">保存</el-button>
 		  		<div class="uploadImg" v-if='!imgUrl'>
@@ -74,7 +74,10 @@
 				  	<el-form-item label="活动城市" prop="city">
 					    <el-select v-model="ruleForm.city" placeholder="请选择活动城市">
 					      <el-option label="全部" value="shanghai"></el-option>
-					      <el-option label="北京" value="beijing"></el-option>
+					      <el-option label="上海" value="beijing"></el-option>
+					      <el-option label="厦门" value="beijing"></el-option>
+					      <el-option label="成都" value="beijing"></el-option>
+					      <el-option label="武汉" value="beijing"></el-option>
 					    </el-select>
 				  	</el-form-item>
 				  	<el-form-item label="活动地址" prop="address">
@@ -151,10 +154,12 @@
 		        	required: true, message: '请输入使用简介', trigger: 'change'
 		        }],
 		        validtiyStart: [{
-		        	type: 'date', required: true, message: '请选择活动开始时间', trigger: 'change' 
+		        	// type: 'date', required: true, message: '请选择活动开始时间', trigger: 'change' 
+		        	required: true, message: '请选择活动开始时间', trigger: 'change' 
 		        }],
 		        validtiyEnd: [{
-		        	type: 'date', required: true, message: '请选择活动结束时间', trigger: 'change' 
+		        	// type: 'date', required: true, message: '请选择活动结束时间', trigger: 'change' 
+		        	required: true, message: '请选择活动结束时间', trigger: 'change' 
 		        }],
 		        city: [{
 		        	required: true, message: '请选择城市', trigger: 'change' 
@@ -228,13 +233,31 @@
 	  	handleClick(item){
 	  		if (item && item.id){
 	  			this.id = item.id
-	  			//todo 获取页面数据接口
-	  			// this.$http.get('/getShopList', { params: {city: this.city, curPage:this.curPage,pageSize:10}})
-		  		// 	.then(res => {
-		  		// 		that.tableData = res.body.data && res.body.data.result
-		  		// 		that.total = res.body.data.total
-				  //       console.log('res->', res)
-			   //    	});
+	  			this.$http.get('/getShopById', { params: {id: this.id}})
+		  			.then(res => {
+		  				if (res.body.ec == '200'){
+		  					this.imgUrl = res.body.data[0].imgUrl
+		  					console.log('data->', res.body.data[0])
+		  					this.ruleForm =  {
+					          shopTitle: res.body.data[0].shopTitle,
+					          ticketTitle: res.body.data[0].ticketTitle,
+					          intro: res.body.data[0].intro,
+					          validtiyStart: res.body.data[0].validtiyStart,
+					          validtiyEnd: res.body.data[0].validtiyEnd,
+					          city: res.body.data[0].city,
+					          address: res.body.data[0].address,
+					          lag: res.body.data[0].lag,
+					          shopStartTime: res.body.data[0].shopStartTime,
+					          phone: res.body.data[0].phone,
+					          introInfo:res.body.data[0].introInfo,
+					          personText: res.body.data[0].personText,
+					          label: res.body.data[0].label,
+					          music: res.body.data[0].music
+					        }
+		  				} else {
+		  					this.$message.error(res.body.data)
+		  				}
+			      	});
 	  		} else {
 	  			this.id = null
 	  			this.ruleFormRestart()
@@ -250,8 +273,12 @@
 		          	if (this.id){
 		          		this.ruleForm.id = this.id
 		          	}
-		          	this.ruleForm.validtiyStart = this.ruleForm.validtiyStart.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyStart.getMonth()) + 1) + '-' +  this.ruleForm.validtiyStart.getDate()
-		          	this.ruleForm.validtiyEnd = this.ruleForm.validtiyEnd.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyEnd.getMonth()) + 1) + '-' +  this.ruleForm.validtiyEnd.getDate()
+		          	if (typeof this.ruleForm.validtiyStart != 'string'){
+		          		this.ruleForm.validtiyStart = this.ruleForm.validtiyStart.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyStart.getMonth()) + 1) + '-' +  this.ruleForm.validtiyStart.getDate()
+		          	}
+		          	if (typeof this.ruleForm.validtiyEnd != 'string'){
+		          		this.ruleForm.validtiyEnd = this.ruleForm.validtiyEnd.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyEnd.getMonth()) + 1) + '-' +  this.ruleForm.validtiyEnd.getDate()
+		          	}
 		            this.$http.get('/addNewShop', { params: this.ruleForm})
 			  			.then(res => {
 			  				if (res.body.ec == '200'){
@@ -291,6 +318,9 @@
 			        }
 			        this.dialogTableVisible = false
 		      	});
+	  	},
+	  	closeFn(){
+	  		this.ruleFormRestart()
 	  	}
 	  },
 	  components: {
