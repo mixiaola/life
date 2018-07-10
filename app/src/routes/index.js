@@ -15,6 +15,7 @@ router.get('/getShopById', shop.getShopById);
 router.get('/addArticle', article.addArticle);
 router.get('/delArticle', article.delArticle);
 router.get('/getArticleList', article.getArticleList);
+router.get('/getArticleById', article.getArticleById);
 
 router.get('/addLabel', label.addLabel);
 router.get('/delLabel', label.delLabel);
@@ -23,5 +24,6 @@ router.get('/getLabelList', label.getLabelList);
 router.get('/addBanner', banner.addBanner);
 router.get('/delBanner', banner.delBanner);
 router.get('/getBannerList', banner.getBannerList);
+router.get('/getBannerById', banner.getBannerById);
 
 module.exports = router

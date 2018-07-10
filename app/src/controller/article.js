@@ -33,6 +33,19 @@ const delArticle = async function (ctx) {
     ctx.body = data;
     return ctx.body;
 };
+
+const getArticleById = async function (ctx) {
+    const sql = `select * from article where id=${JSON.parse(ctx.query.id)}`;
+    const result = await sqlHelper.query(sql);
+    var data = {
+        ec: result ? 200 : 500,
+        em: result? 'success' : 'error',
+        data: result
+    };
+    ctx.body = data;
+    return ctx.body;
+};
+
 const getArticleList = async function (ctx) {
     const pageSize = ctx.query.pageSize;
     const cur = ctx.query.curPage;
@@ -53,5 +66,6 @@ const getArticleList = async function (ctx) {
 module.exports = {
     addArticle,
     delArticle,
-    getArticleList
+    getArticleList,
+    getArticleById
 }

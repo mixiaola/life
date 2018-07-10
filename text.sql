@@ -143,8 +143,9 @@ CREATE TABLE `shop` (
   `personText` varchar(145) DEFAULT NULL,
   `label` varchar(45) DEFAULT NULL,
   `music` varchar(45) DEFAULT NULL,
+  `date` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +154,7 @@ CREATE TABLE `shop` (
 
 LOCK TABLES `shop` WRITE;
 /*!40000 ALTER TABLE `shop` DISABLE KEYS */;
-INSERT INTO `shop` VALUES (1,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1'),(3,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1'),(4,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','上海','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1'),(5,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1');
+INSERT INTO `shop` VALUES (1,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(3,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(4,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','上海','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(5,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(6,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','2342','4324','433243','2018-7-2','2018-7-10','beijing','43','43','43','43','43','43','43','','1531235545000');
 /*!40000 ALTER TABLE `shop` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -166,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-08 23:23:45
+-- Dump completed on 2018-07-10 23:34:16

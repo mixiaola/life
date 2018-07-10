@@ -17,11 +17,12 @@ const addNewShop = async function (ctx) {
                                 introInfo='${ctx.query.introInfo}',
                                 personText='${ctx.query.personText}',
                                 label='${ctx.query.label}',
-                                music='${ctx.query.music}'
+                                music='${ctx.query.music}',
+                                date='${Date.parse(new Date())}'
                     where id=${JSON.parse(ctx.query.id)}`;
      } else {
-        sql = `insert into shop (imgUrl, shopTitle, ticketTitle, intro, validtiyStart,validtiyEnd,city,address,lag,shopStartTime,phone,introInfo,personText,label,music)
-        values ('${ctx.query.imgUrl}','${ctx.query.shopTitle}','${ctx.query.ticketTitle}','${ctx.query.intro}','${ctx.query.validtiyStart}','${ctx.query.validtiyEnd}','${ctx.query.city}','${ctx.query.address}','${ctx.query.lag}','${ctx.query.shopStartTime}','${ctx.query.phone}','${ctx.query.introInfo}','${ctx.query.personText}','${ctx.query.label}','${ctx.query.music}')`;
+        sql = `insert into shop (imgUrl, shopTitle, ticketTitle, intro, validtiyStart,validtiyEnd,city,address,lag,shopStartTime,phone,introInfo,personText,label,music,date)
+        values ('${ctx.query.imgUrl}','${ctx.query.shopTitle}','${ctx.query.ticketTitle}','${ctx.query.intro}','${ctx.query.validtiyStart}','${ctx.query.validtiyEnd}','${ctx.query.city}','${ctx.query.address}','${ctx.query.lag}','${ctx.query.shopStartTime}','${ctx.query.phone}','${ctx.query.introInfo}','${ctx.query.personText}','${ctx.query.label}','${ctx.query.music}','${Date.parse(new Date())}')`;
      }
     const result = await sqlHelper.change(sql);
     var data = {

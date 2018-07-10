@@ -33,6 +33,19 @@ const delBanner = async function (ctx) {
     ctx.body = data;
     return ctx.body;
 };
+
+const getBannerById = async function (ctx) {
+    const sql = `select * from banner where id=${JSON.parse(ctx.query.id)}`;
+    const result = await sqlHelper.query(sql);
+    var data = {
+        ec: result ? 200 : 500,
+        em: result ? 'success' : 'error',
+        data: result
+    };
+    ctx.body = data;
+    return ctx.body;
+};
+
 const getBannerList = async function (ctx) {
     const sql = `select * from banner`;
     const result = await sqlHelper.query(sql);
@@ -51,5 +64,6 @@ const getBannerList = async function (ctx) {
 module.exports = {
     addBanner,
     delBanner,
-    getBannerList
+    getBannerList,
+    getBannerById
 }
