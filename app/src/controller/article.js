@@ -3,7 +3,7 @@ const sqlHelper = require('../module/sql.js');
 const addArticle = async function (ctx) {
     let sql;
     if (ctx.query.id) {
-        sql = `update shop set imgUrl='${ctx.query.imgUrl}',
+        sql = `update article set imgUrl='${ctx.query.imgUrl}',
                                webUrl='${ctx.query.webUrl}',
                                title='${ctx.query.title}',
                                text='${ctx.query.text}',
