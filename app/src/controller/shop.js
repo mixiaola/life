@@ -26,9 +26,9 @@ const addNewShop = async function (ctx) {
      }
     const result = await sqlHelper.change(sql);
     var data = {
-        ec: result.length?200:500,
-        em: result.length ? 'success' : 'error',
-        data: result.length?'更改成功':'数据库操作失败'
+        ec: result?200:500,
+        em: result ? 'success' : 'error',
+        data: result?'更改成功':'数据库操作失败'
     };
     ctx.body = data;
     return ctx.body;
@@ -38,9 +38,9 @@ const delShop = async function (ctx) {
     const sql = `delete from shop where id=${JSON.parse(ctx.query.id)}`;
     const result = await sqlHelper.change(sql);
     var data = {
-        ec: result.length ? 200 : 500,
-        em: result.length ? 'success' : 'error',
-        data: result.length ? '更改成功' : '数据库操作失败'
+        ec: result ? 200 : 500,
+        em: result ? 'success' : 'error',
+        data: result ? '更改成功' : '数据库操作失败'
     };
     ctx.body = data;
     return ctx.body;
@@ -70,8 +70,8 @@ const getShopList = async function (ctx) {
     }
     const result = await sqlHelper.query(sql);
     var data = {
-        ec: result.length && result.length !== 0 ? 200 : 500,
-        em: result.length && result.length !== 0 ? 'success' : 'error',
+        ec: result ? 200 : 500,
+        em: result ? 'success' : 'error',
         data: {
             list: result.slice((cur - 1) * pageSize, cur*pageSize),
             total: result.length
