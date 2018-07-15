@@ -49,13 +49,20 @@ const getBannerById = async function (ctx) {
 
 const getBannerList = async function (ctx) {
     const city = ctx.query.city;
-    const sql = `select * from banner where city='${city}'`;
+    const pageSize = ctx.query.pageSize;
+    const cur = ctx.query.curPage;
+    let sql;
+    if (city==='全部') {
+        sql = `select * from banner`;
+    } else {
+        sql = `select * from banner where city='${city}'`;
+    }
     const result = await sqlHelper.query(sql);
     var data = {
         ec: result ? 200 : 500,
         em: result ? 'success' : 'error',
         data: {
-            list: result,
+            list: result.slice((cur - 1) * pageSize, cur * pageSize),
             total: result.length
         }
     };
