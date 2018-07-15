@@ -53,8 +53,8 @@ const getArticleList = async function (ctx) {
     const sql = `select * from article`;
     const result = await sqlHelper.query(sql);
     var data = {
-        ec: result.length && result.length !== 0 ? 200 : 500,
-        em: result.length && result.length !== 0 ? 'success' : 'error',
+        ec: result ? 200 : 500,
+        em: result ? 'success' : 'error',
         data: {
             list: result.slice((cur - 1) * pageSize, cur*pageSize),
             total: result.length
