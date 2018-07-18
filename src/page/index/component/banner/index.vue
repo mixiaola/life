@@ -16,11 +16,15 @@
 			</el-dropdown>
 		</div>
 		<el-table class='shop_table' :data="tableData"  style="width: 100%">
-	      	<el-table-column prop="validtiyEnd" label="添加时间"></el-table-column>
+	      	<el-table-column prop="date" label="添加时间">
+	      		<template slot-scope="scope">
+                    {{getDateTimeString(scope.row.date)}}
+                </template>
+	      	</el-table-column>
 	      	<el-table-column prop="sort" label="展示权重"></el-table-column>
 	      	<el-table-column prop="link" label="链接"></el-table-column>
 	      	<el-table-column prop="img" label="文章图片">
-                 <template slot-scope="scope">
+                <template slot-scope="scope">
                     <img :src="scope.row.img" width="112" height="80" class="head_pic"/>
                 </template>
             </el-table-column>
@@ -50,16 +54,19 @@
 		  		</div>
 		  		
 		  		<el-form :model="ruleForm" ref="form" :rules="rules" label-width="150px" class="demo-ruleForm">
-		  			<el-form-item label="跳转链接" prop="webUrl">
-					    <el-input v-model="ruleForm.webUrl" placeholder="请输入店铺标题"></el-input>
+		  			<el-form-item label="跳转链接" prop="link">
+					    <el-input v-model="ruleForm.link" placeholder="请输入店铺标题"></el-input>
 					</el-form-item>
-					<el-form-item label="活动城市" prop="link">
-					    <el-select v-model="ruleForm.link" placeholder="请选择活动城市">
-					      <el-option label="全部" value="shanghai"></el-option>
-					      <el-option label="上海" value="beijing"></el-option>
-					      <el-option label="厦门" value="beijing"></el-option>
-					      <el-option label="成都" value="beijing"></el-option>
-					      <el-option label="武汉" value="beijing"></el-option>
+					<el-form-item label="banner权重值" prop="sort">
+					    <el-input v-model="ruleForm.sort" placeholder="请输入店铺标题"></el-input>
+					</el-form-item>
+				  	<el-form-item label="活动城市" prop="city">
+					    <el-select v-model="ruleForm.city" placeholder="请选择活动城市">
+					      <el-option label="全部" value="全部"></el-option>
+					      <el-option label="上海" value="上海"></el-option>
+					      <el-option label="厦门" value="厦门"></el-option>
+					      <el-option label="成都" value="成都"></el-option>
+					      <el-option label="武汉" value="武汉"></el-option>
 					    </el-select>
 				  	</el-form-item>
 					<el-form-item>
@@ -81,20 +88,20 @@
 	      city:'全部',
 	      imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
 	      ruleForm:{
-	      	webUrl:'',
-	      	title:'',
-	      	text:''
+	      	link:'',
+	      	sort:'',
+	      	city: '全部'
 	      },
 	      //表单验证规则
 	        rules: {
-	          	webUrl: [{
-	          		required: true, message: '请输入店铺标题', trigger: 'change' 
+	          	link: [{
+	          		required: true, message: '请输入跳转链接', trigger: 'change' 
 	          	}],
-	          	title: [{
-	          		required: true, message: '请输入相关文章的链接', trigger: 'change' 
+	          	sort: [{
+	          		required: true, message: '请输入banner权重值', trigger: 'change' 
 	          	}],
-	          	text:[{
-	          		required: true, message: '请输入文章引言', trigger: 'change' 
+	          	city:[{
+	          		required: true, message: '请选择城市', trigger: 'change' 
 	          	}]
 	        },
 	      	dialogTableVisible:false
@@ -104,7 +111,12 @@
 		this.getShopList()
 	  },
 	  methods: {
+	  	getDateTimeString(time){
+	  		let date = new Date(parseInt(time))
+	  		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+	  	},
 	  	handleCommand(command){
+	  		console.log('command->', command)
 	  		this.city = command
 	  		this.getShopList()
 	  	},
@@ -125,13 +137,19 @@
 	  	handleClick(item){
 	  		if (item && item.id){
 	  			this.id = item.id
-	  			//todo 获取页面数据接口
-	  			// this.$http.get('/getShopList', { params: {city: this.city, curPage:this.curPage,pageSize:10}})
-		  		// 	.then(res => {
-		  		// 		that.tableData = res.body.data && res.body.data.result
-		  		// 		that.total = res.body.data.total
-				  //       console.log('res->', res)
-			   //    	});
+	  			this.$http.get('/getBannerById', { params: {id: this.id}})
+		  			.then(res => {
+		  				if (res.body.ec == '200'){
+		  					this.imgUrl = res.body.data[0].img
+		  					this.ruleForm =  {
+					          	link: res.body.data[0].link,
+						      	sort: res.body.data[0].sort,
+						      	city: res.body.data[0].city
+					        }
+		  				} else {
+		  					this.$message.error(res.body.data)
+		  				}
+			      	});
 	  		} else {
 	  			this.id = null
 	  			this.ruleFormRestart()
@@ -143,7 +161,7 @@
 	  		this.$nextTick(() => {
 		        this.$refs.form.validate((valid) => {
 		          if (valid) {
-		          	this.ruleForm.imgUrl = this.imgUrl
+		          	this.ruleForm.img = this.imgUrl
 		          	if (this.id){
 		          		this.ruleForm.id = this.id
 		          	}
@@ -179,6 +197,7 @@
 				        this.tableData.map(function (item, index){
 				        	if (item.id == that.id){
 				        		that.tableData.splice(index,1)
+				        		that.total = that.total-1
 				        	}
 				        })
 			        } else {

@@ -16,7 +16,11 @@
 			</el-dropdown>
 		</div>
 		<el-table class='shop_table' :data="tableData"  style="width: 100%">
-	      	<el-table-column prop="date" label="最后修改时间"></el-table-column>
+	      	<el-table-column prop="date" label="最后修改时间">
+	      		<template slot-scope="scope">
+                    {{getDateTimeString(scope.row.date)}}
+                </template>
+	      	</el-table-column>
 	      	<el-table-column prop="shopTitle" label="店名"></el-table-column>
 	      	<el-table-column prop="city" label="城市"></el-table-column>
 	      	<el-table-column prop="imgUrl" label="描述图片">
@@ -73,11 +77,11 @@
 				  	</el-form-item>
 				  	<el-form-item label="活动城市" prop="city">
 					    <el-select v-model="ruleForm.city" placeholder="请选择活动城市">
-					      <el-option label="全部" value="shanghai"></el-option>
-					      <el-option label="上海" value="beijing"></el-option>
-					      <el-option label="厦门" value="beijing"></el-option>
-					      <el-option label="成都" value="beijing"></el-option>
-					      <el-option label="武汉" value="beijing"></el-option>
+					      <el-option label="全部" value="全部"></el-option>
+					      <el-option label="上海" value="上海"></el-option>
+					      <el-option label="厦门" value="厦门"></el-option>
+					      <el-option label="成都" value="成都"></el-option>
+					      <el-option label="武汉" value="武汉"></el-option>
 					    </el-select>
 				  	</el-form-item>
 				  	<el-form-item label="活动地址" prop="address">
@@ -93,8 +97,12 @@
 					    <el-input type="text" v-model="ruleForm.phone"  placeholder="请输入电话"></el-input>
 				  	</el-form-item>
 				  	<!-- todo -->
-				  	<el-form-item label="简介链接" prop="introInfo">
-					    <el-input type="text" v-model="ruleForm.introInfo" placeholder="请输入简介链接"></el-input>
+				  	<el-form-item label="简介图文" prop="introInfo">
+					    <!-- <el-input type="text" v-model="ruleForm.introInfo" placeholder="请输入简介链接"></el-input> -->
+					    <template>
+					    	<el-button>默认按钮</el-button>
+					    	<el-button>默认按钮</el-button>
+					    </template>
 				  	</el-form-item>
 				  	<el-form-item label="个人页记录文案" prop="personText">
 					    <el-input type="textarea" v-model="ruleForm.personText" placeholder="请输入个人页记录文案"></el-input>
@@ -110,9 +118,6 @@
 					    <el-button type="danger" @click="delForm" v-if='id'>删除本条目</el-button>
 				  	</el-form-item>
 				</el-form>
-
-
-
 		  	</div>
 		</el-dialog>
 	</div>
@@ -177,7 +182,7 @@
 		        	required: true, message: '请填写电话号码', trigger: 'change' 
 		        }],
 		        introInfo: [{
-		        	required: true, message: '请填写简介链接', trigger: 'change'
+		        	required: true, message: '请填写简介图文', trigger: 'change'
 		        }],
 		        personText: [{
 		        	required: true, message: '请填写简介链接', trigger: 'change' 
@@ -194,6 +199,10 @@
 		this.getShopList()
 	  },
 	  methods: {
+	  	getDateTimeString(time){
+	  		let date = new Date(parseInt(time))
+	  		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+	  	},
 	  	handleCurrentChange(curPage){
 	  		this.curPage = curPage
 	  		this.getShopList()
@@ -311,6 +320,7 @@
 				        this.tableData.map(function (item, index){
 				        	if (item.id == that.id){
 				        		that.tableData.splice(index,1)
+				        		that.total = that.total-1
 				        	}
 				        })
 			        } else {

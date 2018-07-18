@@ -50,7 +50,6 @@
     .login_page{
 		height:100%;
 		.manage{
-			height:100%;
 			padding-top:100px;
 		}
 	}

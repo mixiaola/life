@@ -2,7 +2,11 @@
 	<div class='shop'>
 		<el-button type="primary" class='addBtn' @click='handleClick'>添加文章</el-button>
 		<el-table class='shop_table' :data="tableData"  style="width: 100%">
-	      	<el-table-column prop="date" label="最后修改时间"></el-table-column>
+	      	<el-table-column prop="date" label="最后修改时间">
+	      		<template slot-scope="scope">
+		        	{{getDateTimeString(scope.row.date)}}
+		      	</template>
+	      	</el-table-column>
 	      	<el-table-column prop="title" label="店名"></el-table-column>
 	      	<el-table-column prop="webUrl" label="链接"></el-table-column>
 	      	<el-table-column prop="imgUrl" label="文章图片">
@@ -90,13 +94,16 @@
 		this.getShopList()
 	  },
 	  methods: {
+	  	getDateTimeString(time){
+	  		let date = new Date(parseInt(time))
+	  		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+	  	},
 	  	handleCurrentChange(curPage){
 	  		this.curPage = curPage
 	  		this.getShopList()
 	  	},
 	  	handleClick(item){
 	  		if (item && item.id){
-	  			this.id = item.id
 	  			this.id = item.id
 	  			this.$http.get('/getArticleById', { params: {id: this.id}})
 		  			.then(res => {
@@ -175,6 +182,7 @@
 				        this.tableData.map(function (item, index){
 				        	if (item.id == that.id){
 				        		that.tableData.splice(index,1)
+				        		that.total = that.total-1
 				        	}
 				        })
 			        } else {

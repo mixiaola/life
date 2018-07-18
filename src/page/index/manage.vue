@@ -67,7 +67,7 @@
   	export default {
 	  	data () {
 		    return {
-		      managePage: 'banner'
+		      managePage: 'index'
 		    }
 		},
 	    methods: {
