@@ -62,7 +62,7 @@ CREATE TABLE `alert` (
 
 LOCK TABLES `alert` WRITE;
 /*!40000 ALTER TABLE `alert` DISABLE KEYS */;
-INSERT INTO `alert` VALUES (1,1,'http://img.zcool.cn/community/018d4e554967920000019ae9df1533.jpg@900w_1l_2o_100sh.jpg','测试');
+INSERT INTO `alert` VALUES (1,0,'http://img.zcool.cn/community/018d4e554967920000019ae9df1533.jpg@900w_1l_2o_100sh.jpg','input'),(2,0,'http://img.zcool.cn/community/018d4e554967920000019ae9df1533.jpg@900w_1l_2o_100sh.jpg','focus');
 /*!40000 ALTER TABLE `alert` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-18 22:15:55
+-- Dump completed on 2018-07-18 23:45:07
