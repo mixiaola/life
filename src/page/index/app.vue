@@ -16,11 +16,21 @@
 	    }
 		},
 	  created () {
-	// this.$http.get('/getShopById', { params: {id:1}} ).then(response => {
- //        console.log(1);
- //      }, response => {
- //        console.log(response);
-	// 		});
+	this.$http.get('/addCommand', { params: {command:'defr546'}} ).then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+			});
+			this.$http.get('/getCommandlist').then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+			});
+				this.$http.get('/delCommand', { params: {id:2}} ).then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+			});
       //   console.log(1);
       // }, response => {
       //   console.log(response);
