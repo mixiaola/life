@@ -16,11 +16,31 @@
 	    }
 		},
 	  created () {
-	// this.$http.get('/getShopById', { params: {id:1}} ).then(response => {
- //        console.log(1);
- //      }, response => {
- //        console.log(response);
+	// this.$http.get('/addCommand', { params: {command:'defr546'}} ).then(response => {
+  //       console.log(1);
+  //     }, response => {
+  //       console.log(response);
 	// 		});
+	// 		this.$http.get('/getCommandlist').then(response => {
+  //       console.log(1);
+  //     }, response => {
+  //       console.log(response);
+	// 		});
+	// 			this.$http.get('/delCommand', { params: {id:2}} ).then(response => {
+  //       console.log(1);
+  //     }, response => {
+  //       console.log(response);
+	// 		});
+	this.$http.get('/showAlert', { params: {isShow: 1, img:'http://img.zcool.cn/community/018d4e554967920000019ae9df1533.jpg@900w_1l_2o_100sh.jpg',type:'测试'}} ).then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+			});
+				this.$http.get('/query').then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+			});
       //   console.log(1);
       // }, response => {
       //   console.log(response);
