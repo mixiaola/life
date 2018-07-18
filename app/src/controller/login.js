@@ -20,8 +20,8 @@ const login = async function (ctx) {
 };
 const showAlert = async function (ctx) {
     const sql = `update alert set isShow=${ctx.query.isShow}, 
-                img='${ctx.query.img}',
-                type='${ctx.query.type}'`;
+                img='${ctx.query.img}'
+                where type='${ctx.query.type}'`;
     const result = await sqlHelper.change(sql);
     var data = {
         ec: result.length ? 200 : 403,
