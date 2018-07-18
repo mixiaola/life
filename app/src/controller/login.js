@@ -18,7 +18,37 @@ const login = async function (ctx) {
     ctx.body = data;
     return ctx.body;
 };
+const showAlert = async function (ctx) {
+    const sql = `update alert set isShow=${ctx.query.isShow}, 
+                img='${ctx.query.img}',
+                type='${ctx.query.type}'`;
+    const result = await sqlHelper.change(sql);
+    var data = {
+        ec: result.length ? 200 : 403,
+        em: result.length? '请求成功':'请求失败',
+        data: result
+    };
+    ctx.body = data;
+    return ctx.body;
+};
+
+const query = async function (ctx) {
+    const sql = `select count(*) num from command where openid<>'';`;
+    const result = await sqlHelper.query(sql);
+    var data = {
+        ec: result.length ? 200 : 403,
+        em: result.length ? '请求成功' : '请求失败',
+        data: {
+            alluserNum: result[0].num,
+            usedNum: '逻辑暂未开发'
+        }
+    };
+    ctx.body = data;
+    return ctx.body;
+};
 
 module.exports = {
-    login
+    login,
+    showAlert,
+    query
 }

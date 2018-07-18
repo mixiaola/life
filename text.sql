@@ -41,6 +41,32 @@ INSERT INTO `administrator` VALUES (1,'admin','123456'),(2,'peijiancheng','12345
 UNLOCK TABLES;
 
 --
+-- Table structure for table `alert`
+--
+
+DROP TABLE IF EXISTS `alert`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `alert` (
+  `id` int(11) NOT NULL,
+  `isShow` int(11) DEFAULT NULL,
+  `img` varchar(145) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `alert`
+--
+
+LOCK TABLES `alert` WRITE;
+/*!40000 ALTER TABLE `alert` DISABLE KEYS */;
+INSERT INTO `alert` VALUES (1,1,'http://img.zcool.cn/community/018d4e554967920000019ae9df1533.jpg@900w_1l_2o_100sh.jpg','测试');
+/*!40000 ALTER TABLE `alert` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `article`
 --
 
@@ -83,7 +109,7 @@ CREATE TABLE `banner` (
   `sort` varchar(45) DEFAULT NULL,
   `date` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,8 +118,33 @@ CREATE TABLE `banner` (
 
 LOCK TABLES `banner` WRITE;
 /*!40000 ALTER TABLE `banner` DISABLE KEYS */;
-INSERT INTO `banner` VALUES (1,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','2','1531237379000'),(2,'上海','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000'),(3,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','1','1531237379000'),(4,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','4','1531237379000'),(5,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','7','1531237379000'),(6,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000');
+INSERT INTO `banner` VALUES (1,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','2','1531237379000'),(2,'上海','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000'),(3,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','1','1531237379000'),(4,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','4','1531237379000'),(5,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','7','1531237379000'),(6,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000'),(7,'undefined','undefined','shanghai','undefined','1531664479000');
 /*!40000 ALTER TABLE `banner` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `command`
+--
+
+DROP TABLE IF EXISTS `command`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `command` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `command` varchar(45) DEFAULT NULL,
+  `openid` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `command`
+--
+
+LOCK TABLES `command` WRITE;
+/*!40000 ALTER TABLE `command` DISABLE KEYS */;
+INSERT INTO `command` VALUES (1,'54657nbhn',''),(3,'defr546',''),(4,'defr546',''),(5,'defr546',''),(6,'defr546',''),(7,'defr546',''),(8,'defr546',''),(9,'defr546',''),(10,'defr546','');
+/*!40000 ALTER TABLE `command` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -168,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-10 23:44:03
+-- Dump completed on 2018-07-18 22:15:55
