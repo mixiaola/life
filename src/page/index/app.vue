@@ -31,7 +31,7 @@
   //     }, response => {
   //       console.log(response);
 	// 		});
-	this.$http.get('/showAlert', { params: {isShow: 0, img:'http://img.zcool.cn/community/018d4e554967920000019ae9df1533.jpg@900w_1l_2o_100sh.jpg',type:'input'}} ).then(response => {
+	this.$http.get('/getAlert', { params: {type:'input'}} ).then(response => {
         console.log(1);
       }, response => {
         console.log(response);

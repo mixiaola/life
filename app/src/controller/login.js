@@ -26,7 +26,19 @@ const showAlert = async function (ctx) {
     var data = {
         ec: result.length ? 200 : 403,
         em: result.length? '请求成功':'请求失败',
-        data: result
+    };
+    ctx.body = data;
+    return ctx.body;
+};
+
+const getAlert = async function (ctx) {
+    const sql = `select img, isShow, type from alert
+                where type='${ctx.query.type}'`;
+    const result = await sqlHelper.query(sql);
+    var data = {
+        ec: result.length ? 200 : 403,
+        em: result.length ? '请求成功' : '请求失败',
+        data: result[0]
     };
     ctx.body = data;
     return ctx.body;
@@ -50,5 +62,6 @@ const query = async function (ctx) {
 module.exports = {
     login,
     showAlert,
+    getAlert,
     query
 }
