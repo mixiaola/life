@@ -190,6 +190,19 @@ router.get('/addBanner', async (ctx, next) => { })
  *	
  **/
 router.get('/showAlert', async (ctx, next) => { })
+/**
+ *	type： input口令 focus公众高关注
+ *
+ *	reponse：{
+		data:{
+			isShow,
+			img,
+			type：
+		}
+ }
+ *	
+ **/
+router.get('/getAlert', async (ctx, next) => { })
 
 // 口令管理
 router.get('/addCommand', async (ctx, next) => { })
