@@ -97,11 +97,14 @@
 					    <el-input type="text" v-model="ruleForm.phone"  placeholder="请输入电话"></el-input>
 				  	</el-form-item>
 				  	<!-- todo -->
-				  	<el-form-item label="简介图文" prop="introInfo">
-					    <!-- <el-input type="text" v-model="ruleForm.introInfo" placeholder="请输入简介链接"></el-input> -->
-					    <template>
-					    	<el-button>默认按钮</el-button>
-					    	<el-button>默认按钮</el-button>
+				  	<el-form-item label="简介图文">
+					    <template slot-scope="scope" class='introInfoContainer'>
+					    	<el-button @click='addText'> + 添加文字段落</el-button>
+					    	<el-button @click='addImg'> + 添加图片</el-button>
+					    	<div class="introInfo" v-for='item in ruleForm.introInfo'>
+					    		<el-input type="textarea" v-if="item.uid == 'text'" v-model='item.content'></el-input>
+					    		<img v-if="item.uid == 'img'" :src="item.content">
+					    	</div>
 					    </template>
 				  	</el-form-item>
 				  	<el-form-item label="个人页记录文案" prop="personText">
@@ -142,7 +145,7 @@
 	          lag: '',
 	          shopStartTime: '',
 	          phone: '',
-	          introInfo:'',
+	          introInfo:[],
 	          personText: '',
 	          label: '',
 	          music: '',
@@ -199,6 +202,27 @@
 		this.getShopList()
 	  },
 	  methods: {
+		checkTypeIsArray (o) {
+       		return Object.prototype.toString.call(o)=="[object Array]";
+		},
+	  	addText(){
+	  		if (!this.checkTypeIsArray(this.ruleForm.introInfo)){
+	  			this.ruleForm.introInfo = []
+	  		}
+	  		this.ruleForm.introInfo.push({
+	  			uid:'text',
+	  			content:''
+	  		})
+	  	},
+	  	addImg(){
+	  		if (!this.checkTypeIsArray(this.ruleForm.introInfo)){
+	  			this.ruleForm.introInfo = []
+	  		}
+	  		this.ruleForm.introInfo.push({
+	  			uid:'img',
+	  			content:'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg'
+	  		})
+	  	},
 	  	getDateTimeString(time){
 	  		let date = new Date(parseInt(time))
 	  		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
@@ -233,7 +257,7 @@
 	          lag: '',
 	          shopStartTime: '',
 	          phone: '',
-	          introInfo:'',
+	          introInfo:[],
 	          personText: '',
 	          label: '',
 	          music: ''
@@ -261,7 +285,8 @@
 					          introInfo:res.body.data[0].introInfo,
 					          personText: res.body.data[0].personText,
 					          label: res.body.data[0].label,
-					          music: res.body.data[0].music
+					          music: res.body.data[0].music,
+					          introInfo:JSON.parse(res.body.data[0].introInfo)
 					        }
 		  				} else {
 		  					this.$message.error(res.body.data)
@@ -281,6 +306,9 @@
 		          	this.ruleForm.imgUrl = this.imgUrl
 		          	if (this.id){
 		          		this.ruleForm.id = this.id
+		          	}
+		          	if (this.checkTypeIsArray(this.ruleForm.introInfo)){
+		          		this.ruleForm.introInfo = JSON.stringify(this.ruleForm.introInfo)
 		          	}
 		          	if (typeof this.ruleForm.validtiyStart != 'string'){
 		          		this.ruleForm.validtiyStart = this.ruleForm.validtiyStart.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyStart.getMonth()) + 1) + '-' +  this.ruleForm.validtiyStart.getDate()
@@ -390,5 +418,12 @@
 	.demo-ruleForm{
 		width:670px;
 		margin-top:20px;
+	}
+	.introInfo{
+		max-width:300px;
+		img{
+			width:100%;
+			vertical-align: top;
+		}
 	}
 </style>

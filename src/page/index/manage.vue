@@ -24,8 +24,8 @@
 			          <span>弹窗管理</span>
 			        </template>
 			        <el-menu-item-group>
-			          <el-menu-item index="2-1" @click='handleclick(2,1)'>店铺管理</el-menu-item>
-			          <el-menu-item index="2-2" @click='handleclick(2,2)'>文章管理</el-menu-item>
+			          <el-menu-item index="2-1" @click='handleclick(2,1)'>输入口令引导弹窗</el-menu-item>
+			          <el-menu-item index="2-2" @click='handleclick(2,2)'>公众号关注引导弹窗</el-menu-item>
 			        </el-menu-item-group>
 			      </el-submenu>
 			      <el-submenu index="3">
@@ -34,8 +34,8 @@
 			          <span>数据管理</span>
 			        </template>
 			        <el-menu-item-group>
-			          <el-menu-item index="3-1" @click='handleclick(3,1)'>店铺管理</el-menu-item>
-			          <el-menu-item index="3-2" @click='handleclick(3,2)'>文章管理</el-menu-item>
+			          <el-menu-item index="3-1" @click='handleclick(3,1)'>口令管理</el-menu-item>
+			          <el-menu-item index="3-2" @click='handleclick(3,2)'>数据统计查看</el-menu-item>
 			        </el-menu-item-group>
 			      </el-submenu>
 			    </el-menu>
@@ -67,7 +67,7 @@
   	export default {
 	  	data () {
 		    return {
-		      managePage: 'index'
+		      managePage: 'shop'
 		    }
 		},
 	    methods: {
