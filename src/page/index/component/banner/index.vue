@@ -43,7 +43,7 @@
 		<el-dialog @close='closeFn' title="店铺管理" v-if='dialogTableVisible' :visible.sync="dialogTableVisible" width='90%' top='5%'>
 		  	<div>
   				<el-button type="primary" @click="submitForm">保存</el-button>
-		  		<div class="uploadImg" v-if='!imgUrl'>
+		  		<!-- <div class="uploadImg" v-if='!imgUrl'>
 		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
 		  			<p>建议上传能突出店铺特色的、清晰美观高质量的横版照片。</p>
 		  		</div>
@@ -51,14 +51,17 @@
 		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
 		  			<div class="drop"></div>
 		  			<img :src="imgUrl">
-		  		</div>
+		  		</div> -->
 		  		
 		  		<el-form :model="ruleForm" ref="form" :rules="rules" label-width="150px" class="demo-ruleForm">
 		  			<el-form-item label="跳转链接" prop="link">
-					    <el-input v-model="ruleForm.link" placeholder="请输入店铺标题"></el-input>
+					    <el-input v-model="ruleForm.link" placeholder="请输入跳转链接"></el-input>
+					</el-form-item>
+					<el-form-item label="banner图片" prop="img">
+					    <el-input v-model="ruleForm.img" placeholder="请输入banner图片链接"></el-input>
 					</el-form-item>
 					<el-form-item label="banner权重值" prop="sort">
-					    <el-input v-model="ruleForm.sort" placeholder="请输入店铺标题"></el-input>
+					    <el-input v-model="ruleForm.sort" placeholder="请输入权重值"></el-input>
 					</el-form-item>
 				  	<el-form-item label="活动城市" prop="city">
 					    <el-select v-model="ruleForm.city" placeholder="请选择活动城市">
@@ -86,14 +89,18 @@
 	      curPage:1,
 	      total:null,
 	      city:'全部',
-	      imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
+	      // imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
 	      ruleForm:{
+	      	img:'',
 	      	link:'',
 	      	sort:'',
 	      	city: '全部'
 	      },
 	      //表单验证规则
 	        rules: {
+	        	img:[{
+	        		required: true, message: '请输入banner图片李娜节', trigger: 'change' 
+	        	}],
 	          	link: [{
 	          		required: true, message: '请输入跳转链接', trigger: 'change' 
 	          	}],
@@ -140,8 +147,9 @@
 	  			this.$http.get('/getBannerById', { params: {id: this.id}})
 		  			.then(res => {
 		  				if (res.body.ec == '200'){
-		  					this.imgUrl = res.body.data[0].img
+		  					// this.imgUrl = res.body.data[0].img
 		  					this.ruleForm =  {
+		  						img: res.body.data[0].img,
 					          	link: res.body.data[0].link,
 						      	sort: res.body.data[0].sort,
 						      	city: res.body.data[0].city
@@ -161,7 +169,6 @@
 	  		this.$nextTick(() => {
 		        this.$refs.form.validate((valid) => {
 		          if (valid) {
-		          	this.ruleForm.img = this.imgUrl
 		          	if (this.id){
 		          		this.ruleForm.id = this.id
 		          	}

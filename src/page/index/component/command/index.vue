@@ -1,10 +1,12 @@
 <template>
 	<div>
-		<div class="left_img">
+		<div class="left_img" v-if='!imgUrl'>
 			<span>未上传</span>
 		</div>
+		<img :src="imgUrl" v-if='imgUrl' class='left_img'>
 		<div class="right_content">
-			<el-button type="primary">上传／更换图片</el-button>
+			<el-input v-model="imgUrl" placeholder="请输入图片链接"></el-input>
+			<el-button type="primary" class='primary' @click="showAlert">上传／更换图片</el-button>
 			<div class='text1'>建议制作上传 640px*820px 的图片（屏幕实际显示像素为 320px*410px）</div>
 			<div class='switch'>
 				<span>弹窗开关</span>
@@ -18,15 +20,27 @@
 	export default {
 	  data () {
 	    return {
-	    	imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
+	    	imgUrl: '',
 	    	type: 'input',
 	    	showFlag: false
 	    }
 	  },
 	  created () {
-		
+		this.getDate()
 	  },
 	  methods: {
+	  	getDate(){
+	  		this.$http.get('/getAlert', { params: {type:this.type}})
+	  			.then(res => {
+	  				if (res.body.ec == '200'){
+	  					this.imgUrl = res.body && res.body.data && res.body.data.img || ''
+	  					this.showFlag = (res.body && res.body.data && res.body.data.isShow) == '1'?true:false
+	  					console.log(this.showFlag, 123123123)
+	  				} else {
+	  					this.$message.error(res.body.data);
+	  				}
+		      	});
+	  	},
 	  	changeSwitch(flag){
 	  		this.showFlag = flag
 	  		this.showAlert()
@@ -47,6 +61,9 @@
 	}
 </script>
 <style scoped lang='less'>
+	.primary{
+		margin-top:10px;
+	}
 	.left_img{
 		width:320px;
 		height: 410px;

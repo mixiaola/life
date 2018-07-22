@@ -29,7 +29,7 @@
 		<el-dialog @close="closeFn" title="店铺管理" v-if='dialogTableVisible' :visible.sync="dialogTableVisible" width='90%' top='5%'>
 		  	<div>
   				<el-button type="primary" @click="submitForm">保存</el-button>
-		  		<div class="uploadImg" v-if='!imgUrl'>
+		  		<!-- <div class="uploadImg" v-if='!imgUrl'>
 		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
 		  			<p>建议上传能突出店铺特色的、清晰美观高质量的横版照片。</p>
 		  		</div>
@@ -37,14 +37,17 @@
 		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
 		  			<div class="drop"></div>
 		  			<img :src="imgUrl">
-		  		</div>
+		  		</div> -->
 		  		
 		  		<el-form :model="ruleForm" ref="form" :rules="rules" label-width="150px" class="demo-ruleForm">
-		  			<el-form-item label="文章链接" prop="webUrl">
-					    <el-input v-model="ruleForm.webUrl" placeholder="请输入店铺标题"></el-input>
+		  			<el-form-item label="文章标题" prop="title">
+					    <el-input v-model="ruleForm.title" placeholder="请输入文章标题"></el-input>
 					</el-form-item>
-					<el-form-item label="文章标题" prop="title">
-					    <el-input v-model="ruleForm.title" placeholder="请输入相关文章的链接"></el-input>
+					<el-form-item label="文章图片" prop="imgUrl">
+					    <el-input v-model="ruleForm.imgUrl" placeholder="请输入相关图片的链接"></el-input>
+					</el-form-item>
+		  			<el-form-item label="文章链接" prop="webUrl">
+					    <el-input v-model="ruleForm.webUrl" placeholder="请输入相关文章的链接"></el-input>
 					</el-form-item>
 					<el-form-item label="文章引言" prop="text">
 					    <el-input v-model="ruleForm.text" placeholder="请输入文章引言"></el-input>
@@ -69,19 +72,23 @@
 	      tableData: [],
 	      curPage:1,
 	      total:null,
-	      imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
+	      // imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
 	      ruleForm:{
+	      	imgUrl:'',
 	      	webUrl:'',
 	      	title:'',
 	      	text:''
 	      },
 	      //表单验证规则
 	        rules: {
+	        	imgUrl:[{
+	        		required: true, message: '请输入文章图片', trigger: 'change' 
+	        	}],
 	          	webUrl: [{
-	          		required: true, message: '请输入店铺标题', trigger: 'change' 
+	          		required: true, message: '请输入相关文章的链接', trigger: 'change' 
 	          	}],
 	          	title: [{
-	          		required: true, message: '请输入相关文章的链接', trigger: 'change' 
+	          		required: true, message: '请输文章标题', trigger: 'change' 
 	          	}],
 	          	text:[{
 	          		required: true, message: '请输入文章引言', trigger: 'change' 
@@ -108,8 +115,8 @@
 	  			this.$http.get('/getArticleById', { params: {id: this.id}})
 		  			.then(res => {
 		  				if (res.body.ec == '200'){
-		  					this.imgUrl = res.body.data[0].imgUrl
 		  					this.ruleForm =  {
+		  						imgUrl:res.body.data[0].imgUrl,
 					          	webUrl: res.body.data[0].webUrl,
 						      	title: res.body.data[0].title,
 						      	text: res.body.data[0].text
@@ -125,8 +132,8 @@
 	  		this.dialogTableVisible = true
 	  	},
 	  	ruleFormRestart(){
-	  		// this.imgUrl = ''
 	  		this.ruleForm =  {
+	  			imgUrl:'',
 	  			webUrl:'',
 		      	title:'',
 		      	text:''
@@ -146,7 +153,6 @@
 	  		this.$nextTick(() => {
 		        this.$refs.form.validate((valid) => {
 		          if (valid) {
-		          	this.ruleForm.imgUrl = this.imgUrl
 		          	if (this.id){
 		          		this.ruleForm.id = this.id
 		          	}

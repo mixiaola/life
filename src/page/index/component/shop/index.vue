@@ -41,7 +41,7 @@
 		<el-dialog @close='closeFn' title="店铺管理" v-if='dialogTableVisible' :visible.sync="dialogTableVisible" width='90%' top='5%'>
 		  	<div>
   				<el-button type="primary" @click="submitForm">保存</el-button>
-		  		<div class="uploadImg" v-if='!imgUrl'>
+		  		<!-- <div class="uploadImg" v-if='!imgUrl'>
 		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
 		  			<p>建议上传能突出店铺特色的、清晰美观高质量的横版照片。</p>
 		  		</div>
@@ -49,12 +49,15 @@
 		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
 		  			<div class="drop"></div>
 		  			<img :src="imgUrl">
-		  		</div>
+		  		</div> -->
 		  		
 
 		  		<el-form :model="ruleForm" ref="form" :rules="rules" label-width="150px" class="demo-ruleForm">
 		  			<el-form-item label="店铺标题" prop="shopTitle">
 					    <el-input v-model="ruleForm.shopTitle" placeholder="请输入店铺标题"></el-input>
+					</el-form-item>
+					<el-form-item label="店铺图片" prop="imgUrl">
+					    <el-input v-model="ruleForm.imgUrl" placeholder="请输入店铺标题"></el-input>
 					</el-form-item>
 					<el-form-item label="优惠券标题" prop="ticketTitle">
 					    <el-input v-model="ruleForm.ticketTitle" placeholder="请输入优惠券标题"></el-input>
@@ -88,7 +91,7 @@
 					    <el-input type="text" v-model="ruleForm.address"  placeholder="请输入活动地址"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="经纬坐标" prop="lag">
-					    <el-input type="text" v-model="ruleForm.lag" placeholder="请输入经纬坐标"></el-input>
+					    <el-input type="text" v-model="ruleForm.lag" placeholder="请输入经纬坐标（格式：精度;纬度）"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="营业时间" prop="shopStartTime">
 					    <el-input type="text" v-model="ruleForm.shopStartTime" placeholder="请输入营业时间"></el-input>
@@ -102,8 +105,8 @@
 					    	<el-button @click='addText'> + 添加文字段落</el-button>
 					    	<el-button @click='addImg'> + 添加图片</el-button>
 					    	<div class="introInfo" v-for='item in ruleForm.introInfo'>
-					    		<el-input type="textarea" v-if="item.uid == 'text'" v-model='item.content'></el-input>
-					    		<img v-if="item.uid == 'img'" :src="item.content">
+					    		<el-input type="textarea" v-if='item.uid=="text"' v-model='item.content' placeholder='请输文字段落'></el-input>
+					    		<el-input type="text" v-if='item.uid!="text"' v-model='item.content' placeholder='请输入图片url'></el-input>
 					    	</div>
 					    </template>
 				  	</el-form-item>
@@ -133,8 +136,9 @@
 	    	curPage: 1,
 	    	city: '全部',
 	    	total: null,
-	    	imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
+	    	// imgUrl: 'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg',
 	    	ruleForm: {
+	    		imgUrl:'',
 	          shopTitle: '',
 	          ticketTitle: '',
 	          intro: '',
@@ -152,6 +156,9 @@
 	        },
 	        //表单验证规则
 	        rules: {
+	        	imgUrl:[{
+	        		required: true, message: '请输入店铺图片链接', trigger: 'change' 
+	        	}],
 	          	shopTitle: [{
 	          		required: true, message: '请输入店铺标题', trigger: 'change' 
 	          	}],
@@ -176,7 +183,7 @@
 		        	required: true, message: '请填写地址', trigger: 'change'
 		        }],
 		        lag: [{
-		        	required: true, message: '请填写经纬度', trigger: 'change' 
+		        	required: true, message: '请填写经纬度（格式：精度;纬度）', trigger: 'change' 
 		        }],
 		        shopStartTime: [{
 		        	required: true, message: '请填写活动开始时间', trigger: 'change' 
@@ -220,7 +227,7 @@
 	  		}
 	  		this.ruleForm.introInfo.push({
 	  			uid:'img',
-	  			content:'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg'
+	  			content:''
 	  		})
 	  	},
 	  	getDateTimeString(time){
@@ -247,6 +254,7 @@
 	  	ruleFormRestart(){
 	  		// this.imgUrl = ''
 	  		this.ruleForm =  {
+	  			imgUrl:'',
 	          shopTitle: '',
 	          ticketTitle: '',
 	          intro: '',
@@ -269,9 +277,9 @@
 	  			this.$http.get('/getShopById', { params: {id: this.id}})
 		  			.then(res => {
 		  				if (res.body.ec == '200'){
-		  					this.imgUrl = res.body.data[0].imgUrl
 		  					console.log('data->', res.body.data[0])
 		  					this.ruleForm =  {
+		  						imgUrl: res.body.data[0].imgUrl,
 					          shopTitle: res.body.data[0].shopTitle,
 					          ticketTitle: res.body.data[0].ticketTitle,
 					          intro: res.body.data[0].intro,
@@ -303,7 +311,11 @@
 	  		this.$nextTick(() => {
 		        this.$refs.form.validate((valid) => {
 		          if (valid) {
-		          	this.ruleForm.imgUrl = this.imgUrl
+		          	if (this.ruleForm && this.ruleForm.lag && this.ruleForm.lag.split(';').length!=2){
+		          		console.log(this.ruleForm.lag.split(';'))
+		          		this.$message.error('请输入正确的经纬度坐标')
+		          		return 
+		          	}
 		          	if (this.id){
 		          		this.ruleForm.id = this.id
 		          	}
@@ -316,6 +328,7 @@
 		          	if (typeof this.ruleForm.validtiyEnd != 'string'){
 		          		this.ruleForm.validtiyEnd = this.ruleForm.validtiyEnd.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyEnd.getMonth()) + 1) + '-' +  this.ruleForm.validtiyEnd.getDate()
 		          	}
+		          	console.log('this.ruleForm-->', this.ruleForm)
 		            this.$http.get('/addNewShop', { params: this.ruleForm})
 			  			.then(res => {
 			  				if (res.body.ec == '200'){
