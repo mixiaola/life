@@ -67,7 +67,7 @@
   	export default {
 	  	data () {
 		    return {
-		      managePage: 'command'
+		      managePage: 'index'
 		    }
 		},
 	    methods: {
