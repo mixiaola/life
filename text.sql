@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `administrator`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `administrator` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -50,8 +50,8 @@ DROP TABLE IF EXISTS `alert`;
 CREATE TABLE `alert` (
   `id` int(11) NOT NULL,
   `isShow` int(11) DEFAULT NULL,
-  `img` varchar(145) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -75,11 +75,11 @@ DROP TABLE IF EXISTS `article`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `imgUrl` varchar(145) DEFAULT NULL,
-  `webUrl` varchar(145) DEFAULT NULL,
-  `title` varchar(145) DEFAULT NULL,
-  `text` varchar(200) DEFAULT NULL,
-  `date` varchar(145) DEFAULT NULL,
+  `imgUrl` varchar(255) DEFAULT NULL,
+  `webUrl` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `text` varchar(255) DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -103,11 +103,11 @@ DROP TABLE IF EXISTS `banner`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `banner` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `city` varchar(45) DEFAULT NULL,
-  `img` varchar(145) DEFAULT NULL,
-  `link` varchar(145) DEFAULT NULL,
-  `sort` varchar(45) DEFAULT NULL,
-  `date` varchar(145) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `sort` varchar(255) DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -131,8 +131,8 @@ DROP TABLE IF EXISTS `command`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `command` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `command` varchar(45) DEFAULT NULL,
-  `openid` varchar(45) DEFAULT NULL,
+  `command` varchar(255) DEFAULT NULL,
+  `openid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `label`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(145) DEFAULT NULL,
+  `text` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -180,22 +180,22 @@ DROP TABLE IF EXISTS `shop`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shop` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `imgUrl` varchar(100) DEFAULT NULL,
-  `shopTitle` varchar(200) DEFAULT NULL,
-  `ticketTitle` varchar(145) DEFAULT NULL,
-  `intro` varchar(145) DEFAULT NULL,
-  `validtiyStart` varchar(45) DEFAULT NULL,
-  `validtiyEnd` varchar(45) DEFAULT NULL,
-  `city` varchar(45) DEFAULT NULL,
-  `address` varchar(145) DEFAULT NULL,
-  `lag` varchar(45) DEFAULT NULL,
-  `shopStartTime` varchar(45) DEFAULT NULL,
-  `phone` varchar(45) DEFAULT NULL,
-  `introInfo` varchar(145) DEFAULT NULL,
-  `personText` varchar(145) DEFAULT NULL,
-  `label` varchar(45) DEFAULT NULL,
-  `music` varchar(45) DEFAULT NULL,
-  `date` varchar(145) DEFAULT NULL,
+  `imgUrl` varchar(255) DEFAULT NULL,
+  `shopTitle` varchar(255) DEFAULT NULL,
+  `ticketTitle` varchar(255) DEFAULT NULL,
+  `intro` varchar(255) DEFAULT NULL,
+  `validtiyStart` varchar(255) DEFAULT NULL,
+  `validtiyEnd` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `lag` varchar(255) DEFAULT NULL,
+  `shopStartTime` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `introInfo` varchar(255) DEFAULT NULL,
+  `personText` varchar(255) DEFAULT NULL,
+  `label` varchar(255) DEFAULT NULL,
+  `music` varchar(255) DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -219,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-18 23:45:07
+-- Dump completed on 2018-07-22 22:19:40

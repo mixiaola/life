@@ -310,3 +310,35 @@ router.get('/usedTicket', async (ctx, next) => { })
 
 
 module.exports = router
+
+
+
+
+
+
+
+
+
+CREATE TABLE`al_abtest_markplatform_check_history`(
+	`id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键自增长ID',
+	`rule` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '队列名称',
+	`pdate` int(11) NOT NULL DEFAULT '0' COMMENT '导入时间',
+	`momoid` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户id',
+	`feedid` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0' COMMENT '动态id',
+	`mark_momoid` bigint(20) NOT NULL DEFAULT '0' COMMENT '标记人id',
+	`mark_feed` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '标记人feed标注',
+	`mark_user` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '标记人user标注',
+	`mark_remark` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '标记人备注',
+	`mark_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '标记时间',
+	`check_momoid` bigint(20) NOT NULL DEFAULT '0' COMMENT '质检id',
+	`check_feed` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '质检feed标注',
+	`check_user` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '质检user标注',
+	`check_remark` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '质检备注',
+	`check_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '质检时间',
+	`check_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '质检状态',
+	PRIMARY KEY(`id`),
+	KEY`indx_time`(`check_timestamp`),
+	KEY`indx_rule_feed`(`rule`, `feedid`),
+	KEY`indx_feedid`(`feedid`),
+	KEY`indx_momoid`(`momoid`)
+)
