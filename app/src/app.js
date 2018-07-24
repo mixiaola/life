@@ -96,7 +96,7 @@ function prod() {
         .catch(onError);
 }
 console.log('env', process.env.NODE_ENV)
-if (process.env.NODE_ENV=='development'){
+if (process.env.NODE_ENV=='dev'){
     start();
 } else {
     prod();

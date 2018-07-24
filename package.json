@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development babel-node --inspect app/src/app.js",
+    "start": "NODE_ENV=dev babel-node --inspect app/src/app.js",
     "prod": "babel-node --inspect app/src/app.js",
     "build": "rm -rf dist && NODE_ENV=production webpack --config webpack/webpack.config.client.js  --sort-assets-by 'size' --progress -p --hide-modules",
     "dev-app": "nodemon --exec babel-node --inspect app/src/app.js"
