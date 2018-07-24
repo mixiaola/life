@@ -87,5 +87,18 @@ function start() {
         .then(startServer)
         .catch(onError);
 }
+function prod() {
+    new Promise(function (resolve) {
+            resolve();
+        })
+        .then(bindStatic)
+        .then(startServer)
+        .catch(onError);
+}
+console.log('env', process.env.NODE_ENV)
+if (process.env.NODE_ENV=='development'){
+    start();
+} else {
+    prod();
+}
 
-start();
