@@ -6,7 +6,6 @@ import views from 'koa-views';
 const app = new Koa();
 //webpack 打包client代码
 var webpack = require('webpack')
-var webpackConfig = require('../../webpack/webpack.config.client.js')
 const webpackDev  = require('webpack-dev-middleware')
 const webpackHot = require('webpack-hot-middleware')
 const PassThrough = require('stream').PassThrough;
@@ -41,6 +40,7 @@ const hotMiddleware = (compiler, opts) => {
 }
 
 function bindWebpack(){
+    let webpackConfig = require('../../webpack/webpack.config.client.js')
     if (process.env.NODE_ENV!='production'){
         webpackConfig.entry = Object.keys(webpackConfig.entry)
             .reduce(function (entries, name) {
