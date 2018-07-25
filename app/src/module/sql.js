@@ -11,7 +11,8 @@ var connection = mysql.createConnection({
     user: 'root',
     port: '8080',
     password: 'admin123',
-    database: 'life'
+    database: 'life',
+    useConnectionPooling: true
 });
 
 connection.connect();
