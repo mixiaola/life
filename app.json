@@ -7,8 +7,6 @@
     "watch": true,
     "exec_interpreter": "babel-node",
     "exec_mode": "fork",
-    "error_file": "./logs/app-err.log",
-    "out_file": "./logs/out.log",
     "log_date_format": "YYYY - MM - DD HH: mm Z"
   }]
 }
