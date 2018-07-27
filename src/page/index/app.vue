@@ -31,12 +31,12 @@
   //     }, response => {
   //       console.log(response);
 	// 		});
-	this.$http.get('/getAlert', { params: {type:'input'}} ).then(response => {
-        console.log(1);
-      }, response => {
-        console.log(response);
-			});
-				this.$http.get('/query').then(response => {
+	// this.$http.get('/getAlert', { params: {type:'input'}} ).then(response => {
+  //       console.log(1);
+  //     }, response => {
+  //       console.log(response);
+	// 		});
+			this.$http.get('/search', {params:{label:'家具'}}).then(response => {
         console.log(1);
       }, response => {
         console.log(response);

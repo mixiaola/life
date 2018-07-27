@@ -51,7 +51,7 @@ CREATE TABLE `alert` (
   `id` int(11) NOT NULL,
   `isShow` int(11) DEFAULT NULL,
   `img` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
+  `type` varchar(2555) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -78,7 +78,7 @@ CREATE TABLE `article` (
   `imgUrl` varchar(255) DEFAULT NULL,
   `webUrl` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL,
+  `text` varchar(20000) DEFAULT NULL,
   `date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
@@ -131,7 +131,7 @@ DROP TABLE IF EXISTS `command`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `command` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `command` varchar(255) DEFAULT NULL,
+  `command` varchar(2555) DEFAULT NULL,
   `openid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `label`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) DEFAULT NULL,
+  `text` varchar(20000) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -191,7 +191,7 @@ CREATE TABLE `shop` (
   `lag` varchar(255) DEFAULT NULL,
   `shopStartTime` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
-  `introInfo` varchar(255) DEFAULT NULL,
+  `introInfo` varchar(10000) DEFAULT NULL,
   `personText` varchar(255) DEFAULT NULL,
   `label` varchar(255) DEFAULT NULL,
   `music` varchar(255) DEFAULT NULL,
@@ -219,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-22 22:19:40
+-- Dump completed on 2018-07-27 17:22:21

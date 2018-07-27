@@ -58,10 +58,24 @@ const query = async function (ctx) {
     ctx.body = data;
     return ctx.body;
 };
+const search = async function (ctx) {
+    const label = ctx.query.label;
+    const sql = `select shopTitle title, imgUrl img, shopStartTime time, ticketTitle ticketTitle ,address address  from shop where shopTitle like '%${label}%';`;
+    const result = await sqlHelper.query(sql);
+
+    var data = {
+        ec: result.length ? 200 : 403,
+        em: result.length ? '请求成功' : '请求失败',
+        shopList: result
+    };
+    ctx.body = data;
+    return ctx.body;
+};
 
 module.exports = {
     login,
     showAlert,
     getAlert,
-    query
+    query,
+    search
 }

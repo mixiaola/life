@@ -4,15 +4,14 @@ import article from '../controller/article';
 import label from '../controller/label';
 import banner from '../controller/banner';
 import command from '../controller/command';
-import upLoadImg from '../controller/upLoadImg';
 
 const router = require('koa-router')()
-router.post('/upLoadImg', upLoadImg.upLoadImg);
 
 router.get('/login', login.login);
 router.get('/showAlert', login.showAlert); 
 router.get('/getAlert', login.getAlert);
 router.get('/query', login.query);
+router.get('/search', login.search);
 
 router.get('/addNewShop', shop.addNewShop);
 router.get('/delShop', shop.delShop);
