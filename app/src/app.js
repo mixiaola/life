@@ -3,6 +3,7 @@ import router from './routes/index.js';
 import page from './routes/page.js';
 import path from 'path';
 import views from 'koa-views';
+import sqlHelper from './module/sql.js'
 const app = new Koa();
 //webpack 打包client代码
 var webpack = require('webpack')
@@ -37,6 +38,17 @@ const hotMiddleware = (compiler, opts) => {
         }, next)
     }
     
+}
+
+function timeTask(){
+    try{
+        setInterval(function(){
+            sqlHelper.change('select * from banner')
+        },7100000)
+    }catch(e){
+        console.warn('time task error=>', e)
+        timeTask()
+    }
 }
 
 function bindWebpack(){
@@ -93,6 +105,7 @@ function prod() {
         })
         .then(bindStatic)
         .then(startServer)
+        .then(timeTask)
         .catch(onError);
 }
 console.log('env', process.env.NODE_ENV)
