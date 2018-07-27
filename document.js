@@ -309,6 +309,107 @@ router.get('/getShopInfo', async (ctx, next) => { })
 router.get('/usedTicket', async (ctx, next) => { })
 
 
+
+//---------------------------------------------------------
+//h5 页面逻辑
+//首页
+/**
+ *  openid:用户id
+ * 	city:选择的城市
+ * 	music:是否播放音乐（0表示否，1表示是）
+ *	isUsed:使用情况（1表示全部，2表示可使用，3表示已使用／已过期）
+ 	reponse：
+ 		data:
+ 			isGetTicket,(0代表否，1代表是)
+ 			banner:[],banner数据
+ 			ticket:[],券数据
+ 			command:{},输入口令引导弹窗数据
+ 			subscription:{}公众号关注引导弹窗数据
+ *
+ **/
+router.get('/getWxIndexInfo', async (ctx, next) => { })
+
+//更多发现（文章）
+/**
+ 	reponse：
+ 		data:[
+			{
+				img:,
+				title:,
+				desc:
+			}
+ 		]
+ *
+ **/
+router.get('/getWxArticle', async (ctx, next) => { })
+
+//我的（文章）
+/**
+	openid：用户id
+ 	reponse：
+ 		data:[
+			{
+				time:,
+				address:,
+				name:
+				useDesc
+				img
+			}
+ 		]
+ *
+ **/
+router.get('/getWxUseTicket', async (ctx, next) => { })
+
+//获取卡券
+/**
+	openid
+ 	reponse：返回成功即可
+ *
+ **/
+router.get('/getWxTicket', async (ctx, next) => { })
+
+
+
+// 搜索引导
+/**
+	city,
+	content(输入的内容)
+ 	reponse：
+ 		data:[]返回对应搜索引导数据
+ 			
+ *
+ **/
+router.get('/getWxSerachGuide', async (ctx, next) => { })
+
+// 搜索
+/**
+	city,
+	content(输入的内容)
+ 	reponse：
+ 		data:
+ 			ticket:[],券数据
+ *
+ **/
+router.get('/getWxSerachList', async (ctx, next) => { })
+
+// 获取卡券数据
+/**
+	id,
+ 	reponse：
+ 		data:所有卡券相关数据返回即可
+ *
+ **/
+router.get('/getWxTicketById', async (ctx, next) => { })
+
+// 使用卡券
+/**
+	id,
+ 	reponse：
+ 		data:
+ *
+ **/
+router.get('/useWxTicketById', async (ctx, next) => { })
+
 module.exports = router
 
 
