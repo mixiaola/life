@@ -12,6 +12,7 @@
 			    	<el-dropdown-item command='厦门'>厦门</el-dropdown-item>
 			    	<el-dropdown-item command='成都'>成都</el-dropdown-item>
 			    	<el-dropdown-item command='武汉'>武汉</el-dropdown-item>
+			    	<el-dropdown-item command='台北'>台北</el-dropdown-item>
 			  	</el-dropdown-menu>
 			</el-dropdown>
 		</div>
@@ -70,6 +71,7 @@
 					      <el-option label="厦门" value="厦门"></el-option>
 					      <el-option label="成都" value="成都"></el-option>
 					      <el-option label="武汉" value="武汉"></el-option>
+					      <el-option label="台北" value="台北"></el-option>
 					    </el-select>
 				  	</el-form-item>
 					<el-form-item>
