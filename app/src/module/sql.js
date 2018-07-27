@@ -25,8 +25,7 @@ function connect(){
         user: 'root',
         port: '8080',
         password: 'admin123',
-        database: 'life',
-        useConnectionPooling: true
+        database: 'life'
     });
     connection.connect();
     connection.on('error', handleError);
