@@ -290,7 +290,6 @@
 					          lag: res.body.data[0].lag,
 					          shopStartTime: res.body.data[0].shopStartTime,
 					          phone: res.body.data[0].phone,
-					          introInfo:res.body.data[0].introInfo,
 					          personText: res.body.data[0].personText,
 					          label: res.body.data[0].label,
 					          music: res.body.data[0].music,

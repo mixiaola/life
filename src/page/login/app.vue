@@ -4,7 +4,7 @@
 		<div class="title">登陆管理</div>
 		<el-input class='username' v-model="username" type='text' placeholder="请输入内容"></el-input>
 		<el-input class='password' v-model="password" type='password' placeholder="请输入内容"></el-input>
-		<el-button class='btn' type="primary" @click='login'>主要按钮</el-button>
+		<el-button class='btn' type="primary" @click='login'>登陆</el-button>
 		<el-dialog title="提示" :visible.sync="visible" width="30%" center>
 		  <span>{{loginText}}</span>
 		  <span slot="footer" class="dialog-footer">

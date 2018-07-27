@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node --inspect app/src/app.js",
+    "dev": "NODE_ENV=dev babel-node --inspect app/src/app.js",
+    "start": "pm2 start app.json",
+    "stop": "pm2 stop app.json",
+    "del":"pm2 delete app",
+    "logs":"pm2 logs",
     "build": "rm -rf dist && NODE_ENV=production webpack --config webpack/webpack.config.client.js  --sort-assets-by 'size' --progress -p --hide-modules",
     "dev-app": "nodemon --exec babel-node --inspect app/src/app.js"
   },

@@ -3,10 +3,10 @@ import router from './routes/index.js';
 import page from './routes/page.js';
 import path from 'path';
 import views from 'koa-views';
+import sqlHelper from './module/sql.js'
 const app = new Koa();
 //webpack 打包client代码
 var webpack = require('webpack')
-var webpackConfig = require('../../webpack/webpack.config.client.js')
 const webpackDev  = require('webpack-dev-middleware')
 const webpackHot = require('webpack-hot-middleware')
 const PassThrough = require('stream').PassThrough;
@@ -40,7 +40,19 @@ const hotMiddleware = (compiler, opts) => {
     
 }
 
+function timeTask(){
+    try{
+        setInterval(function(){
+            sqlHelper.change('select * from banner')
+        },7100000)
+    }catch(e){
+        console.warn('time task error=>', e)
+        timeTask()
+    }
+}
+
 function bindWebpack(){
+    let webpackConfig = require('../../webpack/webpack.config.client.js')
     if (process.env.NODE_ENV!='production'){
         webpackConfig.entry = Object.keys(webpackConfig.entry)
             .reduce(function (entries, name) {
@@ -87,5 +99,19 @@ function start() {
         .then(startServer)
         .catch(onError);
 }
+function prod() {
+    new Promise(function (resolve) {
+            resolve();
+        })
+        .then(bindStatic)
+        .then(startServer)
+        .then(timeTask)
+        .catch(onError);
+}
+console.log('env', process.env.NODE_ENV)
+if (process.env.NODE_ENV=='dev'){
+    start();
+} else {
+    prod();
+}
 
-start();

@@ -7,6 +7,7 @@ import command from '../controller/command';
 
 const router = require('koa-router')()
 
+
 router.get('/login', login.login);
 router.get('/showAlert', login.showAlert); 
 router.get('/getAlert', login.getAlert);
