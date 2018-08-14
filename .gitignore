@@ -1,6 +1,5 @@
 .DS_Store
 node_modules/
-src/
 webpack/
 npm-debug.log
 test/unit/coverage

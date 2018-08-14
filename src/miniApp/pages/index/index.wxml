@@ -1,0 +1,85 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- top serach -->
+  <view class="content-top">
+    <view class='content-area'>
+      <image src='../../img/city-location-homepage.png'></image>
+      上海
+    </view>
+    <view class='content-serach'>
+      <image src='../../img/search-icon.png'></image>
+    </view>
+  </view>
+
+  <!-- banner img in index page -->
+  <view class='content-banner'>
+    <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" mode="{{mode}}"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- change serach index info btn -->
+  <view class='content-change'>
+    <view class='change-left content-change-auto'>好店专属优惠</view>
+    <view class='change-center content-change-auto'>
+      <image src='../../img/on.png' wx:if="{{musicFLag}}"></image>
+      <image src='../../img/off.png' wx:if="{{!musicFLag}}"></image>
+      店内播放街声歌单
+      </view>
+    <view class='change-right content-change-auto'>全部</view>
+      <!-- change alltype dialog -->
+      <view class='content-dialog-type'wx:if="{{dialogTypeFlag}}">
+        <view>全部</view>
+        <view>可使用</view>
+        <view>已使用／已过期</view>
+      </view>
+  </view>
+  <!-- shopList info here -->
+  <view class='content-shop' wx:for="{{shopList}}">
+    <image src="{{item.img}}" mode="{{mode}}"></image>
+    <view class='shop-title'>{{item.title}}</view>
+    <view class='shop-content'>{{item.content}}</view>
+    <view class='shop-time'>{{item.time}}</view>
+    <view class='shop-address'>{{item.address}}</view>
+  </view>
+  <!-- footer -->
+  <view class='footer'>
+    <view class='footer-content'>
+      <image src='../../img/passport-icon-on.png'></image>
+      <view>旅券</view>
+    </view>
+    <view class='footer-content'>
+      <image src='../../img/artical-off.png'></image>
+      <view>更多发现</view>
+    </view>
+    <view class='footer-content'>
+      <image src='../../img/me-icon-off.png'></image>
+      <view>我的</view>
+    </view>
+  </view>
+  <!-- dialog one -->
+  <view class='dialog1' wx:if="{{dialogone}}">
+    <image src='../../img/gift-icon.png'></image>
+    总值 1000 元的好店旅券待领取
+  </view>
+  <!-- dialog two -->
+  <view class='dialoglay' wx:if="{{dialogtwo}}"></view>
+  <view class='dialog-content' wx:if="{{dialogtwo}}">
+    <image src='../../img/item1.png' mode="{{mode}}"></image> 
+    <view class='dialoglay-title'>输入兑换口令</view>
+    <input></input>
+    <image class='btn' src='../../img/btn.png'></image>
+  </view>
+  <image src='../../img/close.png' class='dialogclose' wx:if="{{dialogtwo}}"></image>
+  <!-- dialog three -->
+  <view class='dialoglay' wx:if="{{dialogthree}}"></view>
+  <view class='dialog-content' wx:if="{{dialogthree}}">
+    <image class='img' src='../../img/item1.png' mode="{{mode}}"></image> 
+    <image class='btn1 btn' src='../../img/btn1.png'></image>
+  </view>
+  <image src='../../img/close.png' class='dialogclose' wx:if="{{dialogthree}}"></image>
+</view>

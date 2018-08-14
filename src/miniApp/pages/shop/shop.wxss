@@ -1,0 +1,50 @@
+.content-top{
+  height: auto;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  margin-top: 30rpx;
+  padding-bottom: 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.top-img-shop{
+  height: 248rpx;
+  width:100%;
+}
+.title{
+  font-size: 64rpx;
+  margin-top: 80rpx;
+  margin-left: 60rpx;
+  margin-right: 64rpx;
+  height: 44rpx;
+}
+.intro{
+  font-size: 36rpx;
+  margin-left: 64rpx;
+  margin-right: 64rpx;
+  height: 44rpx;
+  margin-top: 24rpx;
+}
+.time{
+  color:#009223;
+  font-size: 24rpx;
+  margin-left: 64rpx;
+  margin-right: 64rpx;
+  height: 44rpx;
+  margin-top: 40rpx;
+}
+.useinfo{
+  color: #999;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  margin-left: 64rpx;
+  height: 88rpx;
+  margin-right: 64rpx;
+  margin-top: 10rpx;
+}
+.btn{
+  width: 200rpx;
+  margin-top: 40rpx;
+  margin-left: 245rpx;
+}

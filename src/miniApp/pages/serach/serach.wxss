@@ -1,0 +1,119 @@
+/* pages/serach/serach.wxss */
+.serach-top{
+  background: #fff;
+  height: 90rpx;
+  padding-left: 40rpx;
+}
+.serach-top .content-serach{
+  float: left;
+}
+.serach-top .cancal{
+  float:right;
+  width: 37px;
+  font-size: 36rpx;
+  line-height: 60rpx;
+  margin-right: 40rpx;
+}
+.pageone{
+  text-align: center;
+}
+.pageone .top{
+  margin-top: 112rpx;
+  text-align: center;
+}
+.pageone .top .line{
+  width: 160rpx;
+  height: 2rpx;
+  background: #EBEBEB;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 28rpx;
+}
+.pageone .top .text{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 36rpx;
+  width: 140rpx;
+  text-align: center;
+  padding-left: 20rpx;
+  color: #777;
+  padding-right: 20rpx;
+}
+.circle{
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 80rpx;
+}
+.pageone .text{
+  font-size: 28rpx;
+  margin-top: 16rpx;
+  color: #777;
+}
+.bottom{
+  padding-left: 100rpx;
+  padding-right: 100rpx;
+  margin-top:200rpx;
+}
+.bottom .intro{
+  font-size: 28rpx;
+  color: #414243;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20rpx;
+  background: #fff;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  border-radius: 40rpx;
+}
+.content-shop{
+  position: relative;
+  color:#fff;
+  width:100%;
+  height: 480rpx;
+  margin-bottom:20rpx;
+}
+.content-shop image{
+  width: 100%;
+  height: 100%;
+}
+.content-shop .shop-title{
+  position: absolute;
+  font-size: 36rpx;
+  left: 32rpx;
+  bottom: 120rpx;
+  z-index: 10;
+}
+.content-shop .shop-content{
+  position: absolute;
+  font-size: 36rpx;
+  left: 32rpx;
+  bottom: 74rpx;
+  z-index: 10;
+}
+.content-shop .shop-time{
+  position: absolute;
+  font-size: 24rpx;
+  bottom: 20rpx;
+  left: 32rpx;
+  z-index: 10;
+}
+.content-shop .shop-address{
+  position: absolute;
+  font-size: 24rpx;
+  bottom: 20rpx;
+  right: 32rpx;
+  z-index: 10;
+}
+.pagethree{
+  text-align: center;
+  padding-top: 360rpx;
+}
+.pagethree .text{
+  font-size: 28rpx;
+  color: #888;
+}

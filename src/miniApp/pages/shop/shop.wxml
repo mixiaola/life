@@ -1,0 +1,11 @@
+<view>
+  <!-- shop info -->
+  <view class='content-top'>
+    <image class='top-img-shop' src='../../img/item1.png' mode='aspectFill'></image>
+    <view class='title'>AUNN CAFE & CO</view>
+    <view class='intro'>所有饮品 8.8 折</view>
+    <view class='time'>有效期：2018.08.20-2018.11.30</view>
+    <view class='useinfo'>使用说明：到店请店员核销，即可享受以上折扣，过期/自行点击误点核销作废；不可与店内其他优惠叠加使用。</view>
+    <image class='btn' src='../../img/btn2.png' mode='widthFix'></image>
+  </view>
+</view>
