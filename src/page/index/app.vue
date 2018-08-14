@@ -16,46 +16,19 @@
 	    }
 		},
 	  created () {
-	// this.$http.get('/addCommand', { params: {command:'defr546'}} ).then(response => {
-  //       console.log(1);
-  //     }, response => {
-  //       console.log(response);
-	// 		});
-	// 		this.$http.get('/getCommandlist').then(response => {
-  //       console.log(1);
-  //     }, response => {
-  //       console.log(response);
-	// 		});
-	// 			this.$http.get('/delCommand', { params: {id:2}} ).then(response => {
-  //       console.log(1);
-  //     }, response => {
-  //       console.log(response);
-	// 		});
-	// this.$http.get('/getAlert', { params: {type:'input'}} ).then(response => {
-  //       console.log(1);
-  //     }, response => {
-  //       console.log(response);
-	// 		});
+			console.log(111);
+			//获取卡券
+			this.$http.get('/getWxTicket', {params:{command:'defr546', openid:'2435tftg5gyt'}}).then(response => {
+        console.log(1);
+      }, response => {
+        console.log(response);
+			});	
+			//搜索接口
 			this.$http.get('/search', {params:{label:'家具'}}).then(response => {
         console.log(1);
       }, response => {
         console.log(response);
-			});
-      //   console.log(1);
-      // }, response => {
-      //   console.log(response);
-			// });
-			// this.$http.get('/delLabel', { params: {id:2}} ).then(response => {
-      //   console.log(1);
-      // }, response => {
-      //   console.log(response);
-			// });
-			// this.$http.get('/getBannerList' ).then(response => {
-   //      console.log(1);
-   //    }, response => {
-   //      console.log(response);
-			// });
-		
+			});		
 	  },
 	  methods: {
 	  	

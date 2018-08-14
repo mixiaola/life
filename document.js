@@ -226,7 +226,7 @@ router.get('/query', async (ctx, next) => { })
 /**
  *  city: 选择的城市
  *	musicShow： 店内是否播放音乐
- *	ticketType: 全部/可使用/已使用或已过期  1,2,3,4
+ *	.;l: 全部/可使用/已使用或已过期  1,2,3,4
  *	reponse：
  *		banner: [{img,link}]
  *		shopList:[{
@@ -362,6 +362,7 @@ router.get('/getWxUseTicket', async (ctx, next) => { })
 
 //获取卡券
 /**
+    command
 	openid
  	reponse：返回成功即可
  *

@@ -4,6 +4,7 @@ import article from '../controller/article';
 import label from '../controller/label';
 import banner from '../controller/banner';
 import command from '../controller/command';
+import wx from '../controller/wx';
 
 const router = require('koa-router')()
 
@@ -37,5 +38,6 @@ router.get('/addCommand', command.addCommand);
 router.get('/getCommandlist', command.getCommandlist);
 router.get('/delCommand', command.delCommand);
 
+router.get('/getWxTicket', wx.getWxTicket);
 
 module.exports = router
