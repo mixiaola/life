@@ -16,7 +16,6 @@
 	    }
 		},
 	  created () {
-			console.log(111);
 			//获取卡券
 			this.$http.get('/getWxTicket', {params:{command:'defr546', openid:'2435tftg5gyt'}}).then(response => {
         console.log(1);

@@ -20,11 +20,17 @@ function handleError(err) {
 }
 
 function connect(){
+    // connection = mysql.createConnection({
+    //     host: '39.105.23.187',
+    //     user: 'root',
+    //     port: '8080',
+    //     password: 'admin123',
+    //     database: 'life'
+    // });
     connection = mysql.createConnection({
-        host: '39.105.23.187',
+        host: 'localhost',
         user: 'root',
-        port: '8080',
-        password: 'admin123',
+        password: '',
         database: 'life'
     });
     connection.connect();
