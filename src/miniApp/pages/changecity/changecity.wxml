@@ -1,0 +1,20 @@
+<view class='container'>
+  <view>全部
+    <image src='../../img/check.png'mode='widthFix'></image>
+  </view>
+  <view>上海
+    <image src='../../img/check.png'mode='widthFix'></image>
+  </view>
+  <view>成都
+    <image src='../../img/check.png'mode='widthFix'></image>
+  </view>
+  <view>武汉
+    <image src='../../img/check.png'mode='widthFix'></image>
+  </view>
+  <view>厦门
+    <image src='../../img/check.png'mode='widthFix'></image>
+  </view>
+  <view>台北
+    <image src='../../img/check.png'mode='widthFix'></image>
+  </view>
+</view>

@@ -1,0 +1,46 @@
+<view class='container'>
+  <!-- top background -->
+  <view class='top'>
+    <image src='../../img/profile-bg.png' mode='widthFix' style='width:100%' class='background'></image>
+    <image src='../../img/item1.png' mode='aspectFill' class='headimg'></image>
+    <view class='name'>Wechat Name</view>
+  </view>
+
+  <!-- content -->
+  <view class='content'>
+    <view class='content-menu'>
+      <view class='date'>2018.09.16</view>
+      <view class='share'>
+      <image src='../../img/share.png' class='shareImg'></image>
+      分享</view>
+    </view>
+    <view class='content-info'>
+      <image src='../../img/timedot.png' class='content-info-img'></image>
+      <view class='useticket'>
+        <view class='title'>在 xxx 使用了美好生活旅券</view>
+        <view class='text'>此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。</view>
+        <image src='../../img/item1.png' class='useticketImg' mode='aspectFill'></image>
+        <view class='address'>
+          <image src='../../img/location-detial.png' class='location' mode='widthFix'></image>
+          上海 · 五原路124号(乌鲁木齐中路)
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- footer -->
+  <view class='footer'>
+    <view class='footer-content'>
+      <image src='../../img/passport-icon-off.png'></image>
+      <view>旅券</view>
+    </view>
+    <view class='footer-content'>
+      <image src='../../img/artical-off.png'></image>
+      <view>更多发现</view>
+    </view>
+    <view class='footer-content'>
+      <image src='../../img/me-icon-on.png'></image>
+      <view>我的</view>
+    </view>
+  </view>  
+</view>

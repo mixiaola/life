@@ -1,0 +1,26 @@
+<view class="container">
+  <!-- content -->
+  <view class='content' wx:for="{{content}}">
+    <image src='{{item.img}}' mode='aspectFill'></image>
+    <view class='content-info'>
+      <view class='content-info-title'>{{item.title}}</view>
+      <view class='content-info-text'>{{item.text}}</view>
+    </view>
+  </view>
+  <view class='contentFooter'></view>
+  <!-- footer -->
+  <view class='footer'>
+    <view class='footer-content'>
+      <image src='../../img/passport-icon-off.png'></image>
+      <view>旅券</view>
+    </view>
+    <view class='footer-content'>
+      <image src='../../img/artical-on.png'></image>
+      <view>更多发现</view>
+    </view>
+    <view class='footer-content'>
+      <image src='../../img/me-icon-off.png'></image>
+      <view>我的</view>
+    </view>
+  </view>
+</view>

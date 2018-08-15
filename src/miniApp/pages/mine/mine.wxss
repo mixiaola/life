@@ -1,0 +1,101 @@
+/* pages/mine/mine.wxss */
+.top{
+  height:370rpx;
+  position: relative;
+}
+.top .background{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.top .headimg{
+  position: absolute;
+  width: 144rpx;
+  height: 144rpx;
+  top: 48rpx;
+  left: 50%;
+  margin-left: -72rpx;
+  border-radius: 50%;
+}
+.top .name{
+  position: absolute;
+  top: 220rpx;
+  text-align: center;
+  width: 100%;
+  font-size: 36rpx;
+}
+.content{
+
+}
+.content .content-menu{
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  height: 74rpx;
+}
+.content .content-menu .date{
+  float: left;
+  font-size: 24rpx;
+}
+.content .content-menu .share{
+  float: right;
+  border: 2rpx solid #EBEBEB;
+  padding: 12rpx;
+  font-size: 24rpx;
+  color: #333;
+  border-radius: 28rpx;
+}
+.content .content-menu .share .shareImg{
+  width: 22rpx;
+  height: 22rpx;
+}
+.content .content-info{
+  padding-left: 50rpx;
+  padding-right: 40rpx;
+  margin-bottom: 64rpx;
+}
+.content .content-info .content-info-img{
+  width: 22rpx;
+  height: 456rpx;
+}
+.content .content-info .useticket{
+  width: 580rpx;
+  height: 520rpx;
+  background: #fff;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 14rpx;
+  margin-left: 50rpx;
+}
+.content .content-info .useticket .title{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  font-weight: bolder;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.content .content-info .useticket .text{
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.content .content-info .useticket .useticketImg{
+  width: 500rpx;
+  height: 240rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.content .content-info .useticket .address{
+  font-size: 24rpx;
+  height: 34rpx;
+  line-break: 34rpx;
+  color: #979797;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.content .content-info .useticket .location{
+  width: 20rpx;
+  vertical-align: top;
+  margin-top: 2rpx;
+}

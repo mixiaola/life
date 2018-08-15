@@ -1,0 +1,17 @@
+.container{
+  margin-top: 20rpx;
+  background: #fff;
+}
+.container view{
+  border-bottom: 2rpx solid #eee;
+  height: 108rpx;
+  line-height: 108rpx;
+  padding-left: 72rpx;
+  font-size: 36rpx;
+}
+.container view image{
+  width: 38rpx;
+  float: right;
+  margin-right: 40rpx;
+  margin-top: 40rpx;
+}

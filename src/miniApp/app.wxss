@@ -1,0 +1,149 @@
+/**app.wxss**/
+page{
+  background: #F6F6F6;
+}
+.content-top{
+  height: 80rpx;
+  line-height: 60rpx;
+  background: #fff;
+}
+.content-area{
+  font-size: 32rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.content-area image{
+  width: 24rpx;
+  display: inline-block;
+  height: 40rpx;
+  margin-top: 10rpx;
+  vertical-align: top;
+  margin-left: 20rpx;
+}
+.content-serach{
+  width:560rpx;
+  height:60rpx;
+  background:#F8F8F8;
+  border:2rpx solid #EBEBEB;
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+  margin-right: 20rpx;
+  border-radius: 32rpx;
+}
+.content-serach image{
+  width: 28rpx;
+  height: 28rpx;
+  margin-top:16rpx;
+  float: right;
+  display: inline-block;
+  vertical-align: top;
+  margin-right:20px;
+}
+.footer{
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #000000;
+  z-index: 100;
+}
+.footer-content{
+  width: 33.3333%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+.footer-content image{
+  width: 54rpx;
+  height: 54rpx;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10rpx;
+}
+.footer-content view{
+  color: #D8D8D8;
+  font-size: 20rpx;
+}
+.dialoglay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 101;
+  opacity: 0.4;
+}
+.dialogclose{
+  position: fixed;
+  width: 92rpx;
+  height: 92rpx;
+  bottom: 64rpx;
+  left: 334rpx;
+  z-index:102;
+}
+.dialog-content{
+  width: 640rpx;
+  height: 900rpx;
+  bottom: 224rpx;
+  position: fixed;
+  background: #fff;
+  z-index: 101;
+  margin-left: 55rpx;
+  border-radius: 14rpx;
+  text-align: center;
+}
+.dialog-content image{
+  height: 480rpx;
+  width: 100%;
+}
+.dialoglay-title{
+  font-size: 28rpx;
+  margin: 50rpx;
+  font-weight: bolder;
+  text-align: center;
+}
+.dialog-content input{
+  width: 480rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #eee;
+  border-radius: 23px;
+  margin-left: 80rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+.dialog-content .btn{
+  width: 200rpx;
+  height: 60rpx;
+  margin-top: 55rpx;
+  display: inline-block;
+}
+.dialog-content .img{
+  height: 700rpx;
+}
+.dialog-content .btn1{
+  margin-top: 60rpx;
+  width: 272rpx;
+}
+.contentFooter{
+  height: 120rpx;
+  width: 100%;
+}
+.overflowone{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.overflowtwo{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

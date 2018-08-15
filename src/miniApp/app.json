@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/shop/shop",
+    "pages/changecity/changecity",
+    "pages/serach/serach",
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/artical/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

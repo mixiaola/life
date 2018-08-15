@@ -1,0 +1,180 @@
+.content-top{
+  height: auto;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  margin-top: 30rpx;
+  padding-bottom: 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.top-img-shop{
+  height: 248rpx;
+  width:100%;
+}
+.title{
+  font-size: 64rpx;
+  margin-top: 80rpx;
+  margin-left: 60rpx;
+  margin-right: 64rpx;
+  height: 44rpx;
+}
+.intro{
+  font-size: 36rpx;
+  margin-left: 64rpx;
+  margin-right: 64rpx;
+  height: 44rpx;
+  margin-top: 24rpx;
+}
+.time{
+  color:#009223;
+  font-size: 24rpx;
+  margin-left: 64rpx;
+  margin-right: 64rpx;
+  height: 44rpx;
+  margin-top: 40rpx;
+}
+.useinfo{
+  color: #999;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  margin-left: 64rpx;
+  height: 88rpx;
+  margin-right: 64rpx;
+  margin-top: 10rpx;
+}
+.btn{
+  width: 200rpx;
+  margin-top: 40rpx;
+  margin-left: 245rpx;
+}
+.content-address{
+  height: auto;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
+  /* width: 690rpx; */
+  margin-top: 30rpx;
+  padding-bottom: 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: #fff;
+  padding-left: 30rpx;
+  margin-bottom: 80rpx;
+}
+.content-address .address{
+  color: #009223;
+  font-size: 28rpx;
+  margin-top: 40rpx;
+}
+.address-time{
+  font-size: 28rpx;
+  margin-top: 30rpx;
+}
+.phone{
+  color: #009223;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+.icon{
+  width: 24rpx;
+  margin-top: 10rpx;
+  vertical-align: top;
+}
+.icon1{
+  width: 20rpx;
+  margin-top: 10rpx;
+  vertical-align: top;
+}
+.go{
+  float: right;
+  width: 12rpx;
+  margin-right: 32rpx;
+  margin-top: 10rpx;
+}
+.textContent{
+  font-size: 28rpx;
+  margin-bottom: 48rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  color: #333;
+}
+.imgContet{
+  width: 690rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-bottom: 48rpx;
+}
+.shop-dialog1{
+  position: fixed;
+  top: 460rpx;
+  left: 50%;
+  margin-left: -280rpx;
+  width: 560rpx;
+  height: 332rpx;
+  background: #fff;
+  z-index: 101;
+  border-radius: 14rpx;
+}
+.shop-dialog1 .title{
+  height: 44rpx;
+  line-height: 44rpx;
+  margin-top: 48rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+.shop-dialog1 .content{
+  color: #888888;
+  font-size: 28rpx;
+  padding-left: 32rpx;
+  padding-right: 32rpx;
+  margin-top: 22rpx;
+  margin-bottom: 36rpx;
+}
+.shop-dialog1 .shop-btn{
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-top: 2rpx solid #E5E5E5;
+  box-sizing: border-box;
+  font-size: 32rpx;
+}
+.right-btn{
+  border-left: 2rpx solid #E5E5E5;
+  color: #02BB00;
+}
+.share-btn{
+  position: fixed;
+  z-index: 99;
+  bottom: 64rpx;
+  right: 40rpx;
+  width: 144rpx;
+}
+.phonenumber{
+  height: 516rpx;
+  width: 100%;
+  position: fixed;
+  z-index: 101;
+  bottom: 0;
+}
+.phonenumber view{
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  width: 100%;
+  font-size: 36rpx;
+  background: #fff;
+}
+.border-bottom{
+  border-bottom: 2rpx solid #eee;
+}
+.phonenumber-cancel{
+  margin-top:16rpx;
+}
+.phonenumber .phone-number{
+  font-size: 28rpx;
+  color: #999;
+}

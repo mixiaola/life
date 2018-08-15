@@ -1,0 +1,49 @@
+<view class='container'>
+  <!-- serach top -->
+  <view class='serach-top'>
+    <view class='content-serach'>
+      <!-- <image src='../../img/search-icon.png'></image> -->
+      <image src='../../img/cancle.png'></image>
+    </view>
+    <view class='cancal'>取消</view>
+  </view>
+  <!-- serach page one -->
+  <view class='pageone' wx:if='{{pageone}}'>
+    <view class='top'>
+      <view class='line'></view>
+      <view class='text'>你可以搜</view>
+      <view class='line'></view>
+    </view>
+
+    <view class='circle' style='background:#F4D6CC'></view>
+    <view class='text'>标签</view>
+    <view class='circle' style='background:#ACD6B6'></view>
+    <view class='text'>商圈名</view>
+    <view class='circle' style='background:#B7DBFF'></view>
+    <view class='text'>店铺类别</view>
+
+    <view class='bottom'>
+      <view class='intro'>书店</view>
+      <view class='intro'>音乐</view>
+    </view>
+  </view>
+
+  <view class='pagetwo' wx:if='{{pagetwo}}'>
+    <view class='content-shop' wx:for="{{shopList}}">
+      <image src="{{item.img}}" mode="{{mode}}"></image>
+      <view class='shop-title'>{{item.title}}</view>
+      <view class='shop-content'>{{item.content}}</view>
+      <view class='shop-time'>{{item.time}}</view>
+      <view class='shop-address'>{{item.address}}</view>
+    </view>
+  </view>
+
+  <view class='pagethree'>
+    <view class='text'>无相关结果</view>
+    <view class='text'>不妨试试以下关键词</view>
+    <view class='bottom'>
+      <view class='intro'>书店</view>
+      <view class='intro'>音乐</view>
+    </view>
+  </view>
+</view>

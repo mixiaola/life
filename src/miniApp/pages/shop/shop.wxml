@@ -1,0 +1,55 @@
+<view>
+  <!-- shop info -->
+  <view class='content-top'>
+    <image class='top-img-shop' src='../../img/item1.png' mode='aspectFill'></image>
+    <view class='title'>AUNN CAFE & CO</view>
+    <view class='intro'>所有饮品 8.8 折</view>
+    <view class='time'>有效期：2018.08.20-2018.11.30</view>
+    <view class='useinfo'>使用说明：到店请店员核销，即可享受以上折扣，过期/自行点击误点核销作废；不可与店内其他优惠叠加使用。</view>
+    <image class='btn' src='../../img/btn2.png' mode='widthFix'></image>
+  </view>
+  <!-- address info -->
+  <view class='content-address'>
+    <view class='address'>
+      <image src='../../img/location-detial.png' class='icon1' mode='widthFix'></image>
+      上海市南京西路1728号(华山路)
+      <image src='../../img/go.png' class='go' mode='widthFix'></image>
+    </view>
+    <view class='address-time'>
+      <image src='../../img/time-detial.png' class='icon' mode='widthFix'></image>
+      周日 09:30-21:00 周一至周五 08:30-22:00 周六 09:30-22:00
+      
+    </view>
+    <view class='phone'>
+      <image src='../../img/phone-detial.png' class='icon' mode='widthFix'></image>
+      021-52909012
+      <image src='../../img/go.png' class='go' mode='widthFix'></image>  
+    </view>
+  </view>
+  <!-- text content -->
+  <view class='textContent'>大隐隐于市，“一介”是一家藏在成都锦绣街，被老社区包围的咖啡店，或者说是一家有着饮品的“美术馆”，在这里你可以体验成都独特的社区文化和最活跃的青年创意，还可以施展绘画才能，创作独一无二的手绘点单卡。两位店主将原本的理发店，改造成阳光通透的木结构日式空间，门口是可以360°旋转的玻璃门，可以根据使用者的爱好来控制开门角度。
+</view>
+  <!-- img content -->
+  <image class='imgContet' src='../../img/item1.png' mode='widthFix'></image>
+  <!-- fix dialog -->
+  <view class='dialoglay' wx:if='{{useFlag}}'></view>
+  <view class='shop-dialog1' wx:if='{{useFlag}}'>
+    <view class='title'>确定立即使用吗？</view>
+    <view class='content'>确认到店后由店员协助核销，使用后失效，可在「我的」页面查看使用记录。</view>
+    <view class='btnGroup'>
+      <view class='shop-btn'>取消</view>
+      <view class='shop-btn right-btn'>确定</view>
+    </view>
+  </view>
+  <!-- share btn -->
+  <image src='../../img/share-icon.png' class='share-btn' mode='widthFix'></image>
+  <!-- phone number -->
+  <view class='dialoglay'></view>
+  <view class='phonenumber'>
+    <view class='border-bottom phone-number'>021-52909012</view>
+    <view class='border-bottom'>呼叫</view>
+    <view class='border-bottom'>复制号码</view>
+    <view>添加到手机通讯录</view>
+    <view class='phonenumber-cancel'>取消</view>
+  </view>
+</view>
