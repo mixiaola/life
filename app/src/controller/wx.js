@@ -19,7 +19,7 @@ const getWxTicket = async function (ctx) {
     return ctx.body;
 };
 
-const getWxTicket = async function (ctx) {
+const getWxIndexInfo = async function (ctx) {
     // const command = ctx.query.command;
     // const openid = ctx.query.openid;
     // const sql = `select command from command`;
