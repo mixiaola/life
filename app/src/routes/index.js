@@ -40,5 +40,6 @@ router.get('/delCommand', command.delCommand);
 
 router.get('/getWxTicket', wx.getWxTicket);
 router.get('/getWxIndexInfo', wx.getWxIndexInfo);
+router.get('/getWxArticle', wx.getWxArticle);
 
 module.exports = router

@@ -109,7 +109,7 @@ CREATE TABLE `banner` (
   `sort` varchar(255) DEFAULT NULL,
   `date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `banner` (
 
 LOCK TABLES `banner` WRITE;
 /*!40000 ALTER TABLE `banner` DISABLE KEYS */;
-INSERT INTO `banner` VALUES (1,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','2','1531237379000'),(2,'上海','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000'),(3,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','1','1531237379000'),(4,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','4','1531237379000'),(5,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','7','1531237379000'),(6,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000'),(7,'undefined','undefined','shanghai','undefined','1531664479000');
+INSERT INTO `banner` VALUES (1,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','2','1531237379000'),(2,'上海','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000'),(3,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','1','1531237379000'),(4,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','4','1531237379000'),(5,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','7','1531237379000'),(6,'北京','http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','9','1531237379000');
 /*!40000 ALTER TABLE `banner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,8 +206,58 @@ CREATE TABLE `shop` (
 
 LOCK TABLES `shop` WRITE;
 /*!40000 ALTER TABLE `shop` DISABLE KEYS */;
-INSERT INTO `shop` VALUES (1,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(3,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(4,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','上海','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(5,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(6,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','2342','4324','433243','2018-7-2','2018-7-10','beijing','43','43','43','43','43','43','43','','1531235545000');
+INSERT INTO `shop` VALUES (1,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(3,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(4,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-05','上海','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(5,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','北欧家具','七折券','满100打七折','2018-07-05','2018-08-25','北京','朝阳区望京soho','116，37','早9：00，晚7:00','13796621250','https://img.momocdn.com/album/62/46/6246EA9E-F23A-B592-11F0-EF9471B924BF20161112_L.jpg','我买了这个，超便宜！','小清闲','1','1531233999000'),(6,'http://pic.616pic.com/ys_b_img/00/66/73/9KnqqgZBFe.jpg','2342','4324','433243','2018-7-2','2018-7-10','beijing','43','43','43','43','43','43','43','','1531235545000');
 /*!40000 ALTER TABLE `shop` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'2435tftg5gyt'),(2,'2435tftg5gyt'),(3,'2435tftg5gyt'),(4,'2435tftg5gyt'),(5,'2435tftg5gyt'),(6,'2435tftg5gyt'),(7,'2435tftg5gyt'),(8,'2435tftg5gyt'),(9,'2435tftg5gyt'),(10,'2435tftg5gyt'),(11,'2435tftg5gyt'),(12,'2435tftg5gyt');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usershop`
+--
+
+DROP TABLE IF EXISTS `usershop`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usershop` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` int(11) NOT NULL,
+  `shopid` int(11) DEFAULT NULL,
+  `isUsed` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usershop`
+--
+
+LOCK TABLES `usershop` WRITE;
+/*!40000 ALTER TABLE `usershop` DISABLE KEYS */;
+INSERT INTO `usershop` VALUES (1,123,1,NULL),(2,123,3,NULL);
+/*!40000 ALTER TABLE `usershop` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -219,4 +269,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-27 17:22:21
+-- Dump completed on 2018-08-16 20:13:14

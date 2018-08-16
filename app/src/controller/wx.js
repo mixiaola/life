@@ -72,7 +72,20 @@ const getWxIndexInfo = async function (ctx) {
     return ctx.body;
 };
 
+const getWxArticle = async function (ctx) {
+    const sql = `select * from article`;
+    const data = await sqlHelper.query(sql);
+    var resultData = {
+        ec: data.length ? 200 : 500,
+        em: data.length ? '成功' : '验证身份失败',
+        data: data
+    };
+    ctx.body = resultData;
+    return ctx.body;
+};
+
 module.exports = {
     getWxTicket,
-    getWxIndexInfo
+    getWxIndexInfo,
+    getWxArticle
 }
