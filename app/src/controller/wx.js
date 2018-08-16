@@ -22,8 +22,6 @@ const getWxTicket = async function (ctx) {
 //首页
 const getWxIndexInfo = async function (ctx) {
     const openid = ctx.query.openid;
-    const music = ctx.query.music;
-    const isUsed = ctx.query.isUsed;
     const city = ctx.query.city == '全部' ? '' : ctx.query.city;
 
     const getUser = `select * from user where openid='${openid}';`;
@@ -35,12 +33,12 @@ const getWxIndexInfo = async function (ctx) {
     const input = await sqlHelper.query(inputSql);
     const focus = await sqlHelper.query(focusSql);
     // 全部
-    const ticketSqlall = `select id, shopTitle, ticketTitle, validtiyEnd from shop ${city ? `where city='${city}'` : ''};`;
+    const ticketSqlall = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop ${city ? `where city='${city}'` : ''};`;
     const ticket = await sqlHelper.query(ticketSqlall);
     //已使用
     const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
-    const usedTicketSql = `select  shopTitle, ticketTitle from shop where id in (
+    const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
                         ${usedTicketid.map((item)=>{
                             return item.shopid;
                         })}
