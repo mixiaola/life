@@ -12,7 +12,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log('res-->', res.code)
         wx.request({
-          url:'http://simplelifeapp.streetvoice.cn/getOpenId',
+          url:'http://localhost:3000/getOpenId',
           data:{
             code: res.code,
             city:'全部',
