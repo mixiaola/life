@@ -97,7 +97,7 @@ const useWxTicketById = async function (ctx) {
     return ctx.body;
 };
 const getOpenId = async function (ctx) {
-    request.get('https://api.weixin.qq.com/sns/jscode2session?appid=wxc3aa2eeefec9c1bf&secret=c0da1ded4ef213494b7e15ad381d6e21&js_code=' + ctx.query.code + '&grant_type=authorization_code', function(error, response, body){
+    await request.get('https://api.weixin.qq.com/sns/jscode2session?appid=wxc3aa2eeefec9c1bf&secret=c0da1ded4ef213494b7e15ad381d6e21&js_code=' + ctx.query.code + '&grant_type=authorization_code', function(error, response, body){
             ctx.body = body;
             return ctx.body
     })

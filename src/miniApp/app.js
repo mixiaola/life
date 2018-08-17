@@ -14,7 +14,10 @@ App({
         wx.request({
           url:'http://simplelifeapp.streetvoice.cn/getOpenId',
           data:{
-            code: res.code
+            code: res.code,
+            city:'全部',
+            curPage:1,
+            pageSize:10
           },
           method:'get',
           success: function (){
