@@ -42,4 +42,6 @@ router.get('/getWxTicket', wx.getWxTicket);
 router.get('/getWxIndexInfo', wx.getWxIndexInfo);
 router.get('/getWxArticle', wx.getWxArticle);
 
+router.get('/getOpenId', wx.getOpenId)
+
 module.exports = router
