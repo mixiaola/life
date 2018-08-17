@@ -1,5 +1,7 @@
 const sqlHelper = require('../module/sql.js');
-const request = require('request')
+// const request = require('request')
+const request = require('superagent');
+
 //获取卡券
 const getWxTicket = async function (ctx) {
     const command = ctx.query.command;
@@ -97,9 +99,13 @@ const useWxTicketById = async function (ctx) {
     return ctx.body;
 };
 const getOpenId = async function (ctx) {
-    await request.get('https://api.weixin.qq.com/sns/jscode2session?appid=wxc3aa2eeefec9c1bf&secret=c0da1ded4ef213494b7e15ad381d6e21&js_code=' + ctx.query.code + '&grant_type=authorization_code', function(error, response, body){
-            ctx.body = body;
-    })
+    var res = await request.get('https://api.weixin.qq.com/sns/jscode2session?appid=wxc3aa2eeefec9c1bf&secret=c0da1ded4ef213494b7e15ad381d6e21&js_code=' + ctx.query.code + '&grant_type=authorization_code')
+    var data = {
+        ec: res.text?200:500,
+        em: res.text ? 'success' : 'error',
+        data: JSON.parse(res.text)
+    };
+    ctx.body = data;
     return ctx.body
 }
 
