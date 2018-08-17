@@ -72,13 +72,25 @@ const getWxIndexInfo = async function (ctx) {
     ctx.body = resultData;
     return ctx.body;
 };
-
+//获取文章列表
 const getWxArticle = async function (ctx) {
     const sql = `select * from article`;
     const data = await sqlHelper.query(sql);
     var resultData = {
         ec: data.length ? 200 : 500,
-        em: data.length ? '成功' : '验证身份失败',
+        em: data.length ? '成功' : '失败',
+        data: data
+    };
+    ctx.body = resultData;
+    return ctx.body;
+};
+//使用卡券
+const useWxTicketById = async function (ctx) {
+    const sql = `insert into usershop (openid, shopid) values ('${ctx.query.openid}', ${ctx.query.shopid})`;
+    const data = await sqlHelper.change(sql);
+    var resultData = {
+        ec: data.length ? 200 : 500,
+        em: data.length ? '成功' : '失败',
         data: data
     };
     ctx.body = resultData;
@@ -89,9 +101,45 @@ const getOpenId = async function (ctx) {
             return body
     })
 }
+
+//获取卡券信息
+const getWxTicketById = async function (ctx) {
+    // 全部
+    const ticketSqlall = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop ${city ? `where city='${city}'` : ''};`;
+    const ticket = await sqlHelper.query(ticketSqlall);
+    //已使用
+    const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
+    const usedTicketid = await sqlHelper.query(usedTicketidSql);
+    const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
+                        ${usedTicketid.map((item) => {
+            return item.shopid;
+        })}
+                        )${city ? `and city='${city}'` : ''};`;
+    const usedTicket = await sqlHelper.query(usedTicketSql);
+    ticket.map((item) => {
+        item.status = 2;
+        if (new Date() - new Date(item.validtiyEnd) > 0) {
+            item.status = 4;
+        }
+        usedTicketid.map((data) => {
+            if (data.shopid == item.id) {
+                item.status = 3;
+            }
+        })
+    })
+    var resultData = {
+        ec: ticket.length ? 200 : 500,
+        em: ticket.length ? '成功' : '失败',
+        data: ticket
+    };
+    ctx.body = resultData;
+    return ctx.body;
+};
 module.exports = {
     getWxTicket,
     getWxIndexInfo,
     getWxArticle,
-    getOpenId
+    getOpenId,
+    useWxTicketById,
+    getWxTicketById
 }

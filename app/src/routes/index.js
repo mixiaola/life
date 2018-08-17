@@ -41,6 +41,8 @@ router.get('/delCommand', command.delCommand);
 router.get('/getWxTicket', wx.getWxTicket);
 router.get('/getWxIndexInfo', wx.getWxIndexInfo);
 router.get('/getWxArticle', wx.getWxArticle);
+router.get('/useWxTicketById', wx.useWxTicketById);
+router.get('/getWxTicketById', wx.getWxTicketById);
 
 router.get('/getOpenId', wx.getOpenId)
 

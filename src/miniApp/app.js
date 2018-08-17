@@ -9,8 +9,17 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log('res-->', res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log('res-->', res.code)
+        wx.request({
+          url:'http://simplelifeapp.streetvoice.cn/getOpenId',
+          data:{
+            code: res.code
+          },
+          method:'get',
+
+        })
+        
       }
     })
     // 获取用户信息
