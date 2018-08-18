@@ -9,8 +9,8 @@
     "dev-run": "NODE_ENV=dev nodemon --exec  babel-node --inspect app/src/app.js",
     "start": "pm2 start app.json",
     "stop": "pm2 stop app.json",
-    "del":"pm2 delete app",
-    "logs":"pm2 logs",
+    "del": "pm2 delete app",
+    "logs": "pm2 logs",
     "build": "rm -rf dist && NODE_ENV=production webpack --config webpack/webpack.config.client.js  --sort-assets-by 'size' --progress -p --hide-modules",
     "dev-app": "nodemon --exec babel-node --inspect app/src/app.js"
   },
@@ -54,6 +54,7 @@
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "style-loader": "^0.21.0",
+    "superagent": "^3.8.3",
     "url-loader": "^1.0.1",
     "vue": "^2.5.16",
     "vue-loader": "^15.2.4",

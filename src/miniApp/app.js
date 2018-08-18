@@ -2,14 +2,34 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
 
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log('res-->', res.code)
+        wx.request({
+          url:'http://localhost:3000/getOpenId',
+          data:{
+            code: res.code,
+            city:'全部',
+            curPage:1,
+            pageSize:10
+          },
+          method:'get',
+          success: function (){
+
+          },
+          fail: function(e){
+            wx.showToast({
+              title: e.errMsg
+            })
+          }
+        })
+        
       }
     })
     // 获取用户信息

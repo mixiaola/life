@@ -47,4 +47,6 @@ router.get('/getWxSerachList', wx.getWxSerachList);
 router.get('/getWxUseTicket', wx.getWxUseTicket);
 
 
+router.get('/getOpenId', wx.getOpenId)
+
 module.exports = router

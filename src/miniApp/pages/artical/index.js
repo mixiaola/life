@@ -27,7 +27,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    setTimeout(function(){
+      var app = getApp();
+      console.log('globalData->', app.globalData.userInfo.nickName)
+    },1000)
   },
 
   /**
