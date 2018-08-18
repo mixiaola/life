@@ -36,14 +36,14 @@ const getWxIndexInfo = async function (ctx) {
     const input = await sqlHelper.query(inputSql);
     const focus = await sqlHelper.query(focusSql);
     // 全部
-    const ticketSqlall = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop ${city ? `where city='${city}'` : ''};`;
+    const ticketSqlall = `select * from shop ${city ? `where city='${city}'` : ''};`;
     const ticket = await sqlHelper.query(ticketSqlall);
     //已使用
     const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
     let usedTicket;
     if (usedTicketid.length) {
-        const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
+        const usedTicketSql = `select * from shop where id in (
                         ${usedTicketid.map((item) => {
                 return item.shopid;
             })}
@@ -117,12 +117,12 @@ const getWxTicketById = async function (ctx) {
     const openid = ctx.query.openid;
     const city = ctx.query.city == '全部' ? '' : ctx.query.city;
     // 全部
-    const ticketSqlall = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop ${city ? `where city='${city}'` : ''};`;
+    const ticketSqlall = `select * from shop ${city ? `where city='${city}'` : ''};`;
     const ticket = await sqlHelper.query(ticketSqlall);
     //已使用
     const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
-    const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
+    const usedTicketSql = `select * from shop where id in (
                         ${usedTicketid.map((item) => {
             return item.shopid;
         })}
@@ -153,7 +153,7 @@ const getWxUseTicket = async function (ctx) {
     //已使用
     const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
-    const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
+    const usedTicketSql = `select * from shop where id in (
                         ${usedTicketid.map((item) => {
             return item.shopid;
         })}
@@ -169,7 +169,7 @@ const getWxUseTicket = async function (ctx) {
 };
 const getWxSerachList = async function (ctx) {
     const label = ctx.query.label;
-    const sql = `select shopTitle title, imgUrl img, shopStartTime time, ticketTitle ticketTitle ,address address  from shop where shopTitle like '%${label}%';`;
+    const sql = `select * from shop where shopTitle like '%${label}%';`;
     const result = await sqlHelper.query(sql);
 
     var data = {
