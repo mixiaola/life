@@ -41,18 +41,21 @@ const getWxIndexInfo = async function (ctx) {
     //已使用
     const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
-    const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
-                        ${usedTicketid.map((item)=>{
-                            return item.shopid;
-                        })}
+    let usedTicket;
+    if (usedTicketid.length) {
+        const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
+                        ${usedTicketid.map((item) => {
+                return item.shopid;
+            })}
                         )${city ? `and city='${city}'` : ''};`;
-    const usedTicket = await sqlHelper.query(usedTicketSql);
-    ticket.map((item) => {
+        usedTicket = await sqlHelper.query(usedTicketSql);
+    }
+    ticket.length&&ticket.map((item) => {
         item.status = 2;
         if (new Date() - new Date(item.validtiyEnd) > 0){
             item.status = 4;
         }
-        usedTicketid.map((data)=>{
+        usedTicketid.length&&usedTicketid.map((data)=>{
             if(data.shopid==item.id) {
                 item.status = 3;
             }
