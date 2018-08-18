@@ -32,10 +32,14 @@
 			const data = {
 				openid: '123',
 				city: '北京',
-				music: 1,
- 				isUsed: 1
 			}
-			this.$http.get('/getWxIndexInfo', {params:data}).then(response => {
+			// this.$http.get('/getWxIndexInfo', {params:data}).then(response => {
+      //   console.log(1);
+      // }, response => {
+      //   console.log(response);
+			// });	
+			//获取卡券信息
+			this.$http.get('/getWxTicketById', {params:data}).then(response => {
         console.log(1);
       }, response => {
         console.log(response);

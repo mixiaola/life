@@ -98,6 +98,8 @@ const useWxTicketById = async function (ctx) {
 
 //获取卡券信息
 const getWxTicketById = async function (ctx) {
+    const openid = ctx.query.openid;
+    const city = ctx.query.city == '全部' ? '' : ctx.query.city;
     // 全部
     const ticketSqlall = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop ${city ? `where city='${city}'` : ''};`;
     const ticket = await sqlHelper.query(ticketSqlall);
@@ -129,10 +131,45 @@ const getWxTicketById = async function (ctx) {
     ctx.body = resultData;
     return ctx.body;
 };
+const getWxUseTicket = async function (ctx) {
+    const openid = ctx.query.openid;
+    const city = ctx.query.city == '全部' ? '' : ctx.query.city;
+    //已使用
+    const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
+    const usedTicketid = await sqlHelper.query(usedTicketidSql);
+    const usedTicketSql = `select id, shopTitle, ticketTitle, validtiyEnd, music from shop where id in (
+                        ${usedTicketid.map((item) => {
+            return item.shopid;
+        })}
+                        )${city ? `and city='${city}'` : ''};`;
+    const usedTicket = await sqlHelper.query(usedTicketSql);
+    var resultData = {
+        ec: usedTicket.length ? 200 : 500,
+        em: usedTicket.length ? '成功' : '失败',
+        data: usedTicket
+    };
+    ctx.body = resultData;
+    return ctx.body;
+};
+const getWxSerachList = async function (ctx) {
+    const label = ctx.query.content;
+    const sql = `select shopTitle title, imgUrl img, shopStartTime time, ticketTitle ticketTitle ,address address  from shop where shopTitle like '%${label}%';`;
+    const result = await sqlHelper.query(sql);
+
+    var data = {
+        ec: result.length ? 200 : 403,
+        em: result.length ? '请求成功' : '请求失败',
+        shopList: result
+    };
+    ctx.body = data;
+    return ctx.body;
+};
 module.exports = {
     getWxTicket,
     getWxIndexInfo,
     getWxArticle,
     useWxTicketById,
-    getWxTicketById
+    getWxTicketById,
+    getWxSerachList,
+    getWxUseTicket
 }
