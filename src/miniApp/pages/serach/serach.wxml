@@ -3,12 +3,13 @@
   <view class='serach-top'>
     <view class='content-serach'>
       <!-- <image src='../../img/search-icon.png'></image> -->
-      <image src='../../img/cancle.png'></image>
+      <input bindinput="userNameInput" value="{{serachText}}"></input>
+      <image src='../../img/cancle.png' wx:if='{{serachText}}' bindtap='clear'></image>
     </view>
-    <view class='cancal'>取消</view>
+    <view class='cancal' bindtap='cancal'>取消</view>
   </view>
   <!-- serach page one -->
-  <view class='pageone' wx:if='{{pageone}}'>
+  <view class='pageone' wx:if="{{!shopList[0] && !serachText}}">
     <view class='top'>
       <view class='line'></view>
       <view class='text'>你可以搜</view>
@@ -23,27 +24,25 @@
     <view class='text'>店铺类别</view>
 
     <view class='bottom'>
-      <view class='intro'>书店</view>
-      <view class='intro'>音乐</view>
+      <view class='intro'  wx:for='{{tag}}' bindtap='clickTag' data-tag="{{item.text}}">{{item.text}}</view>
     </view>
   </view>
 
-  <view class='pagetwo' wx:if='{{pagetwo}}'>
+  <view class='pagetwo' wx:if='{{shopList[0]}}'>
     <view class='content-shop' wx:for="{{shopList}}">
       <image src="{{item.img}}" mode="{{mode}}"></image>
       <view class='shop-title'>{{item.title}}</view>
-      <view class='shop-content'>{{item.content}}</view>
+      <view class='shop-content'>{{item.ticketTitle}}</view>
       <view class='shop-time'>{{item.time}}</view>
       <view class='shop-address'>{{item.address}}</view>
     </view>
   </view>
 
-  <view class='pagethree'>
+  <view class='pagethree' wx:if="{{!shopList[0] && serachText}}">
     <view class='text'>无相关结果</view>
     <view class='text'>不妨试试以下关键词</view>
     <view class='bottom'>
-      <view class='intro'>书店</view>
-      <view class='intro'>音乐</view>
+      <view class='intro' wx:for='{{tag}}' bindtap='clickTag' data-tag="{{item.text}}">{{item.text}}</view>
     </view>
   </view>
 </view>

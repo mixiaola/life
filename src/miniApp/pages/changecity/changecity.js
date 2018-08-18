@@ -5,16 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    city:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var app = getApp();
+    this.setData({
+      city: app.globalData.city
+    })
   },
-
+  changeCity: function (e) {
+    var app = getApp();
+    this.setData({
+      city: e.currentTarget.dataset.city
+    })
+    app.globalData.city = e.currentTarget.dataset.city
+    setTimeout(function(){
+      wx.navigateBack({
+        delta: 1
+      })
+    },300)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

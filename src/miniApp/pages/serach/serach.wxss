@@ -7,6 +7,14 @@
 .serach-top .content-serach{
   float: left;
 }
+.serach-top .content-serach input{
+  width: 450rpx;
+  display:inline-block;
+  height:60rpx;
+  line-height: 60rpx;
+  margin-left: 30rpx;
+  font-size: 28rpx;
+}
 .serach-top .cancal{
   float:right;
   width: 37px;

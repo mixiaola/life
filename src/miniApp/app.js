@@ -7,31 +7,7 @@ App({
     // wx.setStorageSync('logs', logs)
 
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log('res-->', res.code)
-        wx.request({
-          url:'http://localhost:3000/getOpenId',
-          data:{
-            code: res.code,
-            city:'全部',
-            curPage:1,
-            pageSize:10
-          },
-          method:'get',
-          success: function (){
-
-          },
-          fail: function(e){
-            wx.showToast({
-              title: e.errMsg
-            })
-          }
-        })
-        
-      }
-    })
+    this.getOpenIdFn()
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -53,7 +29,44 @@ App({
       }
     })
   },
+  getOpenIdFn: function(){
+    var that = this
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'http://simplelifeapp.streetvoice.cn/getOpenId',
+          data: {
+            code: res.code,
+            city: '全部',
+            curPage: 1,
+            pageSize: 10
+          },
+          method: 'get',
+          success: function (res) {
+            if (res.data && res.data.data && res.data.data.openid) {
+              console.log('12312321-->', res.data.data.openid)
+              that.globalData.openid = res.data.data.openid
+            } else {
+              wx.showToast({
+                title: '获取openid失败'
+              })
+            }
+          },
+          fail: function (e) {
+            wx.showToast({
+              title: e.errMsg
+            })
+          }
+        })
+
+      }
+    })
+  },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    city:'全部',
+    webUrl:'',
+    host:'http://localhost:3000'
   }
 })

@@ -5,19 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopList: [{
-      img: '../../img/item1.png',
-      title: '1231231',
-      content: '123123123',
-      time: '2019-29-10  2131-12-42',
-      address: '我哪知道在哪'
-    }, {
-      img: '../../img/item2.png',
-      title: '1231231',
-      content: '123123123',
-      time: '2019-29-10  2131-12-42',
-      address: '我哪知道在哪'
-    }]
+    serachText:'',
+    shopList: []
   },
 
   /**
@@ -26,19 +15,87 @@ Page({
   onLoad: function (options) {
   
   },
-
+  clear: function(){
+    this.setData({
+      serachText: ''
+    })
+  },
+  userNameInput: function(e){
+    this.serachData(e.detail.value)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
   },
-
+  cancal: function(){
+    setTimeout(function () {
+      wx.navigateBack({
+        delta: 1
+      })
+    }, 300)
+  },
+  clickTag:function(e){
+    this.serachData(e.currentTarget.dataset.tag)
+  },
+  serachData: function (value){
+    var that = this
+    this.setData({
+      serachText: value
+    })
+    if (value){
+      wx.request({
+        url: getApp().globalData.host + '/getWxSerachList',
+        data: {
+          label: that.data.serachText,
+        },
+        method: 'get',
+        success: function (res) {
+          that.setData({
+            shopList: res.data.shopList
+          })
+        },
+        fail: function (e) {
+          wx.showToast({
+            title: e.errMsg
+          })
+        }
+      })
+    } else {
+      that.setData({
+        shopList: []
+      })
+    }
+    
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this
+    wx.request({
+      url: getApp().globalData.host + '/getLabelList',
+      data: {},
+      method: 'get',
+      success: function (res) {
+        if (res.data.ec == 200){
+          that.setData({
+            tag: res.data.data.list
+          })
+        } else {
+          wx.showToast({
+            title: res.data.data
+          })
+        }
+        console.log('res--->', res)
+      },
+      fail: function (e) {
+        wx.showToast({
+          title: e.errMsg
+        })
+      }
+    })
   },
 
   /**

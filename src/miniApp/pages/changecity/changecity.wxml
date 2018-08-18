@@ -1,20 +1,20 @@
 <view class='container'>
-  <view>全部
-    <image src='../../img/check.png'mode='widthFix'></image>
+  <view bindtap='changeCity' data-city='全部'>全部
+    <image wx:if="{{city=='全部'}}" src='../../img/check.png'mode='widthFix' ></image>
   </view>
-  <view>上海
-    <image src='../../img/check.png'mode='widthFix'></image>
+  <view  bindtap='changeCity' data-city='上海'>上海
+    <image wx:if="{{city=='上海'}}" src='../../img/check.png'mode='widthFix'></image>
   </view>
-  <view>成都
-    <image src='../../img/check.png'mode='widthFix'></image>
+  <view bindtap='changeCity' data-city='成都'>成都
+    <image wx:if="{{city=='成都'}}" src='../../img/check.png'mode='widthFix' ></image>
   </view>
-  <view>武汉
-    <image src='../../img/check.png'mode='widthFix'></image>
+  <view bindtap='changeCity' data-city='武汉'>武汉
+    <image wx:if="{{city=='武汉'}}" src='../../img/check.png'mode='widthFix' ></image>
   </view>
-  <view>厦门
-    <image src='../../img/check.png'mode='widthFix'></image>
+  <view bindtap='changeCity' data-city='厦门'>厦门
+    <image wx:if="{{city=='厦门'}}" src='../../img/check.png'mode='widthFix' ></image>
   </view>
-  <view>台北
-    <image src='../../img/check.png'mode='widthFix'></image>
+  <view bindtap='changeCity' data-city='台北'>台北
+    <image wx:if="{{city=='台北'}}" src='../../img/check.png'mode='widthFix' ></image>
   </view>
 </view>

@@ -6,69 +6,125 @@ Page({
   data: {
     userInfo: {},
     indicatorDots:true,
-    autoplay:false,
+    autoplay:true,
     interval:2000,
     dialogTypeFlag:false,
     musicFLag:true,
     dialogone: false,
     dialogtwo: false,
     dialogthree:false,
-    imgUrls: ['../../img/item1.png', '../../img/item2.png'],
-    shopList:[{
-      img:'../../img/item1.png',
-      title:'1231231',
-      content:'123123123',
-      time:'2019-29-10  2131-12-42',
-      address:'我哪知道在哪'
-    }, {
-        img: '../../img/item2.png',
-        title: '1231231',
-        content: '123123123',
-        time: '2019-29-10  2131-12-42',
-        address: '我哪知道在哪'
-      }],
+    status: '1',
+    statusName:'全部',
+    city:"",
+    imgUrls: [],
+    shopList:[],
     mode:'aspectFill'
   },
   //事件处理函数
-  bindViewTap: function() {
+  goCityPage: function(){
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../changecity/changecity'
+    })
+  },
+  goSerachPage: function(){
+    wx.navigateTo({
+      url: '../serach/serach'
+    })
+  },
+  changedialogTypeFlag: function(){
+    this.setData({
+      dialogTypeFlag: !this.data.dialogTypeFlag
+    })
+  },
+  changeMusicFLag: function(){
+    this.setData({
+      musicFLag: !this.data.musicFLag
+    })
+  },
+  changeType:function(e){
+    console.log('e->', e.currentTarget.dataset.text, e.currentTarget.dataset.num)
+    this.setData({
+      status: e.currentTarget.dataset.num,
+      statusName: e.currentTarget.dataset.text,
+      dialogTypeFlag: false
     })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
+    // var app = getApp();
+    // this.setData({
+    //   city: app.globalData.city
+    // })
+    // if (app.globalData.openid){
+    //   this.getPageData(app.globalData.openid)
+    // } else {
+    //   this.getOpenIdFn()
+    // }
+  },
+  onShow: function () {
+    var app = getApp();
+    this.setData({
+      city: app.globalData.city
+    })
+    if (app.globalData.openid) {
+      this.getPageData(app.globalData.openid)
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+      this.getOpenIdFn()
     }
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  getOpenIdFn: function () {
+    var that = this
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'http://simplelifeapp.streetvoice.cn/getOpenId',
+          data: {
+            code: res.code,
+            city: '全部',
+            curPage: 1,
+            pageSize: 10
+          },
+          method: 'get',
+          success: function (res) {
+            if (res.data && res.data.data && res.data.data.openid) {
+              that.getPageData(res.data.data.openid)
+            } else {
+              wx.showToast({
+                title: '获取openid失败'
+              })
+            }
+          },
+          fail: function (e) {
+            wx.showToast({
+              title: e.errMsg
+            })
+          }
+        })
+
+      }
+    })
+  },
+  getPageData: function(id) {
+    var that = this
+    wx.request({
+      url: getApp().globalData.host+ '/getWxIndexInfo',
+      data: {
+        city: that.data.city,
+        openid:id
+      },
+      method: 'get',
+      success: function (res) {
+        that.setData({
+          imgUrls: res.data.data.banner,
+          shopList: res.data.data.ticket
+        })
+        console.log('res--->', res)
+      },
+      fail: function (e) {
+        wx.showToast({
+          title: e.errMsg
+        })
+      }
     })
   }
 })

@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/artical/index",
     "pages/index/index",
+    "pages/serach/serach",
+    "pages/artical/index",
     "pages/mine/mine",
     "pages/shop/shop",
     "pages/changecity/changecity",
-    "pages/serach/serach",
     "pages/logs/logs"
   ],
   "window": {

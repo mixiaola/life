@@ -2,11 +2,11 @@
 <view class="container">
   <!-- top serach -->
   <view class="content-top">
-    <view class='content-area'>
+    <view class='content-area' bindtap='goCityPage'>
       <image src='../../img/city-location-homepage.png'></image>
-      上海
+      {{city}}
     </view>
-    <view class='content-serach'>
+    <view class='content-serach' bindtap='goSerachPage'>
       <image src='../../img/search-icon.png'></image>
     </view>
   </view>
@@ -17,7 +17,7 @@
     autoplay="{{autoplay}}" interval="{{interval}}">
       <block wx:for="{{imgUrls}}">
         <swiper-item>
-          <image src="{{item}}" mode="{{mode}}"/>
+          <image src="{{item.img}}" mode="{{mode}}"/>
         </swiper-item>
       </block>
     </swiper>
@@ -26,24 +26,27 @@
   <view class='content-change'>
     <view class='change-left content-change-auto'>好店专属优惠</view>
     <view class='change-center content-change-auto'>
-      <image src='../../img/on.png' wx:if="{{musicFLag}}"></image>
-      <image src='../../img/off.png' wx:if="{{!musicFLag}}"></image>
+      <image src='../../img/on.png' wx:if="{{musicFLag}}" bindtap="changeMusicFLag"></image>
+      <image src='../../img/off.png' wx:if="{{!musicFLag}}" bindtap="changeMusicFLag"></image>
       店内播放街声歌单
       </view>
-    <view class='change-right content-change-auto'>全部</view>
+    <view class='change-right content-change-auto' bindtap="changedialogTypeFlag">
+      {{statusName}}
+      <image  src='../../img/filter-open.png' mode='widthFix' class='filter-open'></image>
+    </view>
       <!-- change alltype dialog -->
       <view class='content-dialog-type'wx:if="{{dialogTypeFlag}}">
-        <view>全部</view>
-        <view>可使用</view>
-        <view>已使用／已过期</view>
+        <view bindtap='changeType' data-text='全部' data-num='1'>全部</view>
+        <view bindtap='changeType' data-text='可用' data-num='2'>可使用</view>
+        <view bindtap='changeType' data-text='不可用' data-num='3'>已使用／已过期</view>
       </view>
   </view>
   <!-- shopList info here -->
   <view class='content-shop' wx:for="{{shopList}}">
-    <image src="{{item.img}}" mode="{{mode}}"></image>
-    <view class='shop-title'>{{item.title}}</view>
-    <view class='shop-content'>{{item.content}}</view>
-    <view class='shop-time'>{{item.time}}</view>
+    <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
+    <view class='shop-title'>{{item.shopTitle}}</view>
+    <view class='shop-content'>{{item.ticketTitle}}</view>
+    <view class='shop-time'>{{item.validtiyEnd}}</view>
     <view class='shop-address'>{{item.address}}</view>
   </view>
   <!-- footer -->
