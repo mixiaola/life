@@ -52,6 +52,7 @@ Page({
         },
         method: 'get',
         success: function (res) {
+          console.log('res-->', res)
           that.setData({
             shopList: res.data.shopList
           })

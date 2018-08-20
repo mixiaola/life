@@ -24,13 +24,13 @@
     <view class='text'>店铺类别</view>
 
     <view class='bottom'>
-      <view class='intro'  wx:for='{{tag}}' bindtap='clickTag' data-tag="{{item.text}}">{{item.text}}</view>
+      <view class='intro'  wx:for='{{tag}}' wx:key="item" bindtap='clickTag' data-tag="{{item.text}}">{{item.text}}</view>
     </view>
   </view>
 
   <view class='pagetwo' wx:if='{{shopList[0]}}'>
-    <view class='content-shop' wx:for="{{shopList}}">
-      <image src="{{item.img}}" mode="{{mode}}"></image>
+    <view class='content-shop' wx:for="{{shopList}}" wx:key="item">
+      <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
       <view class='shop-title'>{{item.title}}</view>
       <view class='shop-content'>{{item.ticketTitle}}</view>
       <view class='shop-time'>{{item.time}}</view>

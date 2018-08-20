@@ -1,7 +1,7 @@
 <view class="container">
   <!-- content -->
-  <view class='content' wx:for="{{content}}">
-    <image src='{{item.img}}' mode='aspectFill'></image>
+  <view class='content' wx:for="{{content}}" wx:key="{{item}}" bindtap='goWeb' data-url="{{item.webUrl}}">
+    <image src='{{item.imgUrl}}' mode='aspectFill'></image>
     <view class='content-info'>
       <view class='content-info-title'>{{item.title}}</view>
       <view class='content-info-text'>{{item.text}}</view>
@@ -10,7 +10,7 @@
   <view class='contentFooter'></view>
   <!-- footer -->
   <view class='footer'>
-    <view class='footer-content'>
+    <view class='footer-content' bindtap='goIndex'>
       <image src='../../img/passport-icon-off.png'></image>
       <view>旅券</view>
     </view>
@@ -18,7 +18,7 @@
       <image src='../../img/artical-on.png'></image>
       <view>更多发现</view>
     </view>
-    <view class='footer-content'>
+    <view class='footer-content' bindtap='goMine'>
       <image src='../../img/me-icon-off.png'></image>
       <view>我的</view>
     </view>

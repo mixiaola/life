@@ -343,7 +343,7 @@ router.get('/getWxIndexInfo', async (ctx, next) => { })
  **/
 router.get('/getWxArticle', async (ctx, next) => { })
 
-//我的（文章）
+//我的（使用卡券）
 /**
 	openid：用户id
  	reponse：

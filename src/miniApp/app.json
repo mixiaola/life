@@ -6,7 +6,7 @@
     "pages/mine/mine",
     "pages/shop/shop",
     "pages/changecity/changecity",
-    "pages/logs/logs"
+    "pages/web/web"
   ],
   "window": {
     "backgroundTextStyle": "light",

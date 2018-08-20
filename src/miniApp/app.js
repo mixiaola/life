@@ -35,7 +35,7 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
-          url: 'http://simplelifeapp.streetvoice.cn/getOpenId',
+          url: that.globalData.host + '/getOpenId',
           data: {
             code: res.code,
             city: '全部',
@@ -45,7 +45,6 @@ App({
           method: 'get',
           success: function (res) {
             if (res.data && res.data.data && res.data.data.openid) {
-              console.log('12312321-->', res.data.data.openid)
               that.globalData.openid = res.data.data.openid
             } else {
               wx.showToast({
@@ -65,8 +64,10 @@ App({
   },
   globalData: {
     userInfo: null,
+    shopid:null,
     city:'全部',
     webUrl:'',
-    host:'http://localhost:3000'
+    host:'http://localhost:3000',
+    // host:'https://simplelifeapp.streetvoice.cn'
   }
 })

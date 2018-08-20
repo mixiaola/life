@@ -15,9 +15,9 @@
   <view class='content-banner'>
     <swiper indicator-dots="{{indicatorDots}}"
     autoplay="{{autoplay}}" interval="{{interval}}">
-      <block wx:for="{{imgUrls}}">
+      <block wx:for="{{imgUrls}}" wx:key="item">
         <swiper-item>
-          <image src="{{item.img}}" mode="{{mode}}"/>
+          <image src="{{item.img}}" mode="{{mode}}" data-url="{{item.link}}" bindtap='bannerClick'/>
         </swiper-item>
       </block>
     </swiper>
@@ -26,8 +26,8 @@
   <view class='content-change'>
     <view class='change-left content-change-auto'>好店专属优惠</view>
     <view class='change-center content-change-auto'>
-      <image src='../../img/on.png' wx:if="{{musicFLag}}" bindtap="changeMusicFLag"></image>
-      <image src='../../img/off.png' wx:if="{{!musicFLag}}" bindtap="changeMusicFLag"></image>
+      <image src='../../img/on.png' wx:if="{{musicFLag == 1}}" bindtap="changeMusicFLag"></image>
+      <image src='../../img/off.png' wx:if="{{musicFLag == 0}}" bindtap="changeMusicFLag"></image>
       店内播放街声歌单
       </view>
     <view class='change-right content-change-auto' bindtap="changedialogTypeFlag">
@@ -42,47 +42,49 @@
       </view>
   </view>
   <!-- shopList info here -->
-  <view class='content-shop' wx:for="{{shopList}}">
+  <view class='content-shop' wx:for="{{shopList}}" wx:key='item' wx:if="{{item.music == musicFLag && (item.status == status || status==1)}}" bindtap='goShop' data-shopid='{{item.id}}'>
     <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
-    <view class='shop-title'>{{item.shopTitle}}</view>
-    <view class='shop-content'>{{item.ticketTitle}}</view>
-    <view class='shop-time'>{{item.validtiyEnd}}</view>
-    <view class='shop-address'>{{item.address}}</view>
+    <view class='shop-title overflowone'>{{item.shopTitle}}</view>
+    <view class='shop-content overflowone'>{{item.ticketTitle}}</view>
+    <view class='shop-time overflowone'>{{item.validtiyEnd}}</view>
+    <view class='shop-address overflowone'>{{item.address}}</view>
   </view>
+  <view class='blockBottom'></view>
   <!-- footer -->
   <view class='footer'>
     <view class='footer-content'>
       <image src='../../img/passport-icon-on.png'></image>
       <view>旅券</view>
     </view>
-    <view class='footer-content'>
+    <view class='footer-content' bindtap='goMore'>
       <image src='../../img/artical-off.png'></image>
       <view>更多发现</view>
     </view>
-    <view class='footer-content'>
+    <view class='footer-content' bindtap='goMine'>
       <image src='../../img/me-icon-off.png'></image>
       <view>我的</view>
     </view>
   </view>
   <!-- dialog one -->
-  <view class='dialog1' wx:if="{{dialogone}}">
+  <view class='dialog1' wx:if="{{dialog == 0}}" bindtap='goDialog2'>
     <image src='../../img/gift-icon.png'></image>
     总值 1000 元的好店旅券待领取
   </view>
   <!-- dialog two -->
-  <view class='dialoglay' wx:if="{{dialogtwo}}"></view>
-  <view class='dialog-content' wx:if="{{dialogtwo}}">
-    <image src='../../img/item1.png' mode="{{mode}}"></image> 
+  <view class='dialoglay' wx:if="{{dialog == 2}}"></view>
+  <view class='dialog-content' wx:if="{{dialog == 2}}">
+    <image src='{{command[0].img}}' mode="{{mode}}"></image> 
     <view class='dialoglay-title'>输入兑换口令</view>
-    <input></input>
-    <image class='btn' src='../../img/btn.png'></image>
+    <input value="{{ticketValue}}" bindinput="userNameInput"></input>
+    <image class='btn' src='../../img/btn.png' bindtap='getWxTicket'></image>
   </view>
-  <image src='../../img/close.png' class='dialogclose' wx:if="{{dialogtwo}}"></image>
+  <image src='../../img/close.png' class='dialogclose' wx:if="{{dialog == 2}}" bindtap='dialog2Click'></image>
+
   <!-- dialog three -->
-  <view class='dialoglay' wx:if="{{dialogthree}}"></view>
-  <view class='dialog-content' wx:if="{{dialogthree}}">
-    <image class='img' src='../../img/item1.png' mode="{{mode}}"></image> 
-    <image class='btn1 btn' src='../../img/btn1.png'></image>
+  <view class='dialoglay' wx:if="{{dialog == 3}}"></view>
+  <view class='dialog-content' wx:if="{{dialog == 3}}">
+    <image class='img' src='{{subscription[0].img}}' mode="{{mode}}"></image> 
+    <image class='btn1 btn' src='../../img/btn1.png' bindtap='downloadFile'></image>
   </view>
-  <image src='../../img/close.png' class='dialogclose' wx:if="{{dialogthree}}"></image>
+  <image src='../../img/close.png' class='dialogclose' wx:if="{{dialog == 3}}" bindtap='dialog3Click'></image>
 </view>

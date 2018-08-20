@@ -5,15 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    content:[{
-      img:'../../img/item1.png',
-      title:'1hahah厉hahah厉hahah厉hahah厉hahah厉hahah厉hahah厉hahah厉',
-      text:'1哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案'
-    },{
-      img: '../../img/item1.png',
-      title: '2hahah厉hahah厉hahah厉hahah厉hahah厉hahah厉hahah厉hahah厉',
-      text: '2哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案哈哈哈哈这个是文案'
-    }]
+    content:[]
   },
 
   /**
@@ -27,19 +19,47 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    setTimeout(function(){
-      var app = getApp();
-      console.log('globalData->', app.globalData.userInfo.nickName)
-    },1000)
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getPageData()
   },
-
+  goWeb: function (e){
+    getApp().globalData.webUrl = e.currentTarget.dataset.url
+    console.log('e-->', e.currentTarget.dataset.url)
+    wx.navigateTo({
+      url: '../web/web'
+    })
+  },
+  getPageData: function(){
+    var that = this
+    wx.request({
+      url: getApp().globalData.host + '/getWxArticle',
+      data: {},
+      method: 'get',
+      success: function (res) {
+        if (res.data.ec == 200){
+          that.setData({
+            content:res.data.data
+          })
+        }else {
+          wx.showToast({
+            title: res.data.ec
+          })
+        }
+        console.log('res-->', res)
+      },
+      fail: function (e) {
+        wx.showToast({
+          title: e.errMsg
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -73,5 +93,20 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  goIndex: function () {
+    wx.redirectTo({
+      url: '../index/index'
+    })
+  },
+  goMore: function () {
+    wx.redirectTo({
+      url: '../artical/index'
+    })
+  },
+  goMine: function () {
+    wx.redirectTo({
+      url: '../mine/mine'
+    })
   }
 })

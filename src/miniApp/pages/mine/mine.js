@@ -12,6 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    var app = getApp()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -38,9 +39,27 @@ Page({
         }
       })
     }
+    this.getPageData()
+  },
+  getPageData: function (){
+    wx.request({
+      url: getApp().globalData.host + '/getWxUseTicket',
+      method:"get",
+      data:{
+        openid: getApp().globalData.openid
+      },
+      success:function(res){
+
+      },
+      fail: function(e){
+        wx.showToast({
+          title: e.errMsg
+        })
+      }
+    })
   },
   getUserInfo: function (e) {
-    console.log(e)
+    var app = getApp();
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -95,5 +114,20 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  goIndex: function () {
+    wx.redirectTo({
+      url: '../index/index'
+    })
+  },
+  goMore: function () {
+    wx.redirectTo({
+      url: '../artical/index'
+    })
+  },
+  goMine: function () {
+    wx.redirectTo({
+      url: '../mine/mine'
+    })
   }
 })

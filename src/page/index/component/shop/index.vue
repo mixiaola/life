@@ -154,7 +154,7 @@
 	          introInfo:[],
 	          personText: '',
 	          label: '',
-	          music: '',
+	          music: true,
 	        },
 	        //表单验证规则
 	        rules: {
@@ -270,7 +270,7 @@
 	          introInfo:[],
 	          personText: '',
 	          label: '',
-	          music: ''
+	          music: true
 	        }
 	  	},
 	  	handleClick(item){
@@ -294,7 +294,7 @@
 					          phone: res.body.data[0].phone,
 					          personText: res.body.data[0].personText,
 					          label: res.body.data[0].label,
-					          music: res.body.data[0].music,
+					          music: res.body.data[0].music=='1'? true: false,
 					          introInfo:JSON.parse(res.body.data[0].introInfo)
 					        }
 		  				} else {
@@ -328,6 +328,11 @@
 		          	}
 		          	if (typeof this.ruleForm.validtiyEnd != 'string'){
 		          		this.ruleForm.validtiyEnd = this.ruleForm.validtiyEnd.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyEnd.getMonth()) + 1) + '-' +  this.ruleForm.validtiyEnd.getDate()
+		          	}
+		          	if (this.ruleForm.music){
+		          		this.ruleForm.music = 1
+		          	}else {
+		          		this.ruleForm.music = 0
 		          	}
 		          	console.log('this.ruleForm-->', this.ruleForm)
 		            this.$http.get('/addNewShop', { params: this.ruleForm})

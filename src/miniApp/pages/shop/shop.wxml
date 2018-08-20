@@ -44,8 +44,8 @@
   <!-- share btn -->
   <image src='../../img/share-icon.png' class='share-btn' mode='widthFix'></image>
   <!-- phone number -->
-  <view class='dialoglay'></view>
-  <view class='phonenumber'>
+  <view class='dialoglay' wx:if='{{phoneShow}}'></view>
+  <view class='phonenumber' wx:if='{{phoneShow}}'>
     <view class='border-bottom phone-number'>021-52909012</view>
     <view class='border-bottom'>呼叫</view>
     <view class='border-bottom'>复制号码</view>

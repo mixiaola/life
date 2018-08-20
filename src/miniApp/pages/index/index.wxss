@@ -78,6 +78,7 @@
   left: 32rpx;
   bottom: 120rpx;
   z-index: 10;
+  width: 60%;
 }
 .content-shop .shop-content{
   position: absolute;
@@ -85,6 +86,7 @@
   left: 32rpx;
   bottom: 74rpx;
   z-index: 10;
+   width: 60%;
 }
 .content-shop .shop-time{
   position: absolute;
@@ -92,6 +94,7 @@
   bottom: 20rpx;
   left: 32rpx;
   z-index: 10;
+   width: 45%;
 }
 .content-shop .shop-address{
   position: absolute;
@@ -99,6 +102,7 @@
   bottom: 20rpx;
   right: 32rpx;
   z-index: 10;
+  width: 45%;
 }
 .dialog1{
   height: 112rpx;

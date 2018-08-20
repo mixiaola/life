@@ -18,7 +18,7 @@
       <image src='../../img/timedot.png' class='content-info-img'></image>
       <view class='useticket'>
         <view class='title'>在 xxx 使用了美好生活旅券</view>
-        <view class='text'>此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。</view>
+        <view class='text'>此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。</view>
         <image src='../../img/item1.png' class='useticketImg' mode='aspectFill'></image>
         <view class='address'>
           <image src='../../img/location-detial.png' class='location' mode='widthFix'></image>
@@ -27,14 +27,14 @@
       </view>
     </view>
   </view>
-
+  <view class='blockBottom'></view>
   <!-- footer -->
   <view class='footer'>
-    <view class='footer-content'>
+    <view class='footer-content' bindtap='goIndex'>
       <image src='../../img/passport-icon-off.png'></image>
       <view>旅券</view>
     </view>
-    <view class='footer-content'>
+    <view class='footer-content' bindtap='goMore'>
       <image src='../../img/artical-off.png'></image>
       <view>更多发现</view>
     </view>
@@ -42,5 +42,5 @@
       <image src='../../img/me-icon-on.png'></image>
       <view>我的</view>
     </view>
-  </view>  
+  </view>
 </view>

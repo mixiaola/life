@@ -59,7 +59,6 @@
 }
 .content .content-info .useticket{
   width: 580rpx;
-  height: 520rpx;
   background: #fff;
   display: inline-block;
   vertical-align: top;
