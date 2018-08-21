@@ -1,7 +1,7 @@
 const sqlHelper = require('../module/sql.js');
 // const request = require('request')
 const request = require('superagent');
-
+//status: 2可使用，3已使用，4已过期
 //获取卡券
 const getWxTicket = async function (ctx) {
     const command = ctx.query.command;
@@ -112,23 +112,16 @@ const getOpenId = async function (ctx) {
     return ctx.body
 }
 
-//获取卡券信息
+//获取单个卡券信息
 const getWxTicketById = async function (ctx) {
     const openid = ctx.query.openid;
-    const city = ctx.query.city == '全部' ? '' : ctx.query.city;
-    // 全部
-    const ticketSqlall = `select * from shop ${city ? `where city='${city}'` : ''};`;
-    const ticket = await sqlHelper.query(ticketSqlall);
+    const shopid = ctx.query.shopid;
     //已使用
-    const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
+    const usedTicketidSql = `select * from usershop where openid='${openid}' and shopid=${shopid}`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
-    const usedTicketSql = `select * from shop where id in (
-                        ${usedTicketid.map((item) => {
-            return item.shopid;
-        })}
-                        )${city ? `and city='${city}'` : ''};`;
-    const usedTicket = await sqlHelper.query(usedTicketSql);
-    ticket.map((item) => {
+    const sql = `select * from shop where id = ${shopid}`;
+    const ticket = await sqlHelper.query(sql);
+    ticket.length&&ticket.map((item) => {
         item.status = 2;
         if (new Date() - new Date(item.validtiyEnd) > 0) {
             item.status = 4;
@@ -140,8 +133,8 @@ const getWxTicketById = async function (ctx) {
         })
     })
     var resultData = {
-        ec: ticket.length ? 200 : 500,
-        em: ticket.length ? '成功' : '失败',
+        ec: ticket ? 200 : 500,
+        em: ticket ? '成功' : '失败',
         data: ticket
     };
     ctx.body = resultData;
@@ -149,19 +142,20 @@ const getWxTicketById = async function (ctx) {
 };
 const getWxUseTicket = async function (ctx) {
     const openid = ctx.query.openid;
-    const city = ctx.query.city == '全部' ? '' : ctx.query.city;
     //已使用
     const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
-    const usedTicketSql = `select * from shop where id in (
+    let usedTicket = [];
+    if (usedTicketid.length) {
+      const usedTicketSql = `select * from shop where id in (
                         ${usedTicketid.map((item) => {
-            return item.shopid;
-        })}
-                        )${city ? `and city='${city}'` : ''};`;
-    const usedTicket = await sqlHelper.query(usedTicketSql);
+                return item.shopid;
+            })});`;
+        usedTicket = await sqlHelper.query(usedTicketSql);
+    }
     var resultData = {
-        ec: usedTicket.length ? 200 : 500,
-        em: usedTicket.length ? '成功' : '失败',
+        ec: usedTicket ? 200 : 500,
+        em: usedTicket ? '成功' : '失败',
         data: usedTicket
     };
     ctx.body = resultData;
