@@ -1,7 +1,7 @@
 const sqlHelper = require('../module/sql.js');
 // const request = require('request')
 const request = require('superagent');
-//status: 2可使用，3已使用，4已过期
+//status: 2可使用，3已使用，4已过期,5未领取
 const getNowFormatDate = function() {
     var date = new Date();
     var seperator1 = "-";
@@ -146,10 +146,15 @@ const getWxTicketById = async function (ctx) {
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
     const sql = `select * from shop where id = ${shopid}`;
     const ticket = await sqlHelper.query(sql);
+    const userSql = `select * from user where openid = '${openid}'`;
+    const user = await sqlHelper.query(userSql);
     ticket.length&&ticket.map((item) => {
         item.status = 2;
         if (new Date() - new Date(item.validtiyEnd) > 0) {
             item.status = 4;
+        }
+        if (!user.length) {
+            item.status = 5;
         }
         usedTicketid.map((data) => {
             if (data.shopid == item.id) {
