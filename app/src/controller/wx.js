@@ -169,7 +169,7 @@ const getWxTicketById = async function (ctx) {
 const getWxUseTicket = async function (ctx) {
     const openid = ctx.query.openid;
     //已使用
-    const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
+    const usedTicketidSql = `select * from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
     let usedTicket = [];
     if (usedTicketid.length) {
@@ -179,6 +179,13 @@ const getWxUseTicket = async function (ctx) {
             })});`;
         usedTicket = await sqlHelper.query(usedTicketSql);
     }
+    usedTicket.length && usedTicket.map((item)=>{
+        usedTicketid.map((data) => {
+            if (data.shopid == item.id) {
+                item.usedDate = data.date;
+            }
+        })
+    })
     var resultData = {
         ec: usedTicket ? 200 : 500,
         em: usedTicket ? '成功' : '失败',
