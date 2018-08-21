@@ -45,14 +45,16 @@ const getAlert = async function (ctx) {
 };
 
 const query = async function (ctx) {
-    const sql = `select count(*) num from command where openid<>'';`;
+    const sql = `select count(*) num from user where openid<>'';`;
     const result = await sqlHelper.query(sql);
+    const usedNumSql = `select count(*) usedNum from usershop;`;
+    const usedNum = await sqlHelper.query(usedNumSql);
     var data = {
-        ec: result.length ? 200 : 403,
-        em: result.length ? '请求成功' : '请求失败',
+        ec: result ? 200 : 403,
+        em: result ? '请求成功' : '请求失败',
         data: {
             alluserNum: result[0].num,
-            usedNum: '逻辑暂未开发'
+            usedNum: usedNum[0].usedNum
         }
     };
     ctx.body = data;
