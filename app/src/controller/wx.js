@@ -2,6 +2,21 @@ const sqlHelper = require('../module/sql.js');
 // const request = require('request')
 const request = require('superagent');
 //status: 2可使用，3已使用，4已过期
+const getNowFormatDate = function() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+}
 //获取卡券
 const getWxTicket = async function (ctx) {
     const command = ctx.query.command;
@@ -101,7 +116,7 @@ const getWxArticle = async function (ctx) {
 };
 //使用卡券
 const useWxTicketById = async function (ctx) {
-    const sql = `insert into usershop (openid, shopid) values ('${ctx.query.openid}', ${ctx.query.shopid})`;
+    const sql = `insert into usershop (openid, shopid, date) values ('${ctx.query.openid}', ${ctx.query.shopid}, '${getNowFormatDate()}')`;
     const data = await sqlHelper.change(sql);
     var resultData = {
         ec: data.length ? 200 : 500,
@@ -139,6 +154,7 @@ const getWxTicketById = async function (ctx) {
         usedTicketid.map((data) => {
             if (data.shopid == item.id) {
                 item.status = 3;
+                item.usedDate = data.date;
             }
         })
     })
