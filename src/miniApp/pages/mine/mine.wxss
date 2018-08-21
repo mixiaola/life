@@ -31,6 +31,7 @@
   padding-left: 40rpx;
   padding-right: 40rpx;
   height: 74rpx;
+  position: relative;
 }
 .content .content-menu .date{
   float: left;
@@ -64,6 +65,7 @@
   vertical-align: top;
   border-radius: 14rpx;
   margin-left: 50rpx;
+  padding-bottom: 10rpx;
 }
 .content .content-info .useticket .title{
   margin-top: 20rpx;
@@ -97,4 +99,12 @@
   width: 20rpx;
   vertical-align: top;
   margin-top: 2rpx;
+}
+.shareButton{
+  height:80rpx;
+  width:120rpx;
+  position:absolute;
+  top:0;
+  right:40rpx;
+  opacity:0;
 }

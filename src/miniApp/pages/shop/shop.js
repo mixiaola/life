@@ -5,16 +5,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    shopInfo:{},
+    isSharePage: false,
+    phoneShow:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getPageData()
+    if (options.shareFlag){
+      this.setData({
+        isSharePage: options.shareFlag
+      })
+    }
+    if (options.id){
+      getApp().globalData.shopid = options.id
+    }
   },
-
+  openLocation: function(){
+    let lagList = this.data.shopInfo.lag.split(';');
+    var that = this
+    if (lagList.length != 2){
+      wx.showToast({
+        title: '经纬度异常！',
+      })
+    } else {
+      wx.openLocation({
+        longitude: parseInt(lagList[0]),
+        latitude: parseInt(lagList[1]),
+        name: that.data.shopInfo.shopTitle
+      })
+    }
+  },
+  changeDialog: function(){
+    this.setData({
+      phoneShow: !this.data.phoneShow
+    })
+  },
+  goIndex: function(){
+    if (this.data.isSharePage){
+      wx.redirectTo({
+        url: '../index/index',
+      })
+    } else {
+      wx.navigateBack({
+        delta:'5'
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -26,7 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getPageData()
   },
 
   /**
@@ -63,31 +102,32 @@ Page({
   onShareAppMessage: function () {
   
   },
-  getPageData: function(){
-    x.request({
-      url: getApp().globalData.host + '/getWxTicketById',
+  cancel: function(){
+    this.setData({
+      useFlag: false
+    })
+  },
+  open: function(){
+    this.setData({
+      useFlag: true
+    })
+  },
+  useTicket: function(){
+    var that = this
+    wx.request({
+      url: getApp().globalData.host + '/useWxTicketById',
       data: {
-        city: that.data.city,
-        openid: id
+        shopid: getApp().globalData.shopid,
+        openid: getApp().globalData.openid
       },
       method: 'get',
       success: function (res) {
-        let dialog;
-        if (res.data.data.isGetTicket) {
-          if (res.data.data.subscription[0].isShow) {
-            dialog = 3
-          } else {
-            dialog = 10
-          }
-        } else {
-          dialog = 0
-        }
+        wx.showToast({
+          title: res.data.em
+        })
+        that.getPageData()
         that.setData({
-          imgUrls: res.data.data.banner,
-          shopList: res.data.data.ticket,
-          dialog: dialog,
-          subscription: res.data.data.subscription,
-          command: res.data.data.command
+          useFlag:false
         })
       },
       fail: function (e) {
@@ -96,5 +136,68 @@ Page({
         })
       }
     })
+  },
+  getPageData: function(){
+    var that = this
+    wx.request({
+      url: getApp().globalData.host + '/getWxTicketById',
+      data: {
+        shopid: getApp().globalData.shopid,
+        openid: getApp().globalData.openid
+      },
+      method: 'get',
+      success: function (res) {
+        let list = res.data.data[0]
+        list.introInfo = JSON.parse(list.introInfo)
+        that.setData({
+          shopInfo: list
+        })
+      },
+      fail: function (e) {
+        wx.showToast({
+          title: e.errMsg
+        })
+      }
+    })
+  },
+  call: function () {
+    wx.makePhoneCall({
+      phoneNumber: this.data.shopInfo.phone, //此号码并非真实电话号码，仅用于测试
+      success: function () {
+        console.log("拨打电话成功！")
+      },
+      fail: function () {
+        console.log("拨打电话失败！")
+      }
+    })
+  },
+  copy: function () {
+    wx.setClipboardData({
+      data: this.data.shopInfo.phone,
+      success: function () {
+        wx.showToast({
+          title: '复制电话号成功！',
+        })
+      },
+      fail: function (e) {
+        wx.showToast({
+          title: '复制电话号失败！' + e,
+        })
+      }
+    })
+  },
+  add: function(){
+    wx.addPhoneContact({
+      mobilePhoneNumber: this.data.shopInfo.phone,
+      nickName: this.data.shopInfo.shopTitle,
+      remark: this.data.shopInfo.ticketTitle
+    })
+  },
+  onShareAppMessage:function(){
+    return {
+      title: this.data.shopInfo.ticketTitle,
+      path: '/shop/shop?id=' + this.data.shopInfo.id + '&shareFlag=true',
+      imageUrl: this.data.shopInfo.imgUrl
+    }
   }
 })

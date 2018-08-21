@@ -5,9 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    list:[],
+    title:'',
+    id:'',
+    imageUrl:''
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -41,7 +43,14 @@ Page({
     }
     this.getPageData()
   },
+  goShop: function(e){
+    getApp().globalData.shopid = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../shop/shop',
+    })
+  },
   getPageData: function (){
+    var that = this
     wx.request({
       url: getApp().globalData.host + '/getWxUseTicket',
       method:"get",
@@ -49,7 +58,10 @@ Page({
         openid: getApp().globalData.openid
       },
       success:function(res){
-
+        console.log('res-->', res)
+        that.setData({
+          list:res.data.data
+        })
       },
       fail: function(e){
         wx.showToast({
@@ -129,5 +141,12 @@ Page({
     wx.redirectTo({
       url: '../mine/mine'
     })
+  },
+  onShareAppMessage:function(ops){
+    return {
+      title: ops.target.dataset.title,
+      path: '/shop/shop?id=' + ops.target.dataset.id + '&shareFlag=true',
+      imageUrl: ops.target.dataset.imgurl
+    }
   }
 })

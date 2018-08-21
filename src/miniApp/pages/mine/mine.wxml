@@ -7,22 +7,23 @@
   </view>
 
   <!-- content -->
-  <view class='content'>
+  <view class='content' wx:for="{{list}}" wx:key="item">
     <view class='content-menu'>
-      <view class='date'>2018.09.16</view>
+      <view class='date'>{{item.usedDate}}</view>
       <view class='share'>
       <image src='../../img/share.png' class='shareImg'></image>
       分享</view>
+      <button open-type="share" data-title="{{item.ticketTitle}}" data-imgUrl="{{item.imgUrl}}" data-id="{{item.id}}" class='shareButton'>123123</button>
     </view>
     <view class='content-info'>
       <image src='../../img/timedot.png' class='content-info-img'></image>
-      <view class='useticket'>
-        <view class='title'>在 xxx 使用了美好生活旅券</view>
-        <view class='text'>此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。此处是一段文案，可以是默认给每个店不同的，后台编辑添加店铺时定义。</view>
-        <image src='../../img/item1.png' class='useticketImg' mode='aspectFill'></image>
+      <view class='useticket' bindtap='goShop' data-id="{{item.id}}">
+        <view class='title'>{{item.shopTitle}}</view>
+        <view class='text'>{{item.intro}}</view>
+        <image src='{{item.imgUrl}}' class='useticketImg' mode='aspectFill'></image>
         <view class='address'>
           <image src='../../img/location-detial.png' class='location' mode='widthFix'></image>
-          上海 · 五原路124号(乌鲁木齐中路)
+          {{item.address}}
         </view>
       </view>
     </view>

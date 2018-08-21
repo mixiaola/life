@@ -115,8 +115,9 @@ Page({
       success: function (res) {
         let dialog;
         if (res.data.data.isGetTicket){
-          if (res.data.data.subscription[0].isShow){
+          if (res.data.data.subscription[0].isShow && getApp().globalData.subscriptionFlag){
             dialog = 3
+            getApp().globalData.subscriptionFlag = false
           } else {
             dialog = 10
           }
@@ -153,10 +154,17 @@ Page({
       },
       method: 'get',
       success: function (res) {
-        that.getPageData()
-        that.setData({
-          dialog:10
-        })
+        if (res.data.ec == 200){
+          that.getPageData()
+          that.setData({
+            dialog: 10
+          })
+        } else {
+          wx.showToast({
+            title: res.data.em
+          })
+        }
+        
       },
       fail: function (e) {
         wx.showToast({
@@ -212,15 +220,9 @@ Page({
     })
   },
   dialog2Click: function(){
-    if (this.data.subscription[0].isShow){
-      this.setData({
-        dialog:3
-      })
-    } else {
-      this.setData({
-        dialog: 10
-      })
-    }
+    this.setData({
+      dialog: 0
+    })
   },
   dialog3Click: function (){
     this.setData({
