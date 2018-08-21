@@ -6,17 +6,28 @@ const request = require('superagent');
 const getWxTicket = async function (ctx) {
     const command = ctx.query.command;
     const openid  = ctx.query.openid;
-    const sql = `select command from command`;
+    const sql = `select * from command where command='${command}'`;
     const result = await sqlHelper.query(sql);
-    let data;
+    let em = '成功';
+    let ec = 200;
     if (result.length) {
-        const openidsql = `insert into user (openid) value ('${openid}');`;
-        data = await sqlHelper.change(openidsql);
+        const idSql = `select * from user where openid='${openid}'`;
+        const idRes = await sqlHelper.query(idSql);
+        if (idRes.length) {
+          em = '您已经领取过验证码';
+          ec = 504;
+        } else {
+          const openidsql = `insert into user (openid) value ('${openid}');`;
+          await sqlHelper.change(openidsql);
+        }
+    } else {
+        em = '请输入争取验证码';
+        ec = 504;
     }
+
     var resultData = {
-        ec: data.length ? 200 : 500,
-        em: data.length ? '成功' : '验证身份失败',
-        data: data
+        ec: ec,
+        em: em,
     };
     ctx.body = resultData;
     return ctx.body;
@@ -61,7 +72,6 @@ const getWxIndexInfo = async function (ctx) {
             }
         })
     })
-    console.log(ticket)
     const result = {
         isGetTicket: user.length ? 1 : 0,
         banner: banner,
