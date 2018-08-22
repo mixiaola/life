@@ -36,7 +36,7 @@ const getWxTicket = async function (ctx) {
           await sqlHelper.change(openidsql);
         }
     } else {
-        em = '请输入争取验证码';
+        em = '验证码有误，请从新输入';
         ec = 504;
     }
 

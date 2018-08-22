@@ -50,7 +50,7 @@ Page({
       })
     } else {
       wx.navigateBack({
-        delta:'5'
+        delta: 4
       })
     }
   },

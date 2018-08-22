@@ -47,7 +47,7 @@
 .content-dialog-type{
   top: 80rpx;
   right: 20rpx;
-  height: 240rpx;
+  height: 320rpx;
   background: #fff;
   position: absolute;
   font-size: 28rpx;

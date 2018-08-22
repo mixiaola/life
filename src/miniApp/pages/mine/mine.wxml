@@ -7,6 +7,7 @@
   </view>
 
   <!-- content -->
+  <view wx:if="{{!list[0]}}" class='noUseTicket'>暂无使用旅券记录</view>
   <view class='content' wx:for="{{list}}" wx:key="item">
     <view class='content-menu'>
       <view class='date'>{{item.usedDate}}</view>

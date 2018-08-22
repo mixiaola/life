@@ -37,8 +37,9 @@
       <!-- change alltype dialog -->
       <view class='content-dialog-type'wx:if="{{dialogTypeFlag}}">
         <view bindtap='changeType' data-text='全部' data-num='1'>全部</view>
-        <view bindtap='changeType' data-text='可用' data-num='2'>可使用</view>
-        <view bindtap='changeType' data-text='不可用' data-num='3'>已使用／已过期</view>
+        <view bindtap='changeType' data-text='可使用' data-num='2'>可使用</view>
+        <view bindtap='changeType' data-text='已使用' data-num='3'>已使用</view>
+        <view bindtap='changeType' data-text='已过期' data-num='4'>已过期</view>
       </view>
   </view>
   <!-- shopList info here -->
@@ -46,7 +47,7 @@
     <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
     <view class='shop-title overflowone'>{{item.shopTitle}}</view>
     <view class='shop-content overflowone'>{{item.ticketTitle}}</view>
-    <view class='shop-time overflowone'>{{item.validtiyEnd}}</view>
+    <view class='shop-time overflowone'>{{item.validtiyStart}}</view>
     <view class='shop-address overflowone'>{{item.address}}</view>
   </view>
   <view class='blockBottom'></view>

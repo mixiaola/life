@@ -17,7 +17,8 @@ Page({
   },
   clear: function(){
     this.setData({
-      serachText: ''
+      serachText: '',
+      shopList:[]
     })
   },
   userNameInput: function(e){
@@ -28,6 +29,12 @@ Page({
    */
   onReady: function () {
     
+  },
+  goShop:function(e){
+    getApp().globalData.shopid = e.currentTarget.dataset.shopid
+    wx.navigateTo({
+      url: '../shop/shop',
+    })
   },
   cancal: function(){
     setTimeout(function () {

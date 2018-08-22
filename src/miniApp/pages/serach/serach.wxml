@@ -2,7 +2,6 @@
   <!-- serach top -->
   <view class='serach-top'>
     <view class='content-serach'>
-      <!-- <image src='../../img/search-icon.png'></image> -->
       <input bindinput="userNameInput" value="{{serachText}}"></input>
       <image src='../../img/cancle.png' wx:if='{{serachText}}' bindtap='clear'></image>
     </view>
@@ -29,12 +28,12 @@
   </view>
 
   <view class='pagetwo' wx:if='{{shopList[0]}}'>
-    <view class='content-shop' wx:for="{{shopList}}" wx:key="item">
+    <view class='content-shop' wx:for="{{shopList}}" wx:key="item" bindtap='goShop' data-shopid='{{item.id}}'>
       <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
-      <view class='shop-title'>{{item.title}}</view>
-      <view class='shop-content'>{{item.ticketTitle}}</view>
-      <view class='shop-time'>{{item.time}}</view>
-      <view class='shop-address'>{{item.address}}</view>
+      <view class='shop-title overflowone'>{{item.shopTitle}}</view>
+      <view class='shop-content overflowone'>{{item.ticketTitle}}</view>
+      <view class='shop-time overflowone'>{{item.validtiyStart}}</view>
+      <view class='shop-address overflowone'>{{item.address}}</view>
     </view>
   </view>
 

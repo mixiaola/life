@@ -159,6 +159,9 @@ Page({
           that.setData({
             dialog: 10
           })
+          wx.showToast({
+            title: res.data.em
+          })
         } else {
           wx.showToast({
             title: res.data.em
@@ -234,5 +237,8 @@ Page({
     wx.navigateTo({
       url: '../shop/shop',
     })
+  },
+  onShareAppMessage: function () {
+
   }
 })

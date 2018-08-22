@@ -82,14 +82,14 @@ page{
   position: fixed;
   width: 92rpx;
   height: 92rpx;
-  bottom: 64rpx;
+  top: 1050rpx;
   left: 334rpx;
   z-index:102;
 }
 .dialog-content{
   width: 640rpx;
   height: 900rpx;
-  bottom: 224rpx;
+  top: 90rpx;
   position: fixed;
   background: #fff;
   z-index: 101;
