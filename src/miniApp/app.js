@@ -68,7 +68,7 @@ App({
     city:'全部',
     webUrl:'',
     subscriptionFlag: true,
-    host:'http://localhost:3000',
-    // host:'https://simplelifeapp.streetvoice.cn'
+    // host:'http://localhost:3000',
+    host:'https://simplelifeapp.streetvoice.cn'
   }
 })

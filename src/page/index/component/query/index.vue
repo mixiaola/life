@@ -1,9 +1,9 @@
 <template>
 	<div class='container'>
 		<div class='titleUser'>总体单个用户量</div>
-		<div class='titleUserNumber'>{{userNumber}}</div>
+		<div class='titleUserNumber'>{{ticketNumber}}</div>
 		<div class='titleTicket'>优惠总使用数量</div>
-		<div class='titleTicketNumber'>{{ticketNumber}}</div>
+		<div class='titleTicketNumber'>{{userNumber}}</div>
 	</div>
 </template>
 <script>

@@ -1,7 +1,7 @@
 <view>
   <!-- shop info -->
   <view class='content-top'>
-    <image class='top-img-shop' src='../../img/item1.png' mode='aspectFill'></image>
+    <image class='top-img-shop' src='{{shop.imgUrl}}' mode='aspectFill'></image>
     <view class='title'>{{shopInfo.shopTitle}}</view>
     <view class='intro'>{{shopInfo.ticketTitle}}</view>
     <view class='time'>有效期：{{shopInfo.validtiyStart}}-{{shopInfo.validtiyEnd}}</view>

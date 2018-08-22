@@ -1,9 +1,9 @@
 <view class='container'>
   <!-- top background -->
   <view class='top'>
-    <image src='../../img/profile-bg.png' mode='widthFix' style='width:100%' class='background'></image>
-    <image src='../../img/item1.png' mode='aspectFill' class='headimg'></image>
-    <view class='name'>Wechat Name</view>
+    <image src='http://simplelife.streetvoice.cn/media/uploads/profile-bg.png' mode='widthFix' style='width:100%' class='background'></image>
+    <image src='{{userInfo.avatarUrl}}' mode='aspectFill' class='headimg'></image>
+    <view class='name'>{{userInfo.nickName}}</view>
   </view>
 
   <!-- content -->

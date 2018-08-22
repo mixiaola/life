@@ -42,17 +42,6 @@
 		<el-dialog @close='closeFn' title="店铺管理" v-if='dialogTableVisible' :visible.sync="dialogTableVisible" width='90%' top='5%'>
 		  	<div>
   				<el-button type="primary" @click="submitForm">保存</el-button>
-		  		<!-- <div class="uploadImg" v-if='!imgUrl'>
-		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
-		  			<p>建议上传能突出店铺特色的、清晰美观高质量的横版照片。</p>
-		  		</div>
-		  		<div class="uploadImg" v-if='imgUrl'>
-		  			<el-button class='btn' type="primary">上传/更换图片</el-button>
-		  			<div class="drop"></div>
-		  			<img :src="imgUrl">
-		  		</div> -->
-		  		
-
 		  		<el-form :model="ruleForm" ref="form" :rules="rules" label-width="150px" class="demo-ruleForm">
 		  			<el-form-item label="店铺标题" prop="shopTitle">
 					    <el-input v-model="ruleForm.shopTitle" placeholder="请输入店铺标题"></el-input>
@@ -72,7 +61,7 @@
 					        <el-date-picker type="date" placeholder="选择开始日期" v-model="ruleForm.validtiyStart" style="width: 100%;"></el-date-picker>
 					      </el-form-item>
 					    </el-col>
-					    <el-col class="line" :span="1"></el-col>
+					    <el-col class="line" :span="1">&nbsp;</el-col>
 					     <el-col :span="8">
 					      <el-form-item prop="validtiyEnd">
 					        <el-date-picker type="date" placeholder="选择结束日期" v-model="ruleForm.validtiyEnd" style="width: 100%;"></el-date-picker>
@@ -106,9 +95,15 @@
 					    <template slot-scope="scope" class='introInfoContainer'>
 					    	<el-button @click='addText'> + 添加文字段落</el-button>
 					    	<el-button @click='addImg'> + 添加图片</el-button>
-					    	<div class="introInfo" v-for='item in ruleForm.introInfo'>
-					    		<el-input type="textarea" v-if='item.uid=="text"' v-model='item.content' placeholder='请输文字段落'></el-input>
-					    		<el-input type="text" v-if='item.uid!="text"' v-model='item.content' placeholder='请输入图片url'></el-input>
+					    	<div class='introInfoContent'>
+				    			<div class="introInfo" v-for='(item,index) in ruleForm.introInfo'>
+				    				<div v-if='item.uid=="text"'>
+				    					<el-input type="textarea" class='introInfoInput' v-model='item.content' placeholder='请输文字段落'></el-input><span class='introInfoDel' @click='delintro(index)'><i class="el-icon-delete"></i>删除</span>
+				    				</div>
+						    		<div v-if='item.uid!="text"'>
+						    			<el-input type="text" class='introInfoInput' v-model='item.content' placeholder='请输入图片url'></el-input><span class='introInfoDel' @click='delintro(index)'><i class="el-icon-delete"></i>删除</span>
+						    		</div>
+						    	</div>
 					    	</div>
 					    </template>
 				  	</el-form-item>
@@ -231,6 +226,10 @@
 	  			uid:'img',
 	  			content:''
 	  		})
+	  	},
+	  	delintro(index){
+	  		this.ruleForm.introInfo.splice(index,1)
+	  		console.log(this.ruleForm.introInfo, index)
 	  	},
 	  	getDateTimeString(time){
 	  		let date = new Date(parseInt(time))
@@ -438,11 +437,23 @@
 		width:670px;
 		margin-top:20px;
 	}
+	.introInfoContent{
+		margin-top:32px;
+	}
 	.introInfo{
-		max-width:300px;
+		max-width:400px;
+	    margin-bottom: 16px;
 		img{
 			width:100%;
 			vertical-align: top;
+		}
+		.introInfoInput{
+			width:300px;
+		}
+		.introInfoDel{
+			color:#409EFF;
+		    text-indent: 20px;
+		    cursor: pointer;
 		}
 	}
 </style>

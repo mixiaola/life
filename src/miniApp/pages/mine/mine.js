@@ -41,6 +41,7 @@ Page({
         }
       })
     }
+    console.log(this.data.userInfo)
     this.getPageData()
   },
   goShop: function(e){
@@ -145,7 +146,7 @@ Page({
   onShareAppMessage:function(ops){
     return {
       title: ops.target.dataset.title,
-      path: '/shop/shop?id=' + ops.target.dataset.id + '&shareFlag=true',
+      path: '/pages/shop/shop?id=' + ops.target.dataset.id + '&shareFlag=true',
       imageUrl: ops.target.dataset.imgurl
     }
   }

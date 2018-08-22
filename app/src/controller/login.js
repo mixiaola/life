@@ -6,12 +6,12 @@ const login = async function (ctx) {
     let resultData = '用户名或密码不正确';
     result.map((item)=>{
         if (item.username == ctx.query.username && item.password == ctx.query.password) {
-            resultData = '登陆成功'
+            resultData = '登录成功'
             ctx.cookies.set('isLogin', ctx.query.username, {httpOnly:false})
         }
     })
     var data = {
-        ec: resultData ==='登陆成功'?200:403,
+        ec: resultData ==='登录成功'?200:403,
         em: resultData,
         data: resultData
     };

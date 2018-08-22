@@ -196,7 +196,7 @@ Page({
   onShareAppMessage:function(){
     return {
       title: this.data.shopInfo.ticketTitle,
-      path: '/shop/shop?id=' + this.data.shopInfo.id + '&shareFlag=true',
+      path: '/pages/shop/shop?id=' + this.data.shopInfo.id + '&shareFlag=true',
       imageUrl: this.data.shopInfo.imgUrl
     }
   }
