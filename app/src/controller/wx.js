@@ -201,7 +201,11 @@ const getWxUseTicket = async function (ctx) {
 };
 const getWxSerachList = async function (ctx) {
     const label = ctx.query.label;
-    const sql = `select * from shop where shopTitle like '%${label}%';`;
+    const sql = `select * from shop where shopTitle like '%${label}%'
+                    or intro like '%${label}%' 
+                    or ticketTitle like '%${label}%' 
+                    or label like '%${label}%' 
+                    or introInfo like '%${label}%' ;`;
     const result = await sqlHelper.query(sql);
 
     var data = {
