@@ -19,8 +19,15 @@ const getNowFormatDate = function() {
 }
 //获取卡券
 const getWxTicket = async function (ctx) {
+    const openid = ctx.query.openid;
+    if (!openid) {
+      ctx.body = {
+        ec: 500,
+        em: '授权后才可使用，请重新登录小程序去授权'
+      }
+      return ctx.body;
+    }
     const command = ctx.query.command;
-    const openid  = ctx.query.openid;
     const sql = `select * from command where command='${command}'`;
     const result = await sqlHelper.query(sql);
     let em = '成功';
@@ -51,6 +58,13 @@ const getWxTicket = async function (ctx) {
 //首页
 const getWxIndexInfo = async function (ctx) {
     const openid = ctx.query.openid;
+    if (!openid) {
+        ctx.body = {
+            ec: 500,
+            em: '授权后才可使用，请重新登录小程序去授权'
+        }
+        return ctx.body;
+    }
     const city = ctx.query.city == '全部' ? '' : ctx.query.city;
 
     const getUser = `select * from user where openid='${openid}';`;
@@ -116,6 +130,13 @@ const getWxArticle = async function (ctx) {
 };
 //使用卡券
 const useWxTicketById = async function (ctx) {
+    if (!ctx.query.openid) {
+        ctx.body = {
+            ec: 500,
+            em: '授权后才可使用，请重新登录小程序去授权'
+        }
+        return ctx.body;
+    }
     const sql = `insert into usershop (openid, shopid, date) values ('${ctx.query.openid}', ${ctx.query.shopid}, '${getNowFormatDate()}')`;
     const data = await sqlHelper.change(sql);
     var resultData = {
@@ -140,6 +161,13 @@ const getOpenId = async function (ctx) {
 //获取单个卡券信息
 const getWxTicketById = async function (ctx) {
     const openid = ctx.query.openid;
+    if (!openid) {
+        ctx.body = {
+            ec: 500,
+            em: '授权后才可使用，请重新登录小程序去授权'
+        }
+        return ctx.body;
+    }
     const shopid = ctx.query.shopid;
     //已使用
     const usedTicketidSql = `select * from usershop where openid='${openid}' and shopid=${shopid}`;
@@ -173,6 +201,13 @@ const getWxTicketById = async function (ctx) {
 };
 const getWxUseTicket = async function (ctx) {
     const openid = ctx.query.openid;
+    if (!openid) {
+        ctx.body = {
+            ec: 500,
+            em: '授权后才可使用，请重新登录小程序去授权'
+        }
+        return ctx.body;
+    }
     //已使用
     const usedTicketidSql = `select * from usershop where openid='${openid}'`;
     const usedTicketid = await sqlHelper.query(usedTicketidSql);
