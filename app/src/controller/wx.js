@@ -71,6 +71,7 @@ const getWxIndexInfo = async function (ctx) {
     const user = await sqlHelper.query(getUser);
     const bannerSql = `select * from banner ${city ? `where city='${city}'` : ''};`;
     const banner = await sqlHelper.query(bannerSql);
+    banner.sort((a, b) => b.sort - a.sort);
     const inputSql = `select * from alert where type='input';`;
     const focusSql = `select * from alert where type='focus';`;
     const input = await sqlHelper.query(inputSql);
