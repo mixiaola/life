@@ -122,6 +122,12 @@ Page({
       },
       method: 'get',
       success: function (res) {
+        if (res.data.ec != 200) {
+          wx.showToast({
+            title: res.data.em,
+          })
+          return
+        }
         wx.showToast({
           title: res.data.em
         })
@@ -147,6 +153,12 @@ Page({
       },
       method: 'get',
       success: function (res) {
+        if (res.data.ec != 200) {
+          wx.showToast({
+            title: res.data.em,
+          })
+          return
+        }
         let list = res.data.data[0]
         list.introInfo = JSON.parse(list.introInfo)
         that.setData({

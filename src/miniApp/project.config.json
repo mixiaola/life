@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.2.1",
 	"appid": "wxc3aa2eeefec9c1bf",
 	"projectname": "wxapp",
 	"isGameTourist": false,

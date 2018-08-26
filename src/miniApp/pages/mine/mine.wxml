@@ -4,6 +4,8 @@
     <image src='http://simplelife.streetvoice.cn/media/uploads/profile-bg.png' mode='widthFix' style='width:100%' class='background'></image>
     <image src='{{userInfo.avatarUrl}}' mode='aspectFill' class='headimg'></image>
     <view class='name'>{{userInfo.nickName}}</view>
+    <view class='name'  wx:if="{{!userInfo.nickName}}">点我授权获取头像和昵称</view>
+    <button class='getUserInfoBtn' wx:if="{{!userInfo.nickName}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">123</button>
   </view>
 
   <!-- content -->

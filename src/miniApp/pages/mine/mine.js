@@ -8,11 +8,19 @@ Page({
     list:[],
     title:'',
     id:'',
-    imageUrl:''
+    imageUrl:'',
+    userInfo:{}
   },
   /**
    * 生命周期函数--监听页面加载
    */
+  bindGetUserInfo: function(e){
+    if (e && e.detail && e.detail.userInfo){
+      this.setData({
+        userInfo: e.detail.userInfo
+      })
+    }
+  },
   onLoad: function () {
     var app = getApp()
     if (app.globalData.userInfo) {
@@ -59,7 +67,12 @@ Page({
         openid: getApp().globalData.openid
       },
       success:function(res){
-        console.log('res-->', res)
+        if (res.data.ec != 200) {
+          wx.showToast({
+            title: res.data.em,
+          })
+          return
+        }
         that.setData({
           list:res.data.data
         })

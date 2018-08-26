@@ -114,6 +114,12 @@ Page({
       method: 'get',
       success: function (res) {
         let dialog;
+        if (res.data.ec != 200){
+          wx.showToast({
+            title: res.data.em,
+          })
+          return
+        }
         if (res.data.data.isGetTicket){
           if (res.data.data.subscription[0].isShow && getApp().globalData.subscriptionFlag){
             dialog = 3
@@ -190,14 +196,14 @@ Page({
           },
           fail: function (res) {
             wx.showToast({
-              title: e.errMsg
+              title: res.errMsg
             })
           }
         })
       },
       fail: function (res) {
         wx.showToast({
-          title: e.errMsg
+          title: res.errMsg
         })
       }
     })

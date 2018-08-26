@@ -59,7 +59,12 @@ Page({
         },
         method: 'get',
         success: function (res) {
-          console.log('res-->', res)
+          if (res.data.ec != 200) {
+            wx.showToast({
+              title: res.data.em,
+            })
+            return
+          }
           that.setData({
             shopList: res.data.shopList
           })
