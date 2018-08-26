@@ -17,13 +17,13 @@
   margin-top: 80rpx;
   margin-left: 60rpx;
   margin-right: 64rpx;
-  height: 44rpx;
+  /* height: 44rpx; */
 }
 .intro{
   font-size: 36rpx;
   margin-left: 64rpx;
   margin-right: 64rpx;
-  height: 44rpx;
+  /* height: 44rpx; */
   margin-top: 24rpx;
 }
 .time{
@@ -31,21 +31,19 @@
   font-size: 24rpx;
   margin-left: 64rpx;
   margin-right: 64rpx;
-  height: 44rpx;
-  margin-top: 40rpx;
+  margin-top: 24rpx;
+  line-height:34rpx;
 }
 .useinfo{
   color: #999;
   font-size: 24rpx;
   line-height: 40rpx;
   margin-left: 64rpx;
-  height: 88rpx;
   margin-right: 64rpx;
-  margin-top: 10rpx;
 }
 .btn{
   width: 200rpx;
-  /* margin-top: 40rpx; */
+  margin-top: 40rpx;
   margin-left: 245rpx;
 }
 .content-address{
@@ -117,8 +115,8 @@
   border-radius: 14rpx;
 }
 .shop-dialog1 .title{
-  height: 44rpx;
-  line-height: 44rpx;
+  /* height: 44rpx; */
+  /* line-height: 44rpx; */
   margin-top: 48rpx;
   font-size: 32rpx;
   text-align: center;
@@ -128,7 +126,7 @@
   font-size: 28rpx;
   padding-left: 32rpx;
   padding-right: 32rpx;
-  margin-top: 22rpx;
+  margin-top: 16rpx;
   margin-bottom: 36rpx;
 }
 .shop-dialog1 .shop-btn{
@@ -136,8 +134,8 @@
   text-align: center;
   display: inline-block;
   vertical-align: top;
-  height: 100rpx;
-  line-height: 100rpx;
+  /* height: 100rpx; */
+  /* line-height: 100rpx; */
   border-top: 2rpx solid #E5E5E5;
   box-sizing: border-box;
   font-size: 32rpx;

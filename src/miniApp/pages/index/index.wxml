@@ -49,6 +49,7 @@
     <view class='shop-content overflowone'>{{item.ticketTitle}}</view>
     <view class='shop-time overflowone'>{{item.validtiyStart}}</view>
     <view class='shop-address overflowone'>{{item.address}}</view>
+    <view class='shop-bg'></view>
   </view>
   <view class='blockBottom'></view>
   <!-- footer -->

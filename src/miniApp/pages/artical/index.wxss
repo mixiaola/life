@@ -3,7 +3,7 @@
   height: 240rpx;
   margin-left: 45rpx;
   background: #fff;
-  margin-top: 24rpx;
+  margin-top: 45rpx;
 }
 .content image{
   width: 224rpx;

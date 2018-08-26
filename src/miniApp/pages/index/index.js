@@ -6,10 +6,10 @@ Page({
   data: {
     userInfo: {},
     indicatorDots:true,
-    autoplay:true,
+    autoplay:false,
     interval:2000,
     dialogTypeFlag:false,
-    musicFLag:1,
+    musicFLag:0,
     dialog: 10,
     status: '1',
     statusName:'全部',

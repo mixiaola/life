@@ -17,7 +17,7 @@
 }
 .serach-top .cancal{
   float:right;
-  width: 37px;
+  /* width: 37px; */
   font-size: 36rpx;
   line-height: 60rpx;
   margin-right: 40rpx;

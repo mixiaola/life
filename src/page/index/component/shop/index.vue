@@ -322,6 +322,9 @@
 		          	if (this.checkTypeIsArray(this.ruleForm.introInfo)){
 		          		this.ruleForm.introInfo = JSON.stringify(this.ruleForm.introInfo)
 		          	}
+		          	// this.ruleForm.validtiyEnd = '2018-8-25'
+		          	// this.ruleForm.validtiyStart = "2018-8-1"
+		          	
 		          	if (typeof this.ruleForm.validtiyStart != 'string'){
 		          		this.ruleForm.validtiyStart = this.ruleForm.validtiyStart.getFullYear() + '-' +  (parseInt(this.ruleForm.validtiyStart.getMonth()) + 1) + '-' +  this.ruleForm.validtiyStart.getDate()
 		          	}
