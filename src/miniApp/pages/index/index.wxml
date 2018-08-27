@@ -43,12 +43,14 @@
       </view>
   </view>
   <!-- shopList info here -->
-  <view class='content-shop' wx:for="{{shopList}}" wx:key='item' wx:if="{{item.music == musicFLag && (item.status == status || status==1)}}" bindtap='goShop' data-shopid='{{item.id}}'>
+  <view class='content-shop' wx:for="{{shopList}}" wx:key='item' wx:if="{{(item.music == musicFLag || musicFLag == 0) && (item.status == status || status==1)}}" bindtap='goShop' data-shopid='{{item.id}}'>
     <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
     <view class='shop-title overflowone'>{{item.shopTitle}}</view>
     <view class='shop-content overflowone'>{{item.ticketTitle}}</view>
-    <view class='shop-time overflowone'>{{item.validtiyStart}}</view>
-    <view class='shop-address overflowone'>{{item.address}}</view>
+    <view class='shop-time overflowone'>{{item.validtiyStart}} ~ {{item.validtiyEnd}}</view>
+    <view class='shop-address overflowone'>
+      <image src='../../img/location-icon_fff.png' mode='widthFix'></image>
+    {{item.city}} · {{item.street}}</view>
     <view class='shop-bg'></view>
   </view>
   <view class='blockBottom'></view>

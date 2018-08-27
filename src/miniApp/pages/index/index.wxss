@@ -105,8 +105,14 @@
   font-size: 24rpx;
   bottom: 20rpx;
   right: 32rpx;
+  text-align: right;
   z-index: 10;
   width: 45%;
+}
+.content-shop .shop-address image{
+  width: 16rpx;
+  vertical-align: top;
+  margin-top: 6rpx;
 }
 .content-shop .shop-bg{
   position: absolute;

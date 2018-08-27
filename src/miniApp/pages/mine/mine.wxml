@@ -16,7 +16,7 @@
       <view class='share'>
       <image src='../../img/share.png' class='shareImg'></image>
       分享</view>
-      <button open-type="share" data-title="{{item.ticketTitle}}" data-imgUrl="{{item.imgUrl}}" data-id="{{item.id}}" class='shareButton'>123123</button>
+      <button open-type="share" data-title="{{item.shopTitle}}" data-imgUrl="{{item.imgUrl}}" data-id="{{item.id}}" class='shareButton'>123123</button>
     </view>
     <view class='content-info'>
       <image src='../../img/timedot.png' class='content-info-img'></image>

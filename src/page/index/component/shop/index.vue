@@ -78,6 +78,9 @@
 					      <el-option label="台北" value="台北"></el-option>
 					    </el-select>
 				  	</el-form-item>
+				  	<el-form-item label="活动街道" prop="street">
+					    <el-input type="text" v-model="ruleForm.street"  placeholder="请输入活动街道"></el-input>
+				  	</el-form-item>
 				  	<el-form-item label="活动地址" prop="address">
 					    <el-input type="text" v-model="ruleForm.address"  placeholder="请输入活动地址"></el-input>
 				  	</el-form-item>
@@ -143,6 +146,7 @@
 	          validtiyEnd: '',
 	          city: '',
 	          address: '',
+	          street:'',
 	          lag: '',
 	          shopStartTime: '',
 	          phone: '',
@@ -178,6 +182,9 @@
 		        }],
 		        address:[{
 		        	required: true, message: '请填写地址', trigger: 'change'
+		        }],
+		        street:[{
+		        	required: true, message: '请填写街道', trigger: 'change'
 		        }],
 		        lag: [{
 		        	required: true, message: '请填写经纬度（格式：精度;纬度）', trigger: 'change' 
@@ -263,6 +270,7 @@
 	          validtiyEnd: '',
 	          city: '',
 	          address: '',
+	          street:'',
 	          lag: '',
 	          shopStartTime: '',
 	          phone: '',
@@ -288,6 +296,7 @@
 					          validtiyEnd: res.body.data[0].validtiyEnd,
 					          city: res.body.data[0].city,
 					          address: res.body.data[0].address,
+					          street: res.body.data[0].street,
 					          lag: res.body.data[0].lag,
 					          shopStartTime: res.body.data[0].shopStartTime,
 					          phone: res.body.data[0].phone,
