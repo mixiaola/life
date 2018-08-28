@@ -69,7 +69,7 @@ const getWxIndexInfo = async function (ctx) {
 
     const getUser = `select * from user where openid='${openid}';`;
     const user = await sqlHelper.query(getUser);
-    const bannerSql = `select * from banner;`;
+    const bannerSql = `select * from banner ${city ? `where city in ('${city}', '全部')` : ''};`;
     const banner = await sqlHelper.query(bannerSql);
     banner.sort((a, b) => b.sort - a.sort);
     const inputSql = `select * from alert where type='input';`;
@@ -77,7 +77,7 @@ const getWxIndexInfo = async function (ctx) {
     const input = await sqlHelper.query(inputSql);
     const focus = await sqlHelper.query(focusSql);
     // 全部
-    const ticketSqlall = `select * from shop ${city ? `where city='${city}'` : ''};`;
+    const ticketSqlall = `select * from shop ${city ? `where city in ('${city}', '全部')` : ''};`;
     const ticket = await sqlHelper.query(ticketSqlall);
     //已使用
     const usedTicketidSql = `select shopid from usershop where openid='${openid}'`;
