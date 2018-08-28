@@ -22,7 +22,7 @@
       <image src='../../img/timedot.png' class='content-info-img'></image>
       <view class='useticket' bindtap='goShop' data-id="{{item.id}}">
         <view class='title'>{{item.shopTitle}}</view>
-        <view class='text'>{{item.intro}}</view>
+        <view class='text'>{{item.personText}}</view>
         <image src='{{item.imgUrl}}' class='useticketImg' mode='aspectFill'></image>
         <view class='address'>
           <image src='../../img/location-detial.png' class='location' mode='widthFix'></image>

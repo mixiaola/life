@@ -5,7 +5,11 @@ App({
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
-
+    // wx.getLocation({
+    //   success: function (res) {
+    //     console.log('res-->',res)
+    //   }
+    // })
     // 登录
     this.getOpenIdFn()
     // 获取用户信息

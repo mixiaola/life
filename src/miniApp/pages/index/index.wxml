@@ -47,10 +47,11 @@
     <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
     <view class='shop-title overflowone'>{{item.shopTitle}}</view>
     <view class='shop-content overflowone'>{{item.ticketTitle}}</view>
-    <view class='shop-time overflowone'>{{item.validtiyStart}} ~ {{item.validtiyEnd}}</view>
+    <view class='shop-time overflowone'>{{item.validtiyStart}} 至 {{item.validtiyEnd}}</view>
     <view class='shop-address overflowone'>
       <image src='../../img/location-icon_fff.png' mode='widthFix'></image>
-    {{item.city}} · {{item.street}}</view>
+      <view class='shop-address-text'>{{item.city}} · {{item.street}}</view>
+    </view>
     <view class='shop-bg'></view>
   </view>
   <view class='blockBottom'></view>

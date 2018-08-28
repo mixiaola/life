@@ -68,8 +68,8 @@ Page({
       },
       success:function(res){
         if (res.data.ec != 200) {
-          wx.showToast({
-            title: res.data.em,
+          wx.showModal({
+            content: res.data.em,
           })
           return
         }
@@ -78,8 +78,8 @@ Page({
         })
       },
       fail: function(e){
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })

@@ -85,14 +85,14 @@ Page({
             if (res.data && res.data.data && res.data.data.openid) {
               that.getPageData(res.data.data.openid)
             } else {
-              wx.showToast({
-                title: '获取openid失败'
+              wx.showModal({
+                content: '获取openid失败'
               })
             }
           },
           fail: function (e) {
-            wx.showToast({
-              title: e.errMsg
+            wx.showModal({
+              content: e.errMsg
             })
           }
         })
@@ -115,8 +115,8 @@ Page({
       success: function (res) {
         let dialog;
         if (res.data.ec != 200){
-          wx.showToast({
-            title: res.data.em,
+          wx.showModal({
+            content: res.data.em,
           })
           return
         }
@@ -139,8 +139,8 @@ Page({
         })
       },
       fail: function (e) {
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })
@@ -165,19 +165,19 @@ Page({
           that.setData({
             dialog: 10
           })
-          wx.showToast({
-            title: res.data.em
+          wx.showModal({
+            content: res.data.em
           })
         } else {
-          wx.showToast({
-            title: res.data.em
+          wx.showModal({
+            content: res.data.em
           })
         }
         
       },
       fail: function (e) {
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })
@@ -190,20 +190,20 @@ Page({
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success: function (res) {
-            wx.showToast({
-              title: '下载成功'
+            wx.showModal({
+              content: '下载成功'
             })
           },
           fail: function (res) {
-            wx.showToast({
-              title: res.errMsg
+            wx.showModal({
+              content: res.errMsg
             })
           }
         })
       },
       fail: function (res) {
-        wx.showToast({
-          title: res.errMsg
+        wx.showModal({
+          content: res.errMsg
         })
       }
     })

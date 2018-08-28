@@ -60,8 +60,8 @@ Page({
         method: 'get',
         success: function (res) {
           if (res.data.ec != 200) {
-            wx.showToast({
-              title: res.data.em,
+            wx.showModal({
+              content: res.data.em,
             })
             return
           }
@@ -70,8 +70,8 @@ Page({
           })
         },
         fail: function (e) {
-          wx.showToast({
-            title: e.errMsg
+          wx.showModal({
+            content: e.errMsg
           })
         }
       })
@@ -97,15 +97,15 @@ Page({
             tag: res.data.data.list
           })
         } else {
-          wx.showToast({
-            title: res.data.data
+          wx.showModal({
+            content: res.data.data
           })
         }
         console.log('res--->', res)
       },
       fail: function (e) {
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })

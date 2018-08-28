@@ -109,6 +109,11 @@
   z-index: 10;
   width: 45%;
 }
+.content-shop .shop-address .shop-address-text{
+  text-align: right;
+  display: inline-block;
+  margin-left: 8rpx;
+}
 .content-shop .shop-address image{
   width: 16rpx;
   vertical-align: top;
