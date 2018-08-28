@@ -84,8 +84,8 @@
 				  	<el-form-item label="活动地址" prop="address">
 					    <el-input type="text" v-model="ruleForm.address"  placeholder="请输入活动地址"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="经纬坐标" prop="lag">
-					    <el-input type="text" v-model="ruleForm.lag" placeholder="请输入经纬坐标（格式：精度;纬度）"></el-input>
+				  	<el-form-item label="经纬坐标(纬度;经度)" prop="lag">
+					    <el-input type="text" v-model="ruleForm.lag" placeholder="请输入经纬坐标（格式：纬度;经度）"></el-input>
 				  	</el-form-item>
 				  	<el-form-item label="营业时间" prop="shopStartTime">
 					    <el-input type="text" v-model="ruleForm.shopStartTime" placeholder="请输入营业时间"></el-input>
@@ -187,7 +187,7 @@
 		        	required: true, message: '请填写街道', trigger: 'change'
 		        }],
 		        lag: [{
-		        	required: true, message: '请填写经纬度（格式：精度;纬度）', trigger: 'change' 
+		        	required: true, message: '请填写经纬度（格式：纬度;经度）', trigger: 'change' 
 		        }],
 		        shopStartTime: [{
 		        	required: true, message: '请填写活动开始时间', trigger: 'change' 

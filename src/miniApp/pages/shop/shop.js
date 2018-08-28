@@ -32,8 +32,8 @@ Page({
       })
     } else {
       wx.openLocation({
-        longitude: parseInt(lagList[0]),
-        latitude: parseInt(lagList[1]),
+        longitude: Number(lagList[1]),
+        latitude: Number(lagList[0]),
         name: that.data.shopInfo.shopTitle
       })
     }
