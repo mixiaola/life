@@ -73,7 +73,7 @@
   <!-- dialog one -->
   <view class='dialog1' wx:if="{{dialog == 0}}" bindtap='goDialog2'>
     <image src='../../img/gift-icon.png'></image>
-    总值 1000 元的好店旅券待领取
+    总值 5000 元的好店旅券待领取
   </view>
   <!-- dialog two -->
   <view class='dialoglay' wx:if="{{dialog == 2}}"></view>

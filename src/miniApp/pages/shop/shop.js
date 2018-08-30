@@ -163,7 +163,7 @@ Page({
           return
         }
         let list = res.data.data[0]
-        list.introInfo = JSON.parse(list.introInfo)
+        list.introInfo = JSON.parse(decodeURIComponent(list.introInfo))
         list.validtiyStartStr = that.getDateToStr(list.validtiyStart)
         list.validtiyEndStr = that.getDateToStr(list.validtiyEnd)
         that.setData({

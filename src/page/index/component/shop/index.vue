@@ -303,7 +303,7 @@
 					          personText: res.body.data[0].personText,
 					          label: res.body.data[0].label,
 					          music: res.body.data[0].music=='1'? true: false,
-					          introInfo:JSON.parse(res.body.data[0].introInfo)
+					          introInfo:JSON.parse(decodeURIComponent(res.body.data[0].introInfo))
 					        }
 		  				} else {
 		  					this.$message.error(res.body.data)
@@ -329,7 +329,7 @@
 		          		this.ruleForm.id = this.id
 		          	}
 		          	if (this.checkTypeIsArray(this.ruleForm.introInfo)){
-		          		this.ruleForm.introInfo = JSON.stringify(this.ruleForm.introInfo)
+		          		this.ruleForm.introInfo = encodeURIComponent(JSON.stringify(this.ruleForm.introInfo))
 		          	}
 		          	// this.ruleForm.validtiyEnd = '2018-8-25'
 		          	// this.ruleForm.validtiyStart = "2018-8-1"
