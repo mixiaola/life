@@ -23,7 +23,7 @@
       //   console.log(response);
 			// });	
 			//搜索接口
-			// this.$http.get('/search', {params:{label:'家具'}}).then(response => {
+			// this.$http.post('/addNewShop', {rule: 'qqq'}).then(response => {
       //   console.log(1);
       // }, response => {
       //   console.log(response);

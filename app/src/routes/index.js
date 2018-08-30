@@ -15,7 +15,7 @@ router.get('/getAlert', login.getAlert);
 router.get('/query', login.query);
 router.get('/search', login.search);
 
-router.get('/addNewShop', shop.addNewShop);
+router.post('/addNewShop', shop.addNewShop);
 router.get('/delShop', shop.delShop);
 router.get('/getShopList', shop.getShopList);
 router.get('/getShopById', shop.getShopById);

@@ -3,6 +3,8 @@ import router from './routes/index.js';
 import page from './routes/page.js';
 import path from 'path';
 import views from 'koa-views';
+import bodyParser from 'koa-bodyparser';
+import koaBody from 'koa-body';
 import sqlHelper from './module/sql.js'
 const app = new Koa();
 //webpack 打包client代码
@@ -70,12 +72,18 @@ function bindStatic (){
 	app.use(views(__dirname + '/view', {
 	  extension: 'ejs'
 	}))
-
+    app.use(koaBody({
+        multipart: true,
+        formidable: {
+            maxFileSize: 200 * 1024 * 1024  // 设置上传文件大小最大限制，默认2M
+        }
+    }));
 	//设置静态资源路径
     app.use(require('koa-static')(__dirname + '../../../dist/client'))
 
 	//配置koa router
-	app.use(router.routes())
+    app.use(router.routes())
+        .use(bodyParser())
 	    .use(router.allowedMethods());
     app.use(page.routes())
         .use(page.allowedMethods());

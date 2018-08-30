@@ -2,28 +2,29 @@ const sqlHelper = require('../module/sql.js');
 
 const addNewShop = async function (ctx) {
     let sql;
-    if (ctx.query.id) {
-       sql = `update shop set imgUrl='${ctx.query.imgUrl}',
-                                street='${ctx.query.street}',
-                                shopTitle='${ctx.query.shopTitle}',
-                                ticketTitle='${ctx.query.ticketTitle}',
-                                intro='${ctx.query.intro}',
-                                validtiyStart='${ctx.query.validtiyStart}',
-                                validtiyEnd='${ctx.query.validtiyEnd}',
-                                city='${ctx.query.city}',
-                                address='${ctx.query.address}',
-                                lag='${ctx.query.lag}',
-                                shopStartTime='${ctx.query.shopStartTime}',
-                                phone='${ctx.query.phone}',
-                                introInfo='${ctx.query.introInfo}',
-                                personText='${ctx.query.personText}',
-                                label='${ctx.query.label}',
-                                music='${ctx.query.music}',
+    const params = ctx.request.body;
+    if (params.id) {
+        sql = `update shop set imgUrl='${params.imgUrl}',
+                                street='${params.street}',
+                                shopTitle='${params.shopTitle}',
+                                ticketTitle='${params.ticketTitle}',
+                                intro='${params.intro}',
+                                validtiyStart='${params.validtiyStart}',
+                                validtiyEnd='${params.validtiyEnd}',
+                                city='${params.city}',
+                                address='${params.address}',
+                                lag='${params.lag}',
+                                shopStartTime='${params.shopStartTime}',
+                                phone='${params.phone}',
+                                introInfo='${params.introInfo}',
+                                personText='${params.personText}',
+                                label='${params.label}',
+                                music='${params.music}',
                                 date='${Date.parse(new Date())}'
-                    where id=${JSON.parse(ctx.query.id)}`;
+                    where id=${JSON.parse(params.id)}`;
      } else {
         sql = `insert into shop (imgUrl, street, shopTitle, ticketTitle, intro, validtiyStart,validtiyEnd,city,address,lag,shopStartTime,phone,introInfo,personText,label,music,date)
-        values ('${ctx.query.imgUrl}','${ctx.query.street}','${ctx.query.shopTitle}','${ctx.query.ticketTitle}','${ctx.query.intro}','${ctx.query.validtiyStart}','${ctx.query.validtiyEnd}','${ctx.query.city}','${ctx.query.address}','${ctx.query.lag}','${ctx.query.shopStartTime}','${ctx.query.phone}','${ctx.query.introInfo}','${ctx.query.personText}','${ctx.query.label}','${ctx.query.music}','${Date.parse(new Date())}')`;
+        values ('${params.imgUrl}','${params.street}','${params.shopTitle}','${params.ticketTitle}','${params.intro}','${params.validtiyStart}','${params.validtiyEnd}','${params.city}','${params.address}','${params.lag}','${params.shopStartTime}','${params.phone}','${params.introInfo}','${params.personText}','${params.label}','${params.music}','${Date.parse(new Date())}')`;
      }
     const result = await sqlHelper.change(sql);
     var data = {
