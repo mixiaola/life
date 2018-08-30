@@ -2,7 +2,7 @@ const sqlHelper = require('../module/sql.js');
 
 const addNewShop = async function (ctx) {
     let sql;
-    const params = ctx.request.body;
+    const params = ctx.request.body.params;
     if (params.id) {
         sql = `update shop set imgUrl='${params.imgUrl}',
                                 street='${params.street}',
@@ -50,7 +50,6 @@ const delShop = async function (ctx) {
 
 const getShopById = async function (ctx) {
     const sql = `select * from shop where id=${JSON.parse(ctx.query.id)}`;
-    console.log(sql);
     const result = await sqlHelper.query(sql);
     var data = {
         ec: result? 200 : 500,

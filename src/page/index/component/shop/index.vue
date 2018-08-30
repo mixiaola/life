@@ -346,7 +346,7 @@
 		          		this.ruleForm.music = 0
 		          	}
 		          	console.log('this.ruleForm-->', this.ruleForm)
-		            this.$http.get('/addNewShop', { params: this.ruleForm})
+		            this.$http.post('/addNewShop', { params: this.ruleForm})
 			  			.then(res => {
 			  				if (res.body.ec == '200'){
 			  					//刷新table
