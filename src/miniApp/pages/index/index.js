@@ -48,7 +48,15 @@ Page({
     })
   },
   onLoad: function () {
-    
+    // var app = getApp();
+    // this.setData({
+    //   city: app.globalData.city
+    // })
+    // if (app.globalData.openid) {
+    //   this.getPageData(app.globalData.openid)
+    // } else {
+    //   this.getOpenIdFn()
+    // }
   },
   onShow: function () {
     var app = getApp();
@@ -60,6 +68,9 @@ Page({
     } else {
       this.getOpenIdFn()
     }
+  },
+  getDateToStr: function(str){
+    return str.split('-').join('.')
   },
   bannerClick:function(e){
     getApp().globalData.webUrl = e.currentTarget.dataset.url
@@ -83,6 +94,7 @@ Page({
           method: 'get',
           success: function (res) {
             if (res.data && res.data.data && res.data.data.openid) {
+              getApp().globalData.openid = res.data.data.openid
               that.getPageData(res.data.data.openid)
             } else {
               wx.showModal({
@@ -99,6 +111,17 @@ Page({
 
       }
     })
+  },
+  shuffle: function (arr) {
+    let i = arr.length;
+    while(i) {
+      let j = Math.floor(Math.random() * i--);
+      var tem;
+      tem = arr[j]
+      arr[j] = arr[i]
+      arr[i] = tem
+    }
+    return arr;
   },
   getPageData: function(id) {
     if(!id){
@@ -130,13 +153,28 @@ Page({
         } else {
           dialog = 0
         }
-        that.setData({
-          imgUrls: res.data.data.banner,
-          shopList: res.data.data.ticket,
-          dialog: dialog,
-          subscription: res.data.data.subscription,
-          command: res.data.data.command
-        })
+        if (!that.data.shopList[0]){
+          var list = res.data.data.ticket
+          for (var i = 0; i < list.length; i++) {
+            list[i].validtiyStartStr = that.getDateToStr(list[i].validtiyStart)
+            list[i].validtiyEndStr = that.getDateToStr(list[i].validtiyEnd)
+          }
+          list = that.shuffle(list)
+          that.setData({
+            imgUrls: res.data.data.banner,
+            shopList: list,
+            dialog: dialog,
+            subscription: res.data.data.subscription,
+            command: res.data.data.command
+          })
+        } else {
+          that.setData({
+            dialog: dialog,
+            subscription: res.data.data.subscription,
+            command: res.data.data.command
+          })
+        }
+        
       },
       fail: function (e) {
         wx.showModal({

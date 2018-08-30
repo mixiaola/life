@@ -54,6 +54,9 @@ Page({
       })
     }
   },
+  getDateToStr: function (str) {
+    return str.split('-').join('.')
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -161,8 +164,13 @@ Page({
         }
         let list = res.data.data[0]
         list.introInfo = JSON.parse(list.introInfo)
+        list.validtiyStartStr = that.getDateToStr(list.validtiyStart)
+        list.validtiyEndStr = that.getDateToStr(list.validtiyEnd)
         that.setData({
           shopInfo: list
+        })
+        wx.setNavigationBarTitle({
+          title: list.shopTitle
         })
       },
       fail: function (e) {

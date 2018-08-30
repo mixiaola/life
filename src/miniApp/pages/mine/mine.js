@@ -21,6 +21,9 @@ Page({
       })
     }
   },
+  getDateToStr: function (str) {
+    return str.split('-').join('.')
+  },
   onLoad: function () {
     var app = getApp()
     if (app.globalData.userInfo) {
@@ -49,7 +52,6 @@ Page({
         }
       })
     }
-    console.log(this.data.userInfo)
     this.getPageData()
   },
   goShop: function(e){
@@ -72,6 +74,10 @@ Page({
             content: res.data.em,
           })
           return
+        }
+        var list = res.data.data
+        for (var i=0;i<list.length;i++){
+          list[i].usedDateStr = that.getDateToStr(list[i].usedDate)
         }
         that.setData({
           list:res.data.data

@@ -4,7 +4,7 @@
     <image class='top-img-shop' src='{{shopInfo.imgUrl}}' mode='aspectFill'></image>
     <view class='title'>{{shopInfo.shopTitle}}</view>
     <view class='intro'>{{shopInfo.ticketTitle}}</view>
-    <view class='time'>有效期：{{shopInfo.validtiyStart}}-{{shopInfo.validtiyEnd}}</view>
+    <view class='time'>有效期：{{shopInfo.validtiyStartStr}}-{{shopInfo.validtiyEndStr}}</view>
     <view class='useinfo'>使用说明：{{shopInfo.intro}}</view>
     <image class='btn' src='../../img/btn2.png' mode='widthFix' bindtap='open' wx:if="{{shopInfo.status == 2}}"></image>
     <view class='disableBtn' wx:if="{{shopInfo.status == 5}}">兑换后可使用</view>
