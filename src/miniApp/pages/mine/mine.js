@@ -21,6 +21,9 @@ Page({
       })
     }
   },
+  getDateToStr: function (str) {
+    return str.split('-').join('.')
+  },
   onLoad: function () {
     var app = getApp()
     if (app.globalData.userInfo) {
@@ -49,7 +52,6 @@ Page({
         }
       })
     }
-    console.log(this.data.userInfo)
     this.getPageData()
   },
   goShop: function(e){
@@ -68,18 +70,22 @@ Page({
       },
       success:function(res){
         if (res.data.ec != 200) {
-          wx.showToast({
-            title: res.data.em,
+          wx.showModal({
+            content: res.data.em,
           })
           return
+        }
+        var list = res.data.data
+        for (var i=0;i<list.length;i++){
+          list[i].usedDateStr = that.getDateToStr(list[i].usedDate)
         }
         that.setData({
           list:res.data.data
         })
       },
       fail: function(e){
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })

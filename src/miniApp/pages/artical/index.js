@@ -47,15 +47,15 @@ Page({
             content:res.data.data
           })
         }else {
-          wx.showToast({
-            title: res.data.ec
+          wx.showModal({
+            content: res.data.ec
           })
         }
         console.log('res-->', res)
       },
       fail: function (e) {
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })

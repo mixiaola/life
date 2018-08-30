@@ -109,7 +109,7 @@
   left: 50%;
   margin-left: -280rpx;
   width: 560rpx;
-  height: 332rpx;
+  /* height: 332rpx; */
   background: #fff;
   z-index: 101;
   border-radius: 14rpx;
@@ -126,16 +126,16 @@
   font-size: 28rpx;
   padding-left: 32rpx;
   padding-right: 32rpx;
-  margin-top: 16rpx;
-  margin-bottom: 36rpx;
+  margin-top:20rpx;
+  margin-bottom:40rpx
 }
 .shop-dialog1 .shop-btn{
   width: 50%;
   text-align: center;
   display: inline-block;
   vertical-align: top;
-  /* height: 100rpx; */
-  /* line-height: 100rpx; */
+  height: 100rpx;
+  line-height: 100rpx;
   border-top: 2rpx solid #E5E5E5;
   box-sizing: border-box;
   font-size: 32rpx;

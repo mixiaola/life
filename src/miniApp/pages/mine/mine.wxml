@@ -12,7 +12,7 @@
   <view wx:if="{{!list[0]}}" class='noUseTicket'>暂无使用旅券记录</view>
   <view class='content' wx:for="{{list}}" wx:key="item">
     <view class='content-menu'>
-      <view class='date'>{{item.usedDate}}</view>
+      <view class='date'>{{item.usedDateStr}}</view>
       <view class='share'>
       <image src='../../img/share.png' class='shareImg'></image>
       分享</view>
@@ -22,7 +22,7 @@
       <image src='../../img/timedot.png' class='content-info-img'></image>
       <view class='useticket' bindtap='goShop' data-id="{{item.id}}">
         <view class='title'>{{item.shopTitle}}</view>
-        <view class='text'>{{item.intro}}</view>
+        <view class='text'>{{item.personText}}</view>
         <image src='{{item.imgUrl}}' class='useticketImg' mode='aspectFill'></image>
         <view class='address'>
           <image src='../../img/location-detial.png' class='location' mode='widthFix'></image>

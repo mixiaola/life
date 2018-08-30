@@ -7,7 +7,7 @@
 		<div class="right_content">
 			<el-input v-model="imgUrl" placeholder="请输入图片链接"></el-input>
 			<el-button type="primary" class='primary' @click="showAlert">上传／更换图片</el-button>
-			<div class='text1'>建议制作上传 640px*820px 的图片（屏幕实际显示像素为 320px*410px）</div>
+			<div class='text1'>建议制作上传 640px* 480px 的图片（屏幕实际显示像素为 320px*240px）</div>
 			<div class='switch'>
 				<span>弹窗开关</span>
 				<el-switch v-model="showFlag" @change='changeSwitch'></el-switch>

@@ -47,10 +47,11 @@
     <image src="{{item.imgUrl}}" mode="{{mode}}"></image>
     <view class='shop-title overflowone'>{{item.shopTitle}}</view>
     <view class='shop-content overflowone'>{{item.ticketTitle}}</view>
-    <view class='shop-time overflowone'>{{item.validtiyStart}} ~ {{item.validtiyEnd}}</view>
+    <view class='shop-time overflowone'>{{item.validtiyStartStr}} - {{item.validtiyEndStr}}</view>
     <view class='shop-address overflowone'>
       <image src='../../img/location-icon_fff.png' mode='widthFix'></image>
-    {{item.city}} · {{item.street}}</view>
+      <view class='shop-address-text'>{{item.city}} · {{item.street}}</view>
+    </view>
     <view class='shop-bg'></view>
   </view>
   <view class='blockBottom'></view>
@@ -72,7 +73,7 @@
   <!-- dialog one -->
   <view class='dialog1' wx:if="{{dialog == 0}}" bindtap='goDialog2'>
     <image src='../../img/gift-icon.png'></image>
-    总值 1000 元的好店旅券待领取
+    总值 5000 元的好店旅券待领取
   </view>
   <!-- dialog two -->
   <view class='dialoglay' wx:if="{{dialog == 2}}"></view>

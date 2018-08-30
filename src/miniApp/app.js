@@ -5,7 +5,11 @@ App({
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
-
+    // wx.getLocation({
+    //   success: function (res) {
+    //     console.log('res-->',res)
+    //   }
+    // })
     // 登录
     this.getOpenIdFn()
     // 获取用户信息
@@ -68,6 +72,7 @@ App({
     city:'全部',
     webUrl:'',
     subscriptionFlag: true,
+    openid: '',
     // host:'http://localhost:3000',
     host:'https://simplelifeapp.streetvoice.cn'
   }

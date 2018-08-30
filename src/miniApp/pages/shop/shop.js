@@ -27,13 +27,13 @@ Page({
     let lagList = this.data.shopInfo.lag.split(';');
     var that = this
     if (lagList.length != 2){
-      wx.showToast({
-        title: '经纬度异常！',
+      wx.showModal({
+        content: '经纬度异常！',
       })
     } else {
       wx.openLocation({
-        longitude: parseInt(lagList[0]),
-        latitude: parseInt(lagList[1]),
+        longitude: Number(lagList[1]),
+        latitude: Number(lagList[0]),
         name: that.data.shopInfo.shopTitle
       })
     }
@@ -53,6 +53,9 @@ Page({
         delta: 4
       })
     }
+  },
+  getDateToStr: function (str) {
+    return str.split('-').join('.')
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -123,13 +126,13 @@ Page({
       method: 'get',
       success: function (res) {
         if (res.data.ec != 200) {
-          wx.showToast({
-            title: res.data.em,
+          wx.showModal({
+            content: res.data.em,
           })
           return
         }
-        wx.showToast({
-          title: res.data.em
+        wx.showModal({
+          content: res.data.em
         })
         that.getPageData()
         that.setData({
@@ -137,8 +140,8 @@ Page({
         })
       },
       fail: function (e) {
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })
@@ -154,20 +157,25 @@ Page({
       method: 'get',
       success: function (res) {
         if (res.data.ec != 200) {
-          wx.showToast({
-            title: res.data.em,
+          wx.showModal({
+            content: res.data.em,
           })
           return
         }
         let list = res.data.data[0]
-        list.introInfo = JSON.parse(list.introInfo)
+        list.introInfo = JSON.parse(decodeURIComponent(list.introInfo))
+        list.validtiyStartStr = that.getDateToStr(list.validtiyStart)
+        list.validtiyEndStr = that.getDateToStr(list.validtiyEnd)
         that.setData({
           shopInfo: list
         })
+        wx.setNavigationBarTitle({
+          title: list.shopTitle
+        })
       },
       fail: function (e) {
-        wx.showToast({
-          title: e.errMsg
+        wx.showModal({
+          content: e.errMsg
         })
       }
     })
@@ -187,13 +195,13 @@ Page({
     wx.setClipboardData({
       data: this.data.shopInfo.phone,
       success: function () {
-        wx.showToast({
-          title: '复制电话号成功！',
-        })
+        // wx.showModal({
+        //   content: '复制电话号成功！',
+        // })
       },
       fail: function (e) {
-        wx.showToast({
-          title: '复制电话号失败！' + e,
+        wx.showModal({
+          content: '复制电话号失败！' + e,
         })
       }
     })
