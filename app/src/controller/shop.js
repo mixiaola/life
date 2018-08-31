@@ -1,30 +1,32 @@
 const sqlHelper = require('../module/sql.js');
-
+const getsqlData = (data) => {
+    return data.replace("'", "\\'");
+}
 const addNewShop = async function (ctx) {
     let sql;
     const params = ctx.request.body.params;
     if (params.id) {
-        sql = `update shop set imgUrl='${params.imgUrl}',
-                                street='${params.street}',
-                                shopTitle='${params.shopTitle}',
-                                ticketTitle='${params.ticketTitle}',
-                                intro='${params.intro}',
-                                validtiyStart='${params.validtiyStart}',
-                                validtiyEnd='${params.validtiyEnd}',
-                                city='${params.city}',
-                                address='${params.address}',
-                                lag='${params.lag}',
-                                shopStartTime='${params.shopStartTime}',
+        sql = `update shop set imgUrl='${getsqlData(params.imgUrl)}',
+                                street='${getsqlData(params.street)}',
+                                shopTitle="${getsqlData(params.shopTitle)}",
+                                ticketTitle='${getsqlData(params.ticketTitle)}',
+                                intro='${getsqlData(params.intro)}',
+                                validtiyStart='${getsqlData(params.validtiyStart)}',
+                                validtiyEnd='${getsqlData(params.validtiyEnd)}',
+                                city='${getsqlData(params.city)}',
+                                address='${getsqlData(params.address)}',
+                                lag='${getsqlData(params.lag)}',
+                                shopStartTime='${getsqlData(params.shopStartTime)}',
                                 phone='${params.phone}',
-                                introInfo='${params.introInfo}',
-                                personText='${params.personText}',
+                                introInfo='${getsqlData(params.introInfo)}',
+                                personText='${getsqlData(params.personText)}',
                                 label='${params.label}',
                                 music='${params.music}',
                                 date='${Date.parse(new Date())}'
                     where id=${JSON.parse(params.id)}`;
      } else {
         sql = `insert into shop (imgUrl, street, shopTitle, ticketTitle, intro, validtiyStart,validtiyEnd,city,address,lag,shopStartTime,phone,introInfo,personText,label,music,date)
-        values ('${params.imgUrl}','${params.street}','${params.shopTitle}','${params.ticketTitle}','${params.intro}','${params.validtiyStart}','${params.validtiyEnd}','${params.city}','${params.address}','${params.lag}','${params.shopStartTime}','${params.phone}','${params.introInfo}','${params.personText}','${params.label}','${params.music}','${Date.parse(new Date())}')`;
+        values ('${getsqlData(params.imgUrl)}','${getsqlData(params.street)}','${getsqlData(params.shopTitle)}','${getsqlData(params.ticketTitle)}','${getsqlData(params.intro)}','${getsqlData(params.validtiyStart)}','${getsqlData(params.validtiyEnd)}','${params.city}','${getsqlData(params.address)}','${params.lag}','${params.shopStartTime}','${params.phone}','${getsqlData(params.introInfo)}','${getsqlData(params.personText)}','${params.label}','${params.music}','${Date.parse(new Date())}')`;
      }
     const result = await sqlHelper.change(sql);
     var data = {
