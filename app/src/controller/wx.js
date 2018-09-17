@@ -220,13 +220,17 @@ const getWxUseTicket = async function (ctx) {
             })});`;
         usedTicket = await sqlHelper.query(usedTicketSql);
     }
-    usedTicket.length && usedTicket.map((item)=>{
-        usedTicketid.map((data) => {
-            if (data.shopid == item.id) {
-                item.usedDate = data.date;
+    usedTicketid.length && usedTicketid.map((item) => {
+        usedTicket.length && usedTicket.map((data) => {
+            if (item.shopid == data.id) {
+                data.usedDate = item.date;
             }
         })
     })
+    usedTicket.sort((a, b) => {
+        return (new Date(b.usedDate) - new Date(a.usedDate));
+    });
+
     var resultData = {
         ec: usedTicket ? 200 : 500,
         em: usedTicket ? '成功' : '失败',
